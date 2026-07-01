@@ -20,3 +20,20 @@ jobs:
         with:
           app-name: applipplikey
           package: .
+
+      - name: Notify deploy success
+        if: success()
+        run: |
+          echo "✅ デプロイ完了"
+          echo "   URL: https://key.applippli.co.jp/"
+          echo "   コミット: ${{ github.sha }}"
+          echo "   実行者: ${{ github.actor }}"
+          echo "   時刻: $(date '+%Y-%m-%d %H:%M:%S UTC')"
+
+      - name: Notify deploy failure
+        if: failure()
+        run: |
+          echo "❌ デプロイ失敗"
+          echo "   コミット: ${{ github.sha }}"
+          echo "   実行者: ${{ github.actor }}"
+          echo "   ログ: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}"
