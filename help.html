@@ -1,0 +1,1193 @@
+<!DOCTYPE html>
+<html lang="ja" class="lang-ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>applippli-key Setup Manual</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Yu Gothic UI', 'BIZ UDPGothic', Meiryo, sans-serif;
+    font-size: 14px;
+    color: #1a2340;
+    background: #f5f7fa;
+    line-height: 1.7;
+  }
+
+  /* 言語切替 */
+  html.lang-en .ja { display: none !important; }
+  html.lang-ja .en { display: none !important; }
+
+  /* ヘッダー */
+  .header {
+    background: #1a2340;
+    color: #fff;
+    padding: 24px 40px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .header-icon {
+    width: 44px; height: 44px;
+    background: #2d6fe8;
+    border-radius: 11px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .header h1 { font-size: 20px; font-weight: bold; }
+  .header p  { font-size: 12px; color: #8fa3c8; margin-top: 2px; }
+
+  /* 言語ボタン */
+  #langBtn {
+    margin-left: auto;
+    background: transparent;
+    border: 1px solid #4a6fa5;
+    color: #8fa3c8;
+    border-radius: 6px;
+    padding: 5px 14px;
+    font-size: 12px;
+    cursor: pointer;
+    flex-shrink: 0;
+    letter-spacing: .04em;
+  }
+  #langBtn:hover { background: #2a3a5a; color: #fff; }
+
+  /* レイアウト */
+  .container { display: flex; min-height: calc(100vh - 88px); }
+
+  /* サイドナビ */
+  nav {
+    width: 240px;
+    flex-shrink: 0;
+    background: #fff;
+    border-right: 1px solid #e2e8f0;
+    padding: 20px 0;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow-y: auto;
+  }
+  nav h2 {
+    font-size: 11px;
+    color: #8fa3c8;
+    text-transform: uppercase;
+    letter-spacing: .08em;
+    padding: 0 20px 8px;
+  }
+  nav a {
+    display: block;
+    padding: 7px 20px;
+    font-size: 13px;
+    color: #3a4a6b;
+    text-decoration: none;
+    border-left: 3px solid transparent;
+  }
+  nav a:hover  { background: #f0f4ff; color: #2d6fe8; border-left-color: #2d6fe8; }
+  nav a.active { background: #eef2ff; color: #2d6fe8; border-left-color: #2d6fe8; font-weight: 600; }
+
+  /* 本文エリア */
+  main { flex: 1; padding: 36px 48px; max-width: 900px; }
+
+  /* セクション */
+  section { margin-bottom: 48px; }
+  section h2 {
+    font-size: 18px;
+    font-weight: bold;
+    color: #1a2340;
+    border-left: 4px solid #2d6fe8;
+    padding-left: 12px;
+    margin-bottom: 16px;
+  }
+  section h3 {
+    font-size: 15px;
+    font-weight: bold;
+    color: #2d6fe8;
+    margin: 20px 0 10px;
+  }
+
+  /* 手順ステップ */
+  .steps { list-style: none; padding: 0; }
+  .steps li {
+    display: flex;
+    gap: 14px;
+    margin-bottom: 12px;
+    align-items: flex-start;
+  }
+  .step-num {
+    flex-shrink: 0;
+    width: 26px; height: 26px;
+    background: #2d6fe8;
+    color: #fff;
+    border-radius: 50%;
+    font-size: 12px;
+    font-weight: bold;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .step-txt { padding-top: 3px; }
+
+  /* 注意ボックス */
+  .note {
+    background: #fff8f0;
+    border: 1px solid #fdba74;
+    border-radius: 8px;
+    padding: 14px 18px;
+    margin: 16px 0;
+    font-size: 13px;
+    color: #92400e;
+  }
+  .note strong { display: block; margin-bottom: 4px; }
+
+  /* 情報ボックス */
+  .info {
+    background: #eff6ff;
+    border: 1px solid #93c5fd;
+    border-radius: 8px;
+    padding: 14px 18px;
+    margin: 16px 0;
+    font-size: 13px;
+    color: #1e40af;
+  }
+
+  /* アプリリンク */
+  .app-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #f0f4ff;
+    border: 1px solid #c7d4f8;
+    border-radius: 8px;
+    padding: 10px 16px;
+    font-size: 13px;
+    color: #2d6fe8;
+    text-decoration: none;
+    margin: 8px 4px;
+  }
+  .app-link:hover { background: #e0eaff; }
+
+  /* 区切り線 */
+  hr { border: none; border-top: 1px solid #e2e8f0; margin: 20px 0; }
+
+  /* フッター */
+  footer {
+    text-align: center;
+    padding: 24px;
+    font-size: 12px;
+    color: #8fa3c8;
+    border-top: 1px solid #e2e8f0;
+    background: #fff;
+  }
+
+  ul.bullet { padding-left: 20px; margin: 8px 0; }
+  ul.bullet li { margin-bottom: 6px; }
+
+  @media print {
+    nav { display: none; }
+    main { padding: 20px; }
+  }
+
+  /* 検索ハイライト */
+  mark { background: #fef08a; border-radius: 2px; padding: 0 1px; }
+
+  /* 検索ボックス */
+  #searchInput {
+    width: 100%; padding: 7px 28px 7px 10px;
+    border: 1px solid #dde4ee; border-radius: 6px;
+    font-size: 12px; color: #1a2340; outline: none;
+    font-family: inherit;
+  }
+  #searchInput:focus { border-color: #2d6fe8; }
+</style>
+<script>
+function toggleLang() {
+  clearSearch();
+  var html = document.documentElement;
+  var btn  = document.getElementById('langBtn');
+  if (html.className === 'lang-en') {
+    html.className = 'lang-ja';
+    html.lang = 'ja';
+    btn.textContent = 'EN';
+    try { localStorage.setItem('help-lang', 'ja'); } catch(e) {}
+  } else {
+    html.className = 'lang-en';
+    html.lang = 'en';
+    btn.textContent = 'JA';
+    try { localStorage.setItem('help-lang', 'en'); } catch(e) {}
+  }
+}
+window.onload = function() {
+  try {
+    var lang = localStorage.getItem('help-lang') || 'ja';
+    document.documentElement.className = 'lang-' + lang;
+    document.documentElement.lang = lang;
+    document.getElementById('langBtn').textContent = lang === 'ja' ? 'EN' : 'JA';
+  } catch(e) {}
+};
+
+/* ===== スクロールスパイ ===== */
+function updateActiveNav() {
+  var scrollPos = (window.scrollY !== undefined ? window.scrollY : document.documentElement.scrollTop) + 80;
+  var sections = document.querySelectorAll('#mainContent section[id]');
+  var links    = document.querySelectorAll('nav a[href^="#"]');
+  var current  = '';
+  for (var i = 0; i < sections.length; i++) {
+    if (sections[i].offsetTop <= scrollPos) current = sections[i].id;
+  }
+  for (var j = 0; j < links.length; j++) {
+    var isActive = links[j].getAttribute('href') === '#' + current;
+    if (isActive) {
+      links[j].className = 'active';
+      links[j].scrollIntoView({ block: 'nearest' });
+    } else {
+      links[j].className = '';
+    }
+  }
+}
+window.addEventListener('scroll', updateActiveNav);
+window.addEventListener('load', updateActiveNav);
+
+/* ===== 検索 ===== */
+var searchMarks = [];
+
+function isLangHidden(el) {
+  var htmlCls = document.documentElement.className;
+  var cur = el;
+  while (cur && cur !== document.documentElement) {
+    var cls = cur.className || '';
+    if (cls === 'ja' && htmlCls === 'lang-en') return true;
+    if (cls === 'en' && htmlCls === 'lang-ja') return true;
+    cur = cur.parentNode;
+  }
+  return false;
+}
+
+function walkTextNodes(el, fn) {
+  for (var c = el.firstChild; c; c = c.nextSibling) {
+    if (c.nodeType === 3) {
+      fn(c);
+    } else if (c.nodeType === 1 && c.tagName !== 'SCRIPT' && c.tagName !== 'STYLE') {
+      walkTextNodes(c, fn);
+    }
+  }
+}
+
+function doSearch(val) {
+  clearMarks();
+  var countEl = document.getElementById('searchCount');
+  var clearBtn = document.getElementById('searchClear');
+  if (clearBtn) clearBtn.style.display = val ? 'block' : 'none';
+  if (!val || val.length < 1) { countEl.textContent = ''; return; }
+
+  var term = val.toLowerCase();
+  var count = 0;
+  var firstMark = null;
+  var main = document.getElementById('mainContent');
+
+  walkTextNodes(main, function(node) {
+    if (isLangHidden(node.parentNode)) return;
+    var text = node.nodeValue;
+    var ltext = text.toLowerCase();
+    var idx = ltext.indexOf(term);
+    if (idx === -1) return;
+    var frag = document.createDocumentFragment();
+    var last = 0;
+    while (idx !== -1) {
+      frag.appendChild(document.createTextNode(text.slice(last, idx)));
+      var mark = document.createElement('mark');
+      mark.textContent = text.slice(idx, idx + val.length);
+      frag.appendChild(mark);
+      searchMarks.push(mark);
+      if (!firstMark) firstMark = mark;
+      count++;
+      last = idx + val.length;
+      idx = ltext.indexOf(term, last);
+    }
+    frag.appendChild(document.createTextNode(text.slice(last)));
+    node.parentNode.replaceChild(frag, node);
+  });
+
+  var isJa = document.documentElement.className === 'lang-ja';
+  if (count > 0) {
+    countEl.style.color = '#2d6fe8';
+    countEl.textContent = count + (isJa ? ' 件' : ' match' + (count > 1 ? 'es' : ''));
+    firstMark.scrollIntoView({ block: 'center' });
+  } else {
+    countEl.style.color = '#e53e3e';
+    countEl.textContent = isJa ? '見つかりません' : 'Not found';
+  }
+}
+
+function clearMarks() {
+  for (var i = 0; i < searchMarks.length; i++) {
+    var m = searchMarks[i];
+    if (m.parentNode) m.parentNode.replaceChild(document.createTextNode(m.textContent), m);
+  }
+  searchMarks = [];
+  var main = document.getElementById('mainContent');
+  if (main) main.normalize();
+}
+
+function clearSearch() {
+  var inp = document.getElementById('searchInput');
+  if (inp) inp.value = '';
+  var clearBtn = document.getElementById('searchClear');
+  if (clearBtn) clearBtn.style.display = 'none';
+  var countEl = document.getElementById('searchCount');
+  if (countEl) countEl.textContent = '';
+  clearMarks();
+}
+</script>
+</head>
+<body>
+
+<!-- ===== ヘッダー ===== -->
+<div class="header">
+  <div class="header-icon">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+         fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="5" y="11" width="14" height="10" rx="2"/>
+      <path d="M8 11v-4a4 4 0 0 1 8 0v4"/>
+      <circle cx="12" cy="16" r="1.5" fill="#ffffff"/>
+    </svg>
+  </div>
+  <div>
+    <h1>
+      <span class="ja">applippli-key 初期設定マニュアル</span>
+      <span class="en">applippli-key Setup Manual</span>
+    </h1>
+    <p>
+      <span class="ja">更新日：</span><span class="en">Updated: </span>2026/6/30
+    </p>
+  </div>
+  <button id="langBtn" onclick="toggleLang()">EN</button>
+</div>
+
+<div class="container">
+
+<!-- ===== サイドナビ ===== -->
+<nav>
+  <div style="padding:12px 14px 4px;">
+    <div style="position:relative;">
+      <input type="text" id="searchInput"
+             placeholder="検索 / Search"
+             oninput="doSearch(this.value)"
+             style="width:100%;padding:7px 26px 7px 10px;border:1px solid #dde4ee;
+                    border-radius:6px;font-size:12px;color:#1a2340;outline:none;
+                    font-family:inherit;box-sizing:border-box;">
+      <span id="searchClear" onclick="clearSearch()"
+            style="position:absolute;right:8px;top:50%;margin-top:-8px;
+                   cursor:pointer;color:#9aa3b8;font-size:14px;display:none;
+                   line-height:1;user-select:none;">&#10005;</span>
+    </div>
+    <div id="searchCount" style="font-size:11px;margin-top:4px;padding-left:2px;min-height:15px;"></div>
+  </div>
+  <h2><span class="ja">目次</span><span class="en">Contents</span></h2>
+  <a href="#intro"><span class="ja">はじめに</span><span class="en">Introduction</span></a>
+  <a href="#caution"><span class="ja">使用上の注意事項</span><span class="en">Important Notes</span></a>
+  <a href="#app-download"><span class="ja">OTPアプリのダウンロード</span><span class="en">Download OTP App</span></a>
+  <a href="#installer-download"><span class="ja">インストーラーダウンロード</span><span class="en">Download Installer</span></a>
+  <a href="#install"><span class="ja">インストール手順</span><span class="en">Installation</span></a>
+  <a href="#emergency"><span class="ja">緊急ログオンの設定</span><span class="en">Emergency Logon Setup</span></a>
+  <a href="#activate"><span class="ja">アクティベーションキーの登録</span><span class="en">Activation Key</span></a>
+  <a href="#otp-setup"><span class="ja">ワンタイムパスワードの設定</span><span class="en">OTP Setup</span></a>
+  <a href="#otp-login"><span class="ja">OTPによるログイン</span><span class="en">Login with OTP</span></a>
+  <a href="#emergency-use"><span class="ja">緊急ログオンの使用方法</span><span class="en">Using Emergency Logon</span></a>
+  <a href="#user-switch"><span class="ja">他ユーザーへの切り替え</span><span class="en">Switching Users</span></a>
+  <a href="#uninstall"><span class="ja">アンインストール手順</span><span class="en">Uninstall</span></a>
+  <a href="#forgot-ms"><span class="ja">パスワードを忘れた場合（MSアカウント）</span><span class="en">Forgot Password (MS Account)</span></a>
+  <a href="#forgot-local"><span class="ja">パスワードを忘れた場合（ローカル）</span><span class="en">Forgot Password (Local)</span></a>
+  <a href="#account-type"><span class="ja">アカウント種別の判別方法</span><span class="en">Identify Account Type</span></a>
+  <a href="#upgrade"><span class="ja">Ver 2 へのアップグレード</span><span class="en">Upgrade to Ver 2</span></a>
+  <a href="#onetouch"><span class="ja">ワンタッチログインの設定</span><span class="en">One-Touch Login Setup</span></a>
+  <a href="#logviewer"><span class="ja">ログビューア</span><span class="en">Log Viewer</span></a>
+  <a href="#line-notify"><span class="ja">LINE通知設定</span><span class="en">LINE Notification</span></a>
+  <a href="#faq">FAQ</a>
+</nav>
+
+<!-- ===== 本文 ===== -->
+<main id="mainContent">
+
+  <!-- はじめに / Introduction -->
+  <section id="intro">
+    <h2><span class="ja">はじめに</span><span class="en">Introduction</span></h2>
+    <p>
+      <span class="ja">この度は弊社「applippli-key」のご利用、誠にありがとうございます。<br>
+      ご利用の前に本製品についての利用規約をご一読の上、お進みください。</span>
+      <span class="en">Thank you for choosing applippli-key.<br>
+      Please read the terms of use for this product before proceeding.</span>
+    </p>
+    <div class="info">
+      <span class="ja">applippli-key のご利用には、EULA（ソフトウェア使用許諾契約書）への同意が必要となります。
+      （EULA はプログラムインストール時に表示されます。）</span>
+      <span class="en">Use of applippli-key requires agreement to the EULA (End User License Agreement),
+      which is displayed during installation.</span>
+    </div>
+    <h3><span class="ja">本マニュアルについて</span><span class="en">About This Manual</span></h3>
+    <ul class="bullet">
+      <li><span class="ja">掲載されているイメージ画像は予告なく変更される場合があります。</span><span class="en">Screenshots shown in this manual are subject to change without notice.</span></li>
+      <li><span class="ja">画面表示や操作手順は、ソフトウェアのバージョンによって異なる場合があります。</span><span class="en">Screen displays and procedures may vary depending on the software version.</span></li>
+      <li><span class="ja">当製品の仕様は予告なく変更されることがあります。</span><span class="en">Product specifications are subject to change without notice.</span></li>
+      <li><span class="ja">本マニュアルの内容は改善のために変更される場合があります。</span><span class="en">The contents of this manual may be updated for improvements.</span></li>
+      <li><span class="ja">本マニュアルの記載内容に基づいて発生した損害について、当社は一切の責任を負いません。操作は自己責任で行ってください。</span><span class="en">We accept no liability for any damages arising from the use of this manual. Operate at your own risk.</span></li>
+      <li><span class="ja">本マニュアルの無断転載・複製を禁じます。</span><span class="en">Unauthorized reproduction or copying of this manual is prohibited.</span></li>
+    </ul>
+  </section>
+
+  <!-- 使用上の注意事項 / Important Notes -->
+  <section id="caution">
+    <h2><span class="ja">使用上の注意事項（必ずお読みください）</span><span class="en">Important Notes (Please Read)</span></h2>
+    <div class="note">
+      <strong>
+        <span class="ja">⚠ PINコードを使用してログインしている方は必ずお読みください</span>
+        <span class="en">⚠ Important: For users logging in with a PIN code</span>
+      </strong>
+      <span class="ja">PINコードを使用しており、Windows パスワードを把握している場合は、本書 P10 の手順に従って操作してください。<br>
+      Windows パスワードを忘れてしまった方は、Windows パスワードをリセットした後、本書 P10 記載の通りでお進みください。</span>
+      <span class="en">If you use a PIN code and know your Windows password, follow the instructions on page 10 of this manual.<br>
+      If you have forgotten your Windows password, reset it first and then proceed as described on page 10.</span>
+    </div>
+    <h3><span class="ja">インストール・初期設定の注意事項</span><span class="en">Installation &amp; Setup Notes</span></h3>
+    <ul class="bullet">
+      <li><span class="ja">applippli-key の OS 対応状況については公式サイトを参照してください。</span><span class="en">Refer to the official website for supported operating systems.</span></li>
+      <li><span class="ja">必要なソフトウェアとハードウェアについては、製品仕様を参照してください。</span><span class="en">Refer to the product specifications for required software and hardware.</span></li>
+      <li><span class="ja">applippli-key をセットアップする PC の <strong>管理者権限を持っている方</strong>が、インストール作業を行ってください。</span><span class="en">Installation must be performed by a user with <strong>administrator privileges</strong> on the PC.</span></li>
+      <li><span class="ja">管理者権限がない場合はインストールできません。</span><span class="en">Installation is not possible without administrator privileges.</span></li>
+      <li><span class="ja">インストールを始める前に、すべてのプログラムを終了してください。</span><span class="en">Close all running programs before starting the installation.</span></li>
+      <li><span class="ja">常駐プログラムが動作していると、正しくインストールできない場合があります。</span><span class="en">Background (resident) programs may interfere with the installation.</span></li>
+      <li><span class="ja">インストールや設定で問題が解決しない場合は、本マニュアルの最後に記載しているトラブルシューティングページのリンクをご活用ください。</span><span class="en">If issues persist after installation or setup, refer to the troubleshooting page link at the end of this manual.</span></li>
+    </ul>
+  </section>
+
+  <!-- OTPアプリ / Download OTP App -->
+  <section id="app-download">
+    <h2><span class="ja">ワンタイムパスワードアプリをダウンロード</span><span class="en">Download the OTP Authenticator App</span></h2>
+    <h3><span class="ja">【iPhone 端末の場合】</span><span class="en">For iPhone</span></h3>
+    <p>
+      <span class="ja">下記いずれかのアプリをインストールしてください。App Store で QR コードを読み取るか、アプリ名で検索してください。</span>
+      <span class="en">Install one of the apps below. Search by name on the App Store or scan the QR code.</span>
+    </p>
+    <div style="margin: 12px 0;">
+      <a class="app-link" href="https://apps.apple.com/jp/app/google-authenticator/id388497605">
+        📱 Google Authenticator（iOS）
+      </a>
+      <a class="app-link" href="https://apps.apple.com/jp/app/microsoft-authenticator/id983156458">
+        📱 Microsoft Authenticator（iOS）
+      </a>
+    </div>
+
+    <h3><span class="ja">【Android 端末の場合】</span><span class="en">For Android</span></h3>
+    <p>
+      <span class="ja">下記いずれかのアプリをインストールしてください。Google Play で QR コードを読み取るか、アプリ名で検索してください。</span>
+      <span class="en">Install one of the apps below. Search by name on Google Play or scan the QR code.</span>
+    </p>
+    <div style="margin: 12px 0;">
+      <a class="app-link" href="https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2">
+        📱 Google Authenticator（Android）
+      </a>
+      <a class="app-link" href="https://play.google.com/store/apps/details?id=com.azure.authenticator">
+        📱 Microsoft Authenticator（Android）
+      </a>
+    </div>
+  </section>
+
+  <!-- インストーラーDL / Download Installer -->
+  <section id="installer-download">
+    <h2><span class="ja">applippli-key インストーラーのダウンロード</span><span class="en">Download the applippli-key Installer</span></h2>
+    <ul class="steps">
+      <li><span class="step-num">1</span><span class="step-txt"><span class="ja">マイページにログインします。</span><span class="en">Log in to My Page.</span></span></li>
+      <li><span class="step-num">2</span><span class="step-txt"><span class="ja">上部メニューバーの <strong>［重要通知］</strong> を開きます。</span><span class="en">Open <strong>[Important Notices]</strong> from the top menu bar.</span></span></li>
+      <li><span class="step-num">3</span><span class="step-txt"><span class="ja">「applippli-key ご利用のご案内」の通知を開きます。</span><span class="en">Open the notification titled "applippli-key Usage Guide."</span></span></li>
+      <li><span class="step-num">4</span><span class="step-txt"><span class="ja">ご案内最下部のインストーラーダウンロードリンクをクリックし、ダウンロードします。</span><span class="en">Click the installer download link at the bottom of the notice to download it.</span></span></li>
+    </ul>
+  </section>
+
+  <!-- インストール / Installation -->
+  <section id="install">
+    <h2><span class="ja">applippli-key のインストール</span><span class="en">Installing applippli-key</span></h2>
+    <ul class="steps">
+      <li><span class="step-num">1</span><span class="step-txt"><span class="ja">applippli-key のインストーラーをダブルクリックします。</span><span class="en">Double-click the applippli-key installer.</span></span></li>
+      <li><span class="step-num">2</span><span class="step-txt"><span class="ja">自己解凍画面が出ますので指示にしたがってお進みください。自己解凍が終了すると、applippli-key インストール画面が表示されます。</span><span class="en">Follow the self-extraction prompts. The applippli-key installation screen will appear once extraction is complete.</span></span></li>
+      <li><span class="step-num">3</span><span class="step-txt"><span class="ja">言語の選択画面が表示されたら、一覧からご希望の言語を選択して <strong>［OK］</strong> をクリックします。</span><span class="en">When the language selection screen appears, choose your preferred language and click <strong>[OK]</strong>.</span></span></li>
+      <li><span class="step-num">4</span><span class="step-txt"><span class="ja">セットアップ開始画面になったら、画面右下の <strong>［次へ］</strong> ボタンをクリックします。</span><span class="en">On the setup start screen, click <strong>[Next]</strong> at the bottom right.</span></span></li>
+      <li><span class="step-num">5</span><span class="step-txt"><span class="ja">当製品の使用許諾書をご確認の上、「同意する」にチェックを入れ、<strong>［次へ］</strong> をクリックします。</span><span class="en">Read the license agreement, check "I agree," and click <strong>[Next]</strong>.</span></span></li>
+      <li><span class="step-num">6</span><span class="step-txt"><span class="ja">スタートメニューフォルダーの指定画面は、そのまま <strong>［次へ］</strong> をクリックします。</span><span class="en">On the Start Menu folder screen, click <strong>[Next]</strong> to proceed with the default.</span></span></li>
+      <li><span class="step-num">7</span><span class="step-txt"><span class="ja">デスクトップ上にアイコンを置く場合は、「デスクトップ上にアイコンを作成する」にチェックを入れ、<strong>［次へ］</strong> をクリックします。</span><span class="en">To add a desktop icon, check "Create a desktop icon" and click <strong>[Next]</strong>.</span></span></li>
+      <li><span class="step-num">8</span><span class="step-txt"><span class="ja">指定項目を確認し、<strong>［インストール］</strong> をクリックすると、applippli-key のインストールが開始されます。</span><span class="en">Review the settings and click <strong>[Install]</strong> to begin installation.</span></span></li>
+      <li><span class="step-num">9</span><span class="step-txt"><span class="ja"><strong>［完了］</strong> をクリックします。applippli-key 設定画面が開くので、次ページを参照し、設定をします。</span><span class="en">Click <strong>[Finish]</strong>. The applippli-key settings screen will open — refer to the next section to complete setup.</span></span></li>
+    </ul>
+  </section>
+
+  <!-- 緊急ログオン設定 / Emergency Logon Setup -->
+  <section id="emergency">
+    <h2><span class="ja">緊急ログオンの設定</span><span class="en">Emergency Logon Setup</span></h2>
+    <p>
+      <span class="ja">緊急ログオンは、スマートフォンを忘れた場合などに「ワンタイムパスワード」を解除して、一時的に Windows パスワードを使用してログインできる仕組みです。</span>
+      <span class="en">Emergency Logon allows you to temporarily bypass the OTP requirement and log in with your Windows password — for example, when you have forgotten your smartphone.</span>
+    </p>
+    <ul class="steps" style="margin-top:14px;">
+      <li><span class="step-num">1</span><span class="step-txt">
+        <span class="ja">質問をプルダウンより選択し、右側の枠に回答を入力します。<br><em>※ 半角英数字のみで入力してください。</em></span>
+        <span class="en">Select a security question from the drop-down and enter your answer in the field on the right.<br><em>※ Use half-width alphanumeric characters only.</em></span>
+      </span></li>
+      <li style="list-style:none;display:block;margin:12px 0 16px;">
+        <img src="img/601.png" alt="緊急ログオンの設定画面"
+             style="max-width:100%;border:1px solid #dde4ee;border-radius:6px;box-shadow:0 2px 6px rgba(0,0,0,0.08);">
+      </li>
+      <li><span class="step-num">2</span><span class="step-txt">
+        <span class="ja">入力完了後、<strong>［OK］</strong> をクリックします。</span>
+        <span class="en">After entering your answer, click <strong>[OK]</strong>.</span>
+      </span></li>
+    </ul>
+    <div class="info">
+      <span class="ja">緊急ログオン設定が完了すると確認メッセージが表示されます。<strong>［OK］</strong> をクリックして画面を閉じます。</span>
+      <span class="en">A confirmation message will appear when Emergency Logon setup is complete. Click <strong>[OK]</strong> to close.</span>
+    </div>
+  </section>
+
+  <!-- アクティベーション / Activation -->
+  <section id="activate">
+    <h2><span class="ja">アクティベーションキーの登録</span><span class="en">Activation Key Registration</span></h2>
+    <div class="note">
+      <strong>
+        <span class="ja">⚠ インターネット接続が必要です</span>
+        <span class="en">⚠ Internet connection required</span>
+      </strong>
+      <span class="ja">本製品のアクティベーションの際に、インターネット通信が必要です。</span>
+      <span class="en">An internet connection is required to activate this product.</span>
+    </div>
+    <ul class="steps">
+      <li><span class="step-num">1</span><span class="step-txt">
+        <span class="ja">applippli-key を開き、画面左下の <strong>「アクティベート」</strong> をクリックします。</span>
+        <span class="en">Open applippli-key and click <strong>"Activate"</strong> at the bottom left of the screen.</span>
+      </span></li>
+      <li><span class="step-num">2</span><span class="step-txt">
+        <span class="ja">「applippli-key アクティベート」の画面が表示されたら、アクティベーションキーを枠内に入力します。入力が完了したら <strong>［OK］</strong> をクリックします。<br>
+        <em>※ アクティベーションキーは、マイページよりご確認いただけます。</em><br>
+        <em>（マイページ → ［契約状況一覧］ → 契約中の applippli-key ［詳細］ → ユーザー数 ［詳細］）</em><br>
+        <em>※ アクティベーションキーはコピー・貼り付けが可能です。</em></span>
+        <span class="en">When the activation screen appears, enter your activation key and click <strong>[OK]</strong>.<br>
+        <em>※ Your activation key can be found in My Page.</em><br>
+        <em>(My Page → [Contract List] → applippli-key [Details] → Users [Details])</em><br>
+        <em>※ You can copy and paste the activation key.</em></span>
+      </span></li>
+      <li><span class="step-num">3</span><span class="step-txt">
+        <span class="ja">アクティベーション完了のメッセージが表示されたら <strong>［OK］</strong> をクリックして閉じます。</span>
+        <span class="en">When the activation success message appears, click <strong>[OK]</strong> to close.</span>
+      </span></li>
+    </ul>
+  </section>
+
+  <!-- OTP設定 / OTP Setup -->
+  <section id="otp-setup">
+    <h2><span class="ja">ワンタイムパスワードの設定</span><span class="en">OTP Setup</span></h2>
+    <ul class="steps">
+      <li><span class="step-num">1</span><span class="step-txt">
+        <span class="ja"><strong>［ワンタイムパスワードの設定］</strong> をクリックします。</span>
+        <span class="en">Click <strong>[OTP Setup]</strong>.</span>
+      </span></li>
+      <li><span class="step-num">2</span><span class="step-txt">
+        <span class="ja"><strong>［QRコード表示］</strong> をクリックします。ブラウザが起動して QR コードが表示されます。表示された QR コードをワンタイムパスワードアプリの QR コード読取機能を使用してスキャンしてください。<br><em>※ スマートフォン標準のカメラでは読み取りできません。</em></span>
+        <span class="en">Click <strong>[Show QR Code]</strong>. A browser window will open displaying a QR code. Scan it with your OTP authenticator app.<br><em>※ The device's default camera cannot be used to scan.</em></span>
+      </span></li>
+      <li><span class="step-num">3</span><span class="step-txt">
+        <span class="ja">通常 PC にログインするときの Windows パスワードを入力します。入力後、<strong>［ワンタイムパスワードの設定］</strong> をクリックして設定を完了します。</span>
+        <span class="en">Enter your Windows login password, then click <strong>[Set OTP]</strong> to complete setup.</span>
+      </span></li>
+      <li><span class="step-num">4</span><span class="step-txt">
+        <span class="ja">ワンタイムパスワード設定が完了すると、OTP 認証有効のバッジが表示されます。</span>
+        <span class="en">Once OTP setup is complete, the OTP authentication enabled badge will appear.</span>
+      </span></li>
+    </ul>
+    <div class="note">
+      <strong>
+        <span class="ja">⚠ PIN コードしか分からない場合</span>
+        <span class="en">⚠ If you only know your PIN code</span>
+      </strong>
+      <span class="ja">Windows パスワードをリセットしてください。（<a href="#forgot-ms">パスワードを忘れた場合</a> を参照）</span>
+      <span class="en">Please reset your Windows password. (See <a href="#forgot-ms">Forgot Password</a>)</span>
+    </div>
+    <div class="info">
+      <span class="ja">次回ログインからワンタイムパスワードでのログインに変わります。</span>
+      <span class="en">From the next login, you will be required to enter a one-time password.</span>
+    </div>
+  </section>
+
+  <!-- OTPログイン / Login with OTP -->
+  <section id="otp-login">
+    <h2><span class="ja">ワンタイムパスワードによるログイン</span><span class="en">Logging in with OTP</span></h2>
+    <p>
+      <span class="ja">ワンタイムパスワード初期設定が完了すると、Windows ログイン画面でワンタイムパスワードを求められます。スマートフォンのワンタイムパスワードアプリに表示された <strong>6桁のワンタイムパスワード</strong> を入力することにより、安全にログインすることができます。</span>
+      <span class="en">After OTP setup is complete, the Windows login screen will ask for a one-time password. Enter the <strong>6-digit OTP</strong> displayed in your authenticator app to log in securely.</span>
+    </p>
+    <div class="info" style="margin-top:14px;">
+      <span class="ja">ログインユーザー名は入力せず、ワンタイムパスワード入力のみでログインできます。
+      ただし、前回ログインしたユーザー名を記憶しているため、別のユーザーでログインする場合はユーザーの切り替え操作が必要です。
+      また、複数ユーザーで applippli-key を設定している場合は、ユーザー名欄を空白のままそれぞれのワンタイムパスワードを入力すればそのユーザーでログインできます。</span>
+      <span class="en">You can log in by entering only the OTP — no username is required.
+      The system remembers the last logged-in username, so switching to a different user requires a user switch operation.
+      If multiple users have applippli-key configured, each user can log in by leaving the username field blank and entering their own OTP.</span>
+    </div>
+  </section>
+
+  <!-- 緊急ログオン使用 / Using Emergency Logon -->
+  <section id="emergency-use">
+    <h2><span class="ja">緊急ログオンの使用方法</span><span class="en">Using Emergency Logon</span></h2>
+    <p>
+      <span class="ja">ワンタイムパスワードアプリを設定したスマートフォンを忘れた・故障した場合など、ワンタイムパスワードの確認ができない場合に操作します。</span>
+      <span class="en">Use this procedure when you cannot access your OTP — for example, if you have forgotten or lost your smartphone.</span>
+    </p>
+    <ul class="steps" style="margin-top:14px;">
+      <li><span class="step-num">1</span><span class="step-txt">
+        <span class="ja">PC のログイン画面上に表示されている <strong>［緊急ログオン］</strong> をクリックします。</span>
+        <span class="en">Click <strong>[Emergency Logon]</strong> on the Windows login screen.</span>
+      </span></li>
+      <li><span class="step-num">2</span><span class="step-txt">
+        <span class="ja">PC のユーザー名を入力し、<strong>［次へ］</strong> をクリックします。</span>
+        <span class="en">Enter your PC username and click <strong>[Next]</strong>.</span>
+      </span></li>
+      <li><span class="step-num">3</span><span class="step-txt">
+        <span class="ja">セットアップ時に入力した緊急ログオン設定での回答内容を入力し、<strong>［次へ］</strong> をクリックします。<br><em>※ 半角英数字のみで入力してください。</em></span>
+        <span class="en">Enter the answer you provided during Emergency Logon setup, then click <strong>[Next]</strong>.<br><em>※ Use half-width alphanumeric characters only.</em></span>
+      </span></li>
+      <li><span class="step-num">4</span><span class="step-txt">
+        <span class="ja">処理完了のメッセージが表示されたら <strong>［OK］</strong> で閉じます。</span>
+        <span class="en">When the completion message appears, click <strong>[OK]</strong> to close it.</span>
+      </span></li>
+      <li><span class="step-num">5</span><span class="step-txt">
+        <span class="ja">Windows パスワード入力画面に切り替わったら、設定している Windows パスワードを入力し、ログインします。</span>
+        <span class="en">When the Windows password screen appears, enter your Windows password to log in.</span>
+      </span></li>
+    </ul>
+  </section>
+
+  <!-- ユーザー切り替え / Switching Users -->
+  <section id="user-switch">
+    <h2><span class="ja">同一 PC で他ユーザーへの切り替え方法</span><span class="en">Switching to Another User on the Same PC</span></h2>
+    <p>
+      <span class="ja">同一 PC で複数ユーザーが存在する場合で他のユーザーへ切り替える場合、下記の手順にて他ユーザーでのログインができます。</span>
+      <span class="en">If multiple users are registered on the same PC, follow the steps below to log in as a different user.</span>
+    </p>
+    <ul class="steps" style="margin-top:14px;">
+      <li><span class="step-num">1</span><span class="step-txt">
+        <span class="ja">ログイン画面左下にある <strong>［その他のユーザー］</strong> をクリックします。</span>
+        <span class="en">Click <strong>[Other users]</strong> at the bottom left of the login screen.</span>
+      </span></li>
+      <li><span class="step-num">2</span><span class="step-txt">
+        <span class="ja">ログイン画面が ［User name］・［Password］ に変わるので、ログインしたいユーザー名及びパスワードを入力します。</span>
+        <span class="en">The login screen changes to show [User name] and [Password] fields. Enter the username and password of the desired account.</span>
+      </span></li>
+    </ul>
+  </section>
+
+  <!-- アンインストール / Uninstall -->
+  <section id="uninstall">
+    <h2><span class="ja">アンインストール手順</span><span class="en">Uninstall</span></h2>
+    <h3><span class="ja">（1）プログラムメニューからアンインストールする場合（Windows 11）</span><span class="en">(1) Uninstall via Start Menu (Windows 11)</span></h3>
+    <p>
+      <span class="ja">applippli-key をアンインストールしたい PC でスタートボタンをクリック後、以下のフォルダを開きます。アンインストール画面が出たら画面の指示に従って操作してください。</span>
+      <span class="en">Click the Start button on the PC where you want to uninstall applippli-key, then navigate to the folder below. Follow the on-screen instructions on the uninstall screen.</span>
+    </p>
+    <div class="info" style="margin: 12px 0;">
+      <span class="ja">［スタート］ → ［すべて］ → ［applippli-key］ → ［applippli-key をアンインストールする］</span>
+      <span class="en">[Start] → [All apps] → [applippli-key] → [Uninstall applippli-key]</span>
+    </div>
+    <div class="note">
+      <strong>
+        <span class="ja">⚠ 再インストール時の注意</span>
+        <span class="en">⚠ Note on reinstallation</span>
+      </strong>
+      <span class="ja">同一 PC 端末への再インストールおよびアクティベーション化は可能です。<br>
+      別の PC 端末へインストールする場合は、新たにアクティベーションキーの購入が必要です。<br>
+      再インストールした場合、設定は初期化されるため、アクティベーションを含む初期設定が必要です。</span>
+      <span class="en">Reinstalling on the same PC and re-activating is permitted.<br>
+      Installing on a different PC requires a new activation key purchase.<br>
+      Reinstallation resets all settings, so initial setup including activation must be performed again.</span>
+    </div>
+
+    <h3><span class="ja">（2）プログラムの一覧からアンインストールする場合（Windows 11）</span><span class="en">(2) Uninstall via Installed Apps (Windows 11)</span></h3>
+    <ul class="steps">
+      <li><span class="step-num">1</span><span class="step-txt">
+        <span class="ja">スタートボタンをクリック後、<strong>［設定］→ ［アプリ］→ ［インストールされているアプリ］</strong> を開きます。</span>
+        <span class="en">Click the Start button and go to <strong>[Settings] → [Apps] → [Installed apps]</strong>.</span>
+      </span></li>
+      <li><span class="step-num">2</span><span class="step-txt">
+        <span class="ja">アプリ一覧が表示されたら、<strong>［applippli-key］</strong> の右側「…」をクリックし、アンインストールをクリックします。</span>
+        <span class="en">In the app list, click the "…" button to the right of <strong>[applippli-key]</strong> and select Uninstall.</span>
+      </span></li>
+      <li><span class="step-num">3</span><span class="step-txt">
+        <span class="ja">あとは画面の指示に従って操作してください。</span>
+        <span class="en">Follow the on-screen instructions to complete the uninstall.</span>
+      </span></li>
+    </ul>
+  </section>
+
+  <!-- パスワード忘れ（MSアカウント） / Forgot Password (MS Account) -->
+  <section id="forgot-ms">
+    <h2><span class="ja">Windows パスワードを忘れた場合（マイクロソフトアカウント）</span><span class="en">Forgot Windows Password (Microsoft Account)</span></h2>
+    <p>
+      <span class="ja">applippli-key 導入時に Windows パスワードを忘れた場合またはパスワードが違う場合に、マイクロソフトオンラインよりパスワードリセットできます。</span>
+      <span class="en">If you have forgotten or do not know your Windows password during applippli-key setup, you can reset it via Microsoft online.</span>
+    </p>
+    <ul class="steps" style="margin-top:14px;">
+      <li><span class="step-num">1</span><span class="step-txt">
+        <span class="ja"><strong>設定画面</strong>を開き <strong>［アカウント］</strong> を選択します。</span>
+        <span class="en">Open <strong>Settings</strong> and select <strong>[Accounts]</strong>.</span>
+      </span></li>
+      <li><span class="step-num">2</span><span class="step-txt">
+        <span class="ja">右側のアカウントを選択します。</span>
+        <span class="en">Select your account on the right side.</span>
+      </span></li>
+      <li><span class="step-num">3</span><span class="step-txt">
+        <span class="ja">「管理」を選択します。</span>
+        <span class="en">Select "Manage."</span>
+      </span></li>
+      <li><span class="step-num">4</span><span class="step-txt">
+        <span class="ja">PIN を入力します。</span>
+        <span class="en">Enter your PIN.</span>
+      </span></li>
+      <li><span class="step-num">5</span><span class="step-txt">
+        <span class="ja">マイクロソフトアカウントページが開きます。<strong>「パスワードを変更する」</strong> をクリックしてパスワードを変更できます。</span>
+        <span class="en">The Microsoft account page will open. Click <strong>"Change password"</strong> to set a new password.</span>
+      </span></li>
+    </ul>
+  </section>
+
+  <!-- パスワード忘れ（ローカル） / Forgot Password (Local) -->
+  <section id="forgot-local">
+    <h2><span class="ja">Windows パスワードを忘れた場合（ローカルアカウント）</span><span class="en">Forgot Windows Password (Local Account)</span></h2>
+    <ul class="steps">
+      <li><span class="step-num">1</span><span class="step-txt">
+        <span class="ja">スタートメニューを右クリックして <strong>［コンピューターの管理］</strong> を選択します。</span>
+        <span class="en">Right-click the Start menu and select <strong>[Computer Management]</strong>.</span>
+      </span></li>
+      <li><span class="step-num">2</span><span class="step-txt">
+        <span class="ja">左より <strong>［ローカルユーザーとグループ］</strong> を展開し、<strong>［ユーザー］</strong> を選択します。右の画面からパスワード変更したいユーザーを右クリックして「パスワードの設定」を選択します。警告メッセージは続行します。</span>
+        <span class="en">Expand <strong>[Local Users and Groups]</strong> on the left, then select <strong>[Users]</strong>. Right-click the user whose password you want to change and select "Set Password." Acknowledge the warning to continue.</span>
+      </span></li>
+      <li><span class="step-num">3</span><span class="step-txt">
+        <span class="ja">パスワード入力画面が出ますので、上下ともに同じパスワードを入力します。</span>
+        <span class="en">Enter the new password in both fields and click OK.</span>
+      </span></li>
+    </ul>
+  </section>
+
+  <!-- アカウント種別 / Identify Account Type -->
+  <section id="account-type">
+    <h2><span class="ja">ローカルアカウントとオンラインアカウントの判別方法</span><span class="en">Identifying Local vs. Online Account</span></h2>
+    <p>
+      <span class="ja">ご自分の PC がローカルアカウントもしくはオンラインアカウントどちらをご利用しているかを下記の方法にて判別できます。</span>
+      <span class="en">You can determine whether your PC uses a local account or a Microsoft (online) account using the steps below.</span>
+    </p>
+    <ul class="steps" style="margin-top:14px;">
+      <li><span class="step-num">1</span><span class="step-txt">
+        <span class="ja"><strong>設定画面</strong>を開き <strong>［アカウント］</strong> を選択します。</span>
+        <span class="en">Open <strong>Settings</strong> and select <strong>[Accounts]</strong>.</span>
+      </span></li>
+      <li><span class="step-num">2</span><span class="step-txt">
+        <span class="ja">右側の <strong>［アカウント］</strong> をクリックします。</span>
+        <span class="en">Click <strong>[Account]</strong> on the right.</span>
+      </span></li>
+      <li><span class="step-num">3</span><span class="step-txt">
+        <span class="ja">表示内容で確認できます：</span>
+        <span class="en">Check the displayed information:</span>
+        <ul class="bullet" style="margin-top:6px;">
+          <li>
+            <span class="ja"><strong>ローカルアカウント</strong>：なにも表示されません</span>
+            <span class="en"><strong>Local account</strong>: Nothing is displayed</span>
+          </li>
+          <li>
+            <span class="ja"><strong>オンラインアカウント</strong>：「Microsoft アカウント」と表示されます</span>
+            <span class="en"><strong>Online account</strong>: "Microsoft account" is displayed</span>
+          </li>
+        </ul>
+      </span></li>
+    </ul>
+  </section>
+
+  <!-- Ver 2 アップグレード / Upgrade to Ver 2 -->
+  <section id="upgrade">
+    <h2><span class="ja">Ver 2 へのアップグレード</span><span class="en">Upgrade to Ver 2</span></h2>
+
+    <div class="note">
+      <strong>
+        <span class="ja">⚠ アップグレード前にご確認ください</span>
+        <span class="en">⚠ Before upgrading</span>
+      </strong>
+      <span class="ja">アップグレード後も <strong>OTP・緊急ログオン・アクティベーションの設定はすべて引き継がれます</strong>。再設定は不要です。</span>
+      <span class="en">After upgrading, <strong>all OTP, Emergency Logon, and Activation settings are preserved</strong>. No reconfiguration is needed.</span>
+    </div>
+
+    <h3><span class="ja">Ver 2 変更点</span><span class="en">What's New in Ver 2</span></h3>
+    <ul class="bullet">
+      <li><span class="ja">UI を刷新しました。</span><span class="en">The UI has been redesigned.</span></li>
+      <li><span class="ja">ワンタッチログイン機能を追加しました。</span><span class="en">One-Touch Login has been added.</span></li>
+      <li><span class="ja">ログ管理機能を追加しました。</span><span class="en">Log management (Log Viewer) has been added.</span></li>
+    </ul>
+
+    <h3><span class="ja">ダウンロード・インストール手順</span><span class="en">Download &amp; Install</span></h3>
+    <ul class="steps">
+      <li><span class="step-num">1</span><span class="step-txt">
+        <span class="ja">マイページにログインし、上部メニューバーの <strong>［重要通知］</strong> を開きます。</span>
+        <span class="en">Log in to My Page and open <strong>[Important Notices]</strong> from the top menu bar.</span>
+      </span></li>
+      <li><span class="step-num">2</span><span class="step-txt">
+        <span class="ja">「applippli-key Ver 2 ご利用のご案内」の通知を開き、インストーラーダウンロードリンクをクリックしてダウンロードします。</span>
+        <span class="en">Open the "applippli-key Ver 2 Usage Guide" notice and click the installer download link.</span>
+      </span></li>
+      <li><span class="step-num">3</span><span class="step-txt">
+        <span class="ja">ダウンロードしたインストーラーをダブルクリックして実行します。<br>
+        <em>旧バージョン（Ver 1.x）は自動的にアンインストールされます。</em></span>
+        <span class="en">Double-click the downloaded installer to run it.<br>
+        <em>The previous version (Ver 1.x) will be automatically uninstalled.</em></span>
+      </span></li>
+      <li><span class="step-num">4</span><span class="step-txt">
+        <span class="ja">画面の指示に従ってインストールを完了します。インストール後、applippli-key の設定画面が開きます。</span>
+        <span class="en">Follow the on-screen instructions to complete installation. The applippli-key settings screen will open after installation.</span>
+      </span></li>
+    </ul>
+
+    <h3><span class="ja">アップグレード後の設定確認</span><span class="en">Settings After Upgrade</span></h3>
+    <p><span class="ja">以下の設定はアップグレード後も引き継がれます。再設定は不要です。</span><span class="en">The following settings are preserved after upgrading. No reconfiguration is required.</span></p>
+    <div style="margin:12px 0;">
+      <table style="width:100%;border-collapse:collapse;font-size:13px;">
+        <tr style="background:#f0f4ff;">
+          <th style="padding:10px 14px;text-align:left;border:1px solid #dde4ee;width:40%;">
+            <span class="ja">設定項目</span><span class="en">Setting</span>
+          </th>
+          <th style="padding:10px 14px;text-align:left;border:1px solid #dde4ee;">
+            <span class="ja">アップグレード後</span><span class="en">After Upgrade</span>
+          </th>
+        </tr>
+        <tr>
+          <td style="padding:10px 14px;border:1px solid #dde4ee;"><span class="ja">OTP 認証（ワンタイムパスワード）</span><span class="en">OTP Authentication</span></td>
+          <td style="padding:10px 14px;border:1px solid #dde4ee;color:#15803d;"><strong><span class="ja">✓ 引き継がれます</span><span class="en">✓ Preserved</span></strong></td>
+        </tr>
+        <tr style="background:#fafbfc;">
+          <td style="padding:10px 14px;border:1px solid #dde4ee;"><span class="ja">緊急ログオン（回復キー）</span><span class="en">Emergency Logon (Recovery Key)</span></td>
+          <td style="padding:10px 14px;border:1px solid #dde4ee;color:#15803d;"><strong><span class="ja">✓ 引き継がれます</span><span class="en">✓ Preserved</span></strong></td>
+        </tr>
+        <tr>
+          <td style="padding:10px 14px;border:1px solid #dde4ee;"><span class="ja">アクティベーション</span><span class="en">Activation</span></td>
+          <td style="padding:10px 14px;border:1px solid #dde4ee;color:#15803d;"><strong><span class="ja">✓ 引き継がれます</span><span class="en">✓ Preserved</span></strong></td>
+        </tr>
+      </table>
+    </div>
+  </section>
+
+  <!-- ワンタッチログイン / One-Touch Login -->
+  <section id="onetouch">
+    <h2><span class="ja">ワンタッチログインの設定</span><span class="en">One-Touch Login Setup</span></h2>
+    <div class="info">
+      <span class="ja">ワンタッチログインは applippli-key Ver 2 から追加された機能です。スマートフォンアプリと連携することで、スマートフォンのワンタッチ操作だけで Windows にログオンできます。</span>
+      <span class="en">One-Touch Login is a new feature in applippli-key Ver 2. By pairing with the smartphone app, you can log on to Windows with a single tap on your phone.</span>
+    </div>
+
+    <h3><span class="ja">事前準備</span><span class="en">Prerequisites</span></h3>
+    <ul class="steps">
+      <li><span class="step-num">1</span><span class="step-txt">
+        <span class="ja">スマートフォンに <strong>applippli-key アプリ</strong>（iOS / Android）をインストールします。</span>
+        <span class="en">Install the <strong>applippli-key app</strong> (iOS / Android) on your smartphone.</span>
+      </span></li>
+      <li><span class="step-num">2</span><span class="step-txt">
+        <span class="ja">applippli-key Ver 2 がインストール済みであることを確認します。</span>
+        <span class="en">Confirm that applippli-key Ver 2 is installed on your PC.</span>
+      </span></li>
+    </ul>
+
+    <h3><span class="ja">ペアリング手順</span><span class="en">Pairing Steps</span></h3>
+    <ul class="steps">
+      <li><span class="step-num">1</span><span class="step-txt">
+        <span class="ja">applippli-key の設定画面を開き、<strong>「ワンタッチログイン設定」</strong> をクリックします。</span>
+        <span class="en">Open the applippli-key settings screen and click <strong>"One-Touch Login Setup."</strong></span>
+      </span></li>
+      <li><span class="step-num">2</span><span class="step-txt">
+        <span class="ja">Windows パスワードを入力します。</span>
+        <span class="en">Enter your Windows password.</span>
+      </span></li>
+      <li><span class="step-num">3</span><span class="step-txt">
+        <span class="ja">ペアリング用の QR コードが表示されます。applippli authenticator アプリを起動して QR コードを読み取ります。</span>
+        <span class="en">A pairing QR code will appear. Open the applippli authenticator app and scan the QR code.</span>
+      </span></li>
+      <li><span class="step-num">4</span><span class="step-txt">
+        <span class="ja">スマートフォンアプリ側でペアリングが完了すると、設定画面に <strong>「スマートフォンが接続されました」</strong> と表示されます。</span>
+        <span class="en">Once pairing is complete in the smartphone app, the settings screen will show <strong>"Smartphone connected."</strong></span>
+      </span></li>
+    </ul>
+
+    <h3><span class="ja">ワンタッチログインの使い方</span><span class="en">How to Use One-Touch Login</span></h3>
+    <ul class="steps">
+      <li><span class="step-num">1</span><span class="step-txt">
+        <span class="ja">Windows のログオン画面が表示されたら、スマートフォンにて <strong>applippli authenticator</strong> を起動します。</span>
+        <span class="en">When the Windows logon screen appears, open the <strong>applippli authenticator</strong> app on your smartphone.</span>
+      </span></li>
+      <li><span class="step-num">2</span><span class="step-txt">
+        <span class="ja">リストよりログインする PC 名を 1 回だけタップします。</span>
+        <span class="en">Tap the PC name you want to log in to once from the list.</span>
+      </span></li>
+      <li><span class="step-num">3</span><span class="step-txt">
+        <span class="ja">Windows に自動的にログオンします。</span>
+        <span class="en">Windows will log on automatically.</span>
+      </span></li>
+    </ul>
+  </section>
+
+  <!-- ログビューア / Log Viewer -->
+  <section id="logviewer">
+    <h2><span class="ja">ログビューア</span><span class="en">Log Viewer</span></h2>
+    <div class="info">
+      <span class="ja">ログビューアは applippli-key Ver 2 から追加された管理ツールです。MFA 認証ログをグラフィカルに確認・分析できます。</span>
+      <span class="en">The Log Viewer is a management tool added in applippli-key Ver 2. It lets you visually review and analyze MFA authentication logs.</span>
+    </div>
+
+    <h3><span class="ja">起動方法</span><span class="en">How to Launch</span></h3>
+    <ul class="steps">
+      <li><span class="step-num">1</span><span class="step-txt">
+        <span class="ja">スタートメニューから <strong>「applippli-key」</strong> → <strong>「applippli-key ログ」</strong> をクリックします。</span>
+        <span class="en">From the Start menu, click <strong>"applippli-key"</strong> → <strong>"applippli-key Log."</strong></span>
+      </span></li>
+    </ul>
+
+    <h3><span class="ja">ダッシュボード</span><span class="en">Dashboard</span></h3>
+    <p>
+      <span class="ja">起動すると最初にダッシュボード画面が表示されます。以下の情報をリアルタイムで確認できます。</span>
+      <span class="en">The dashboard screen is displayed on launch. The following information is shown in real time.</span>
+    </p>
+    <div style="margin:12px 0;">
+      <table style="width:100%;border-collapse:collapse;font-size:13px;">
+        <tr style="background:#f0f4ff;">
+          <th style="padding:10px 14px;text-align:left;border:1px solid #dde4ee;width:40%;">
+            <span class="ja">項目</span><span class="en">Item</span>
+          </th>
+          <th style="padding:10px 14px;text-align:left;border:1px solid #dde4ee;">
+            <span class="ja">内容</span><span class="en">Description</span>
+          </th>
+        </tr>
+        <tr>
+          <td style="padding:10px 14px;border:1px solid #dde4ee;"><span class="ja">登録ユーザー数</span><span class="en">Registered Users</span></td>
+          <td style="padding:10px 14px;border:1px solid #dde4ee;"><span class="ja">MFA 登録済みユーザーの総数</span><span class="en">Total number of MFA-registered users</span></td>
+        </tr>
+        <tr style="background:#fafbfc;">
+          <td style="padding:10px 14px;border:1px solid #dde4ee;"><span class="ja">認証成功（直近 7 日間）</span><span class="en">Auth Success (Last 7 Days)</span></td>
+          <td style="padding:10px 14px;border:1px solid #dde4ee;"><span class="ja">過去 7 日間のログオン成功回数</span><span class="en">Number of successful logons in the past 7 days</span></td>
+        </tr>
+        <tr>
+          <td style="padding:10px 14px;border:1px solid #dde4ee;"><span class="ja">認証失敗（直近 7 日間）</span><span class="en">Auth Failures (Last 7 Days)</span></td>
+          <td style="padding:10px 14px;border:1px solid #dde4ee;"><span class="ja">過去 7 日間のログオン失敗回数</span><span class="en">Number of failed logon attempts in the past 7 days</span></td>
+        </tr>
+        <tr style="background:#fafbfc;">
+          <td style="padding:10px 14px;border:1px solid #dde4ee;"><span class="ja">最終アクティビティ</span><span class="en">Last Activity</span></td>
+          <td style="padding:10px 14px;border:1px solid #dde4ee;"><span class="ja">最後に記録された認証イベントの日時</span><span class="en">Date and time of the most recent authentication event</span></td>
+        </tr>
+        <tr>
+          <td style="padding:10px 14px;border:1px solid #dde4ee;"><span class="ja">直近の認証イベント</span><span class="en">Recent Auth Events</span></td>
+          <td style="padding:10px 14px;border:1px solid #dde4ee;"><span class="ja">最新 15 件の認証ログ一覧</span><span class="en">List of the latest 15 authentication log entries</span></td>
+        </tr>
+      </table>
+    </div>
+
+    <h3><span class="ja">ログ閲覧</span><span class="en">Log Browser</span></h3>
+    <p>
+      <span class="ja">「ログ」タブでは詳細な認証ログを確認・絞り込みできます。</span>
+      <span class="en">The "Logs" tab lets you view and filter detailed authentication logs.</span>
+    </p>
+    <div style="margin:12px 0;">
+      <table style="width:100%;border-collapse:collapse;font-size:13px;">
+        <tr style="background:#f0f4ff;">
+          <th style="padding:10px 14px;text-align:left;border:1px solid #dde4ee;width:40%;">
+            <span class="ja">機能</span><span class="en">Feature</span>
+          </th>
+          <th style="padding:10px 14px;text-align:left;border:1px solid #dde4ee;">
+            <span class="ja">説明</span><span class="en">Description</span>
+          </th>
+        </tr>
+        <tr>
+          <td style="padding:10px 14px;border:1px solid #dde4ee;"><span class="ja">日時範囲フィルター</span><span class="en">Date Range Filter</span></td>
+          <td style="padding:10px 14px;border:1px solid #dde4ee;"><span class="ja">開始・終了日時を指定して絞り込み（デフォルト：直近 1 か月）</span><span class="en">Filter by start/end date and time (default: last 1 month)</span></td>
+        </tr>
+        <tr style="background:#fafbfc;">
+          <td style="padding:10px 14px;border:1px solid #dde4ee;"><span class="ja">エラーのみ表示</span><span class="en">Show Errors Only</span></td>
+          <td style="padding:10px 14px;border:1px solid #dde4ee;"><span class="ja">FAIL・BAD-OTP の結果のみ表示するフィルター</span><span class="en">Filter to show only FAIL and BAD-OTP results</span></td>
+        </tr>
+        <tr>
+          <td style="padding:10px 14px;border:1px solid #dde4ee;"><span class="ja">ユーザー・IP 検索</span><span class="en">User / IP Search</span></td>
+          <td style="padding:10px 14px;border:1px solid #dde4ee;"><span class="ja">ユーザー名または IP アドレスでログを検索</span><span class="en">Search logs by username or IP address</span></td>
+        </tr>
+        <tr style="background:#fafbfc;">
+          <td style="padding:10px 14px;border:1px solid #dde4ee;"><span class="ja">CSV エクスポート</span><span class="en">CSV Export</span></td>
+          <td style="padding:10px 14px;border:1px solid #dde4ee;"><span class="ja">表示中のログを CSV ファイルとして保存</span><span class="en">Save the current log view as a CSV file</span></td>
+        </tr>
+      </table>
+    </div>
+
+    <h3><span class="ja">セキュリティアラート</span><span class="en">Security Alerts</span></h3>
+    <p>
+      <span class="ja">以下のパターンを自動検出し、一覧内でハイライト表示します。</span>
+      <span class="en">The following patterns are automatically detected and highlighted in the log list.</span>
+    </p>
+    <ul style="margin:10px 0 0 18px;font-size:13px;line-height:2;">
+      <li>
+        <span class="ja"><strong>繰り返し失敗 IP</strong> — 同一 IP アドレスで 2 回以上のエラーを検出</span>
+        <span class="en"><strong>Repeat Failure IP</strong> — Detects 2 or more errors from the same IP address</span>
+      </li>
+      <li>
+        <span class="ja"><strong>BAD-OTP 攻撃バースト</strong> — 同一 IP またはユーザーが 1 分以内に 3 回以上の OTP 失敗を検出</span>
+        <span class="en"><strong>BAD-OTP Attack Burst</strong> — Detects 3 or more OTP failures from the same IP or user within one minute</span>
+      </li>
+    </ul>
+
+    <h3><span class="ja">ログの色分け</span><span class="en">Log Color Coding</span></h3>
+    <div style="margin:12px 0;display:flex;gap:12px;flex-wrap:wrap;">
+      <span style="background:#f0fdf4;border:1px solid #6ee7b7;border-radius:8px;padding:6px 14px;font-size:12px;color:#15803d;">&#9632; <span class="ja">成功（SUCCESS / OK）</span><span class="en">Success (SUCCESS / OK)</span></span>
+      <span style="background:#fff0f0;border:1px solid #fca5a5;border-radius:8px;padding:6px 14px;font-size:12px;color:#dc2626;">&#9632; <span class="ja">失敗（FAIL / BAD-OTP）</span><span class="en">Failure (FAIL / BAD-OTP)</span></span>
+      <span style="background:#eef2ff;border:1px solid #a5b4fc;border-radius:8px;padding:6px 14px;font-size:12px;color:#4338ca;">&#9632; <span class="ja">IP アドレス</span><span class="en">IP Address</span></span>
+    </div>
+  </section>
+
+  <!-- LINE通知設定 / LINE Notification -->
+  <section id="line-notify">
+    <h2>
+      <span class="ja">LINE通知設定</span>
+      <span class="en">LINE Notification Setup</span>
+    </h2>
+    <div class="info">
+      <span class="ja">LINE通知機能はアクティベーション済みライセンスが必要です。ライセンスが有効な場合、ログビューアの「LINE通知」タブに設定画面が表示されます。</span>
+      <span class="en">The LINE notification feature requires an activated license. When your license is active, a "LINE Notification" tab appears in the Log Viewer.</span>
+    </div>
+
+    <h3><span class="ja">概要</span><span class="en">Overview</span></h3>
+    <p>
+      <span class="ja">applippli-key の認証イベント（ログイン成功・失敗・不正アクセス検知）をリアルタイムで LINE に通知する機能です。ログビューアが起動している間、認証ログを監視し自動で通知を送信します。</span>
+      <span class="en">This feature sends real-time LINE notifications for applippli-key authentication events (login success, failure, and unauthorized access detection). Notifications are sent automatically while Log Viewer is running.</span>
+    </p>
+    <div class="note">
+      <strong><span class="ja">⚠ ご注意</span><span class="en">⚠ Note</span></strong>
+      <span class="ja">ログビューアが起動していない場合は通知は届きません。パソコン起動時に自動起動するよう設定することをお勧めします（後述）。</span>
+      <span class="en">Notifications will not be sent if Log Viewer is not running. We recommend configuring it to launch automatically at Windows startup (see below).</span>
+    </div>
+
+    <h3><span class="ja">① LINEボットを友達追加する</span><span class="en">① Add the LINE Bot as a Friend</span></h3>
+    <ul class="steps">
+      <li><span class="step-num">1</span><span class="step-txt">
+        <span class="ja">ログビューアを起動し、左メニューの <strong>「LINE通知」</strong> をクリックします。</span>
+        <span class="en">Launch Log Viewer and click <strong>"LINE Notification"</strong> in the left menu.</span>
+      </span></li>
+      <li><span class="step-num">2</span><span class="step-txt">
+        <span class="ja">設定画面に表示されている QR コードを LINE アプリで読み取り、<strong>「applippli-key 通知サービス」</strong> を友達追加します。</span>
+        <span class="en">Scan the QR code shown in the settings screen using the LINE app to add <strong>"applippli-key 通知サービス"</strong> as a friend.</span>
+      </span></li>
+      <li><span class="step-num">3</span><span class="step-txt">
+        <span class="ja">友達追加すると、ボットから <strong>LINE User ID</strong>（例：<code>U1234567890abcdef...</code>）が自動返信されます。</span>
+        <span class="en">After adding the bot, it will automatically reply with your <strong>LINE User ID</strong> (e.g., <code>U1234567890abcdef...</code>).</span>
+      </span></li>
+    </ul>
+    <div class="info">
+      <span class="ja">すでに友達追加済みの場合は、ボットにメッセージ（内容は何でも可）を送信すると LINE User ID が返信されます。</span>
+      <span class="en">If you have already added the bot as a friend, simply send any message to the bot and it will reply with your LINE User ID.</span>
+    </div>
+
+    <h3><span class="ja">② LINE User ID を設定して保存する</span><span class="en">② Enter and Save Your LINE User ID</span></h3>
+    <ul class="steps">
+      <li><span class="step-num">1</span><span class="step-txt">
+        <span class="ja">ボットから返信された LINE User ID を「LINE 通知」設定画面の入力欄に貼り付けます。</span>
+        <span class="en">Paste the LINE User ID received from the bot into the input field in the "LINE Notification" settings screen.</span>
+      </span></li>
+      <li><span class="step-num">2</span><span class="step-txt">
+        <span class="ja"><strong>「保存」</strong> ボタンをクリックして設定を保存します。</span>
+        <span class="en">Click the <strong>"Save"</strong> button to save the settings.</span>
+      </span></li>
+      <li><span class="step-num">3</span><span class="step-txt">
+        <span class="ja">通知するイベントの種類（後述）にチェックを入れ、再度 <strong>「保存」</strong> をクリックします。</span>
+        <span class="en">Check the event types you want to be notified about (see below), then click <strong>"Save"</strong> again.</span>
+      </span></li>
+      <li><span class="step-num">4</span><span class="step-txt">
+        <span class="ja"><strong>「テスト送信」</strong> ボタンをクリックして、LINE にテスト通知が届くことを確認します。</span>
+        <span class="en">Click the <strong>"Test Send"</strong> button and confirm that a test notification arrives on LINE.</span>
+      </span></li>
+    </ul>
+
+    <h3><span class="ja">通知イベントの種類</span><span class="en">Notification Event Types</span></h3>
+    <div style="margin:12px 0;">
+      <table style="width:100%;border-collapse:collapse;font-size:13px;">
+        <tr style="background:#f0f4ff;">
+          <th style="padding:10px 14px;text-align:left;border:1px solid #dde4ee;width:35%;">
+            <span class="ja">イベント</span><span class="en">Event</span>
+          </th>
+          <th style="padding:10px 14px;text-align:left;border:1px solid #dde4ee;">
+            <span class="ja">説明</span><span class="en">Description</span>
+          </th>
+        </tr>
+        <tr>
+          <td style="padding:10px 14px;border:1px solid #dde4ee;">
+            <span style="color:#15803d;font-weight:bold;">✅ <span class="ja">認証成功</span><span class="en">Login Success</span></span>
+          </td>
+          <td style="padding:10px 14px;border:1px solid #dde4ee;">
+            <span class="ja">OTP またはワンタッチによるログインが成功したときに通知します。</span>
+            <span class="en">Notified when a login succeeds via OTP or One-Touch authentication.</span>
+          </td>
+        </tr>
+        <tr style="background:#fafbfc;">
+          <td style="padding:10px 14px;border:1px solid #dde4ee;">
+            <span style="color:#dc2626;font-weight:bold;">❌ <span class="ja">認証失敗</span><span class="en">Login Failure</span></span>
+          </td>
+          <td style="padding:10px 14px;border:1px solid #dde4ee;">
+            <span class="ja">OTP の入力ミスなど、認証に失敗したときに通知します。</span>
+            <span class="en">Notified when authentication fails due to an incorrect OTP or similar error.</span>
+          </td>
+        </tr>
+        <tr>
+          <td style="padding:10px 14px;border:1px solid #dde4ee;">
+            <span style="color:#b91c1c;font-weight:bold;">🚨 <span class="ja">不正アクセス</span><span class="en">Unauthorized Access</span></span>
+          </td>
+          <td style="padding:10px 14px;border:1px solid #dde4ee;">
+            <span class="ja"><strong>5 分間に 10 回以上の OTP 連続失敗</strong> を検知した場合に不正アクセス（ブルートフォース攻撃）として警告通知します。この検知はログビューアが行い、設定変更はできません。</span>
+            <span class="en">A warning is sent when <strong>10 or more consecutive OTP failures occur within 5 minutes</strong>, indicating a possible brute-force attack. This detection is handled by Log Viewer and the threshold cannot be changed.</span>
+          </td>
+        </tr>
+      </table>
+    </div>
+
+    <h3><span class="ja">ログビューアの自動起動設定</span><span class="en">Auto-Start Log Viewer at Startup</span></h3>
+    <p>
+      <span class="ja">Windows 起動時にログビューアを自動的に起動させることで、ログオン前からリアルタイム通知を受け取ることができます。</span>
+      <span class="en">By configuring Log Viewer to start automatically at Windows startup, you can receive real-time notifications from the moment the PC boots.</span>
+    </p>
+    <ul class="steps">
+      <li><span class="step-num">1</span><span class="step-txt">
+        <span class="ja">applippli-key のインストーラーを実行すると、ログビューアは Windows 起動時に自動起動するよう設定されます。</span>
+        <span class="en">Running the applippli-key installer automatically registers Log Viewer to launch at Windows startup.</span>
+      </span></li>
+      <li><span class="step-num">2</span><span class="step-txt">
+        <span class="ja">ログビューアを閉じるとタスクトレイ（画面右下）に最小化されます。完全に終了するにはトレイアイコンを右クリックして <strong>「終了」</strong> を選択してください。</span>
+        <span class="en">Closing the Log Viewer window minimizes it to the system tray (bottom right). To exit completely, right-click the tray icon and select <strong>"Exit."</strong></span>
+      </span></li>
+    </ul>
+
+    <h3><span class="ja">welcome.html のバッジ表示</span><span class="en">Badge in welcome.html</span></h3>
+    <p>
+      <span class="ja">LINE User ID を保存すると、applippli-key の設定完了画面（welcome.html）に <span style="display:inline-block;background:#06C755;border-radius:8px;padding:1px 8px;font-size:11px;color:#fff;font-weight:bold;">&#9679; LINE通知 有効</span> バッジが表示されます。</span>
+      <span class="en">After saving a LINE User ID, a <span style="display:inline-block;background:#06C755;border-radius:8px;padding:1px 8px;font-size:11px;color:#fff;font-weight:bold;">&#9679; LINE Notification Active</span> badge appears on the applippli-key setup complete screen (welcome.html).</span>
+    </p>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq">
+    <h2>FAQ</h2>
+    <p>
+      <span class="ja">applippli-key に関するトラブルについては下記 URL へアクセスしてください。</span>
+      <span class="en">For troubleshooting applippli-key, please visit the URL below.</span>
+    </p>
+    <div style="margin-top: 16px;">
+      <a class="app-link" href="https://applippli-key.com/troubleshooting/" target="_blank">
+        🔗 https://applippli-key.com/troubleshooting/
+      </a>
+    </div>
+  </section>
+
+</main>
+</div>
+
+<footer>
+  &copy; applippli-key &nbsp;|&nbsp; 2026/6/26
+</footer>
+
+</body>
+</html>

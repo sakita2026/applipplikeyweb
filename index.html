@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>applippli-key — Windows 多要素認証ソリューション</title>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --sidebar-w: 220px;
+  --nav-h: 56px;
+  --navy: #0f1829;
+  --navy-mid: #1a2a45;
+  --navy-light: #243352;
+  --accent: #1d4ed8;
+  --accent-hover: #1e40af;
+  --accent-soft: #dbeafe;
+  --bg: #f7f9fc;
+  --surface: #ffffff;
+  --border: #e1e8f0;
+  --text: #1e293b;
+  --text-sub: #64748b;
+  --text-faint: #94a3b8;
+  --green: #16a34a;
+  --green-soft: #dcfce7;
+}
+
+html { scroll-behavior: smooth; font-size: 15px; }
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Meiryo", sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ─── Mobile header ─── */
+.mobile-header {
+  display: none;
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: var(--nav-h);
+  background: var(--navy);
+  align-items: center;
+  padding: 0 16px;
+  gap: 12px;
+  z-index: 200;
+}
+.mobile-logo {
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: .02em;
+  flex: 1;
+}
+.hamburger {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.hamburger span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: #fff;
+  border-radius: 2px;
+  transition: transform .25s, opacity .25s;
+}
+
+/* ─── Sidebar ─── */
+.sidebar {
+  position: fixed;
+  top: 0; left: 0;
+  width: var(--sidebar-w);
+  height: 100vh;
+  background: var(--navy);
+  display: flex;
+  flex-direction: column;
+  z-index: 100;
+  overflow-y: auto;
+}
+
+.sidebar-logo {
+  padding: 28px 20px 24px;
+  border-bottom: 1px solid rgba(255,255,255,.08);
+}
+.logo-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.logo-icon {
+  width: 32px;
+  height: 32px;
+  background: var(--accent);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.logo-icon svg { display: block; }
+.logo-text {
+  color: #fff;
+  font-size: .95rem;
+  font-weight: 700;
+  letter-spacing: .02em;
+  line-height: 1.3;
+}
+.logo-sub {
+  color: rgba(255,255,255,.4);
+  font-size: .7rem;
+  font-weight: 400;
+  letter-spacing: .04em;
+}
+
+.nav {
+  padding: 20px 0;
+  flex: 1;
+}
+.nav-section-label {
+  color: rgba(255,255,255,.3);
+  font-size: .65rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  padding: 0 20px 8px;
+}
+.nav a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 20px;
+  color: rgba(255,255,255,.6);
+  text-decoration: none;
+  font-size: .875rem;
+  transition: background .15s, color .15s;
+  border-left: 3px solid transparent;
+}
+.nav a:hover {
+  background: rgba(255,255,255,.06);
+  color: rgba(255,255,255,.9);
+}
+.nav a.active {
+  color: #fff;
+  background: rgba(29,78,216,.25);
+  border-left-color: var(--accent);
+}
+.nav a .nav-icon {
+  width: 16px;
+  height: 16px;
+  opacity: .7;
+  flex-shrink: 0;
+}
+.nav a.active .nav-icon { opacity: 1; }
+.nav-divider {
+  height: 1px;
+  background: rgba(255,255,255,.07);
+  margin: 12px 20px;
+}
+.nav-ext {
+  color: rgba(255,255,255,.35) !important;
+  font-size: .75rem !important;
+}
+.nav-ext:hover { color: rgba(255,255,255,.6) !important; }
+
+.sidebar-footer {
+  padding: 16px 20px;
+  border-top: 1px solid rgba(255,255,255,.08);
+  color: rgba(255,255,255,.25);
+  font-size: .7rem;
+}
+
+/* ─── Sidebar overlay (mobile) ─── */
+.sidebar-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.5);
+  z-index: 99;
+}
+
+/* ─── Main content ─── */
+.main {
+  margin-left: var(--sidebar-w);
+  min-height: 100vh;
+}
+
+/* ─── Section base ─── */
+.section {
+  padding: 64px 48px;
+  max-width: 860px;
+}
+.section + .section {
+  border-top: 1px solid var(--border);
+}
+
+/* ─── Hero ─── */
+#home {
+  padding-top: 72px;
+  padding-bottom: 60px;
+}
+.hero-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-size: .75rem;
+  font-weight: 600;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 4px;
+  margin-bottom: 20px;
+}
+.hero-eyebrow svg { flex-shrink: 0; }
+
+.hero-title {
+  font-size: 2.4rem;
+  font-weight: 800;
+  line-height: 1.25;
+  letter-spacing: -.02em;
+  color: var(--text);
+  text-wrap: balance;
+  margin-bottom: 16px;
+}
+.hero-title em {
+  font-style: normal;
+  color: var(--accent);
+}
+.hero-desc {
+  font-size: 1.05rem;
+  color: var(--text-sub);
+  max-width: 560px;
+  margin-bottom: 32px;
+  line-height: 1.8;
+}
+.hero-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.btn-primary {
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  padding: 11px 24px;
+  border-radius: 6px;
+  font-size: .9rem;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: background .15s, transform .1s;
+}
+.btn-primary:hover { background: var(--accent-hover); transform: translateY(-1px); }
+.btn-ghost {
+  color: var(--text-sub);
+  text-decoration: none;
+  font-size: .875rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 11px 4px;
+  transition: color .15s;
+}
+.btn-ghost:hover { color: var(--accent); }
+.btn-ghost svg { transition: transform .15s; }
+.btn-ghost:hover svg { transform: translateX(2px); }
+
+.hero-stat-row {
+  display: flex;
+  gap: 32px;
+  margin-top: 40px;
+  padding-top: 32px;
+  border-top: 1px solid var(--border);
+  flex-wrap: wrap;
+}
+.hero-stat { }
+.hero-stat-num {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--text);
+  letter-spacing: -.02em;
+  line-height: 1;
+}
+.hero-stat-label {
+  font-size: .75rem;
+  color: var(--text-faint);
+  margin-top: 4px;
+}
+
+/* ─── Features ─── */
+#features .section-header {
+  margin-bottom: 36px;
+}
+.section-eyebrow {
+  font-size: .72rem;
+  font-weight: 600;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 8px;
+}
+.section-title {
+  font-size: 1.6rem;
+  font-weight: 700;
+  letter-spacing: -.02em;
+  color: var(--text);
+  text-wrap: balance;
+}
+.section-desc {
+  font-size: .925rem;
+  color: var(--text-sub);
+  margin-top: 8px;
+  max-width: 520px;
+}
+
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 16px;
+}
+.feature-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 24px;
+  transition: box-shadow .2s, border-color .2s;
+}
+.feature-card:hover {
+  box-shadow: 0 4px 20px rgba(0,0,0,.07);
+  border-color: #c8d8f0;
+}
+.feature-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
+  flex-shrink: 0;
+}
+.feature-icon.blue { background: var(--accent-soft); color: var(--accent); }
+.feature-icon.green { background: var(--green-soft); color: var(--green); }
+.feature-icon.indigo { background: #ede9fe; color: #7c3aed; }
+.feature-title {
+  font-size: .95rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 8px;
+}
+.feature-desc {
+  font-size: .825rem;
+  color: var(--text-sub);
+  line-height: 1.7;
+}
+.feature-tag {
+  display: inline-block;
+  margin-top: 14px;
+  font-size: .68rem;
+  font-weight: 600;
+  letter-spacing: .05em;
+  background: var(--bg);
+  color: var(--text-faint);
+  padding: 3px 8px;
+  border-radius: 3px;
+  text-transform: uppercase;
+}
+
+/* ─── System requirements ─── */
+#system {
+  background: var(--surface);
+}
+.req-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 0;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  overflow: hidden;
+  margin-top: 28px;
+}
+.req-item {
+  padding: 20px 22px;
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+.req-item:last-child,
+.req-item:nth-child(2) { border-right: none; }
+.req-item:nth-last-child(-n+2) { border-bottom: none; }
+.req-label {
+  font-size: .7rem;
+  font-weight: 600;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+  margin-bottom: 6px;
+}
+.req-value {
+  font-size: .9rem;
+  color: var(--text);
+  font-weight: 500;
+}
+.req-note {
+  font-size: .78rem;
+  color: var(--text-sub);
+  margin-top: 3px;
+}
+
+/* ─── Contact ─── */
+#contact .contact-card {
+  background: var(--navy);
+  border-radius: 12px;
+  padding: 36px 40px;
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  flex-wrap: wrap;
+  margin-top: 28px;
+}
+.contact-text .ct-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 6px;
+}
+.contact-text .ct-sub {
+  font-size: .85rem;
+  color: rgba(255,255,255,.5);
+  line-height: 1.6;
+}
+.contact-action { margin-left: auto; }
+.btn-white {
+  background: #fff;
+  color: var(--navy);
+  text-decoration: none;
+  padding: 10px 22px;
+  border-radius: 6px;
+  font-size: .875rem;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap;
+  transition: opacity .15s;
+}
+.btn-white:hover { opacity: .9; }
+
+/* ─── Responsive ─── */
+@media (max-width: 768px) {
+  .mobile-header { display: flex; }
+  .sidebar {
+    left: calc(-1 * var(--sidebar-w));
+    transition: left .25s cubic-bezier(.4,0,.2,1);
+  }
+  .sidebar.open { left: 0; }
+  .sidebar-overlay.open { display: block; }
+  .main { margin-left: 0; padding-top: var(--nav-h); }
+  .section { padding: 40px 20px; }
+  #home { padding-top: 40px; }
+  .hero-title { font-size: 1.75rem; }
+  .contact-card { padding: 24px; }
+  .contact-action { margin-left: 0; }
+  .req-item:nth-child(2) { border-right: 1px solid var(--border); }
+  .req-item:nth-last-child(-n+2) { border-bottom: 1px solid var(--border); }
+  .req-item:last-child { border-right: none; border-bottom: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .btn-primary, .btn-ghost, .feature-card { transition: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- Mobile header -->
+<header class="mobile-header">
+  <span class="mobile-logo">applippli-key</span>
+  <button class="hamburger" id="hamburger" aria-label="メニューを開く">
+    <span></span><span></span><span></span>
+  </button>
+</header>
+
+<!-- Sidebar overlay -->
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+<!-- Sidebar -->
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-logo">
+    <div class="logo-badge">
+      <div class="logo-icon">
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+          <rect x="3" y="8" width="12" height="9" rx="1.5" stroke="#fff" stroke-width="1.5"/>
+          <path d="M6 8V6a3 3 0 0 1 6 0v2" stroke="#fff" stroke-width="1.5" stroke-linecap="round"/>
+          <circle cx="9" cy="12.5" r="1.5" fill="#fff"/>
+        </svg>
+      </div>
+      <div>
+        <div class="logo-text">applippli-key</div>
+        <div class="logo-sub">Security Suite</div>
+      </div>
+    </div>
+  </div>
+
+  <nav class="nav">
+    <div class="nav-section-label">メニュー</div>
+    <a href="#home" class="active" data-section="home">
+      <svg class="nav-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
+        <path d="M2 6.5L8 2l6 4.5V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V6.5z"/>
+      </svg>
+      ホーム
+    </a>
+    <a href="#features" data-section="features">
+      <svg class="nav-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
+        <rect x="1.5" y="1.5" width="5" height="5" rx="1"/>
+        <rect x="9.5" y="1.5" width="5" height="5" rx="1"/>
+        <rect x="1.5" y="9.5" width="5" height="5" rx="1"/>
+        <rect x="9.5" y="9.5" width="5" height="5" rx="1"/>
+      </svg>
+      機能紹介
+    </a>
+    <a href="#system" data-section="system">
+      <svg class="nav-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
+        <rect x="1" y="2" width="14" height="10" rx="1.5"/>
+        <path d="M5 15h6M8 12v3"/>
+      </svg>
+      動作環境
+    </a>
+    <a href="#contact" data-section="contact">
+      <svg class="nav-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
+        <rect x="1" y="3" width="14" height="10" rx="1.5"/>
+        <path d="M1 5l7 5 7-5"/>
+      </svg>
+      お問い合わせ
+    </a>
+
+    <div class="nav-divider"></div>
+    <div class="nav-section-label">サポート</div>
+
+    <a href="help.html" target="_blank" class="nav-ext">
+      <svg class="nav-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
+        <circle cx="8" cy="8" r="6.5"/>
+        <path d="M6 6a2 2 0 1 1 2 2v1.5" stroke-linecap="round"/>
+        <circle cx="8" cy="11.5" r=".75" fill="currentColor" stroke="none"/>
+      </svg>
+      マニュアル
+      <svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5" style="margin-left:auto;opacity:.4">
+        <path d="M2 8L8 2M4 2h4v4"/>
+      </svg>
+    </a>
+  </nav>
+
+  <div class="sidebar-footer">
+    &copy; 2026 applippli-key
+  </div>
+</aside>
+
+<!-- Main content -->
+<main class="main">
+
+  <!-- Hero -->
+  <section class="section" id="home">
+    <div class="hero-eyebrow">
+      <svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor">
+        <path d="M6 1a5 5 0 1 0 0 10A5 5 0 0 0 6 1zm0 9A4 4 0 1 1 6 2a4 4 0 0 1 0 8z"/>
+        <circle cx="6" cy="6" r="2"/>
+      </svg>
+      Windows 多要素認証
+    </div>
+    <h1 class="hero-title">
+      Windowsへのログインを<br>
+      <em>より安全に、よりスマートに。</em>
+    </h1>
+    <p class="hero-desc">
+      applippli-key は、スマートフォンを使った多要素認証で Windows へのアクセスを保護するセキュリティソリューションです。パスワードだけに頼らない、次世代の認証体験を提供します。
+    </p>
+    <div class="hero-actions">
+      <a href="help.html" target="_blank" class="btn-primary">
+        <svg width="15" height="15" viewBox="0 0 15 15" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="7.5" cy="7.5" r="6"/>
+          <path d="M5.5 5.5a2 2 0 1 1 2 2v1.5" stroke-linecap="round"/>
+          <circle cx="7.5" cy="10.5" r=".75" fill="currentColor" stroke="none"/>
+        </svg>
+        マニュアルを見る
+      </a>
+      <a href="#features" class="btn-ghost">
+        機能を見る
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.75">
+          <path d="M2 7h10M8 3l4 4-4 4" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+    </div>
+    <div class="hero-stat-row">
+      <div class="hero-stat">
+        <div class="hero-stat-num">MFA</div>
+        <div class="hero-stat-label">多要素認証対応</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-num">TOTP</div>
+        <div class="hero-stat-label">標準プロトコル採用</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-num">Win 10/11</div>
+        <div class="hero-stat-label">対応 OS</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section class="section" id="features">
+    <div class="section-header">
+      <div class="section-eyebrow">機能紹介</div>
+      <h2 class="section-title">セキュリティと利便性を両立する、3つの機能</h2>
+      <p class="section-desc">それぞれが独立して動作し、組み合わせることでより強固な認証環境を構築できます。</p>
+    </div>
+    <div class="feature-grid">
+      <div class="feature-card">
+        <div class="feature-icon blue">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.75">
+            <rect x="3" y="9" width="14" height="10" rx="2"/>
+            <path d="M7 9V7a3 3 0 0 1 6 0v2" stroke-linecap="round"/>
+            <circle cx="10" cy="14" r="2" fill="currentColor" stroke="none"/>
+          </svg>
+        </div>
+        <div class="feature-title">ワンタイムパスワード認証</div>
+        <p class="feature-desc">
+          スマートフォンの applippli Authenticator で生成した 6 桁の TOTP コードを使って Windows にログインします。30秒ごとに更新されるため、コードが盗まれても再利用できません。
+        </p>
+        <span class="feature-tag">TOTP / RFC 6238</span>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon green">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.75">
+            <rect x="6" y="2" width="8" height="14" rx="2"/>
+            <path d="M9 5h2M10 13v2" stroke-linecap="round"/>
+            <path d="M4 17h12" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div class="feature-title">ワンタッチログイン</div>
+        <p class="feature-desc">
+          スマートフォンをかざすだけでロック解除。PIN や TOTP コードの入力不要で、素早く安全にデスクトップへアクセスできます。
+        </p>
+        <span class="feature-tag">V2 新機能</span>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon indigo">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.75">
+            <rect x="2" y="4" width="16" height="12" rx="2"/>
+            <path d="M6 8h8M6 11h5" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div class="feature-title">ログビューア</div>
+        <p class="feature-desc">
+          認証ログをわかりやすく表示します。いつ、どのユーザーが、どの方法でログインしたかを一覧で確認でき、不正アクセスの早期検知を支援します。
+        </p>
+        <span class="feature-tag">監査ログ</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- System requirements -->
+  <section class="section" id="system">
+    <div class="section-eyebrow">動作環境</div>
+    <h2 class="section-title">システム要件</h2>
+    <div class="req-grid">
+      <div class="req-item">
+        <div class="req-label">対応 OS</div>
+        <div class="req-value">Windows 10 / 11</div>
+        <div class="req-note">64bit 版</div>
+      </div>
+      <div class="req-item">
+        <div class="req-label">認証アプリ</div>
+        <div class="req-value">applippli Authenticator</div>
+        <div class="req-note">iOS / Android 対応</div>
+      </div>
+      <div class="req-item">
+        <div class="req-label">ネットワーク</div>
+        <div class="req-value">不要（オフライン動作）</div>
+        <div class="req-note">TOTP はローカル生成</div>
+      </div>
+      <div class="req-item">
+        <div class="req-label">インストール権限</div>
+        <div class="req-value">管理者権限が必要</div>
+        <div class="req-note">セットアップ時のみ</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section class="section" id="contact">
+    <div class="section-eyebrow">お問い合わせ</div>
+    <h2 class="section-title">ご不明な点はお気軽にどうぞ</h2>
+    <div class="contact-card">
+      <div class="contact-text">
+        <div class="ct-title">導入・技術サポートのご相談</div>
+        <div class="ct-sub">
+          製品の導入をご検討の方、技術的なご質問がある方は<br>
+          メールにてお問い合わせください。
+        </div>
+      </div>
+      <div class="contact-action">
+        <a href="mailto:info@applippli.co.jp" class="btn-white">
+          <svg width="15" height="15" viewBox="0 0 15 15" fill="none" stroke="currentColor" stroke-width="1.75">
+            <rect x="1" y="3" width="13" height="9" rx="1.5"/>
+            <path d="M1 5l6.5 4.5L14 5"/>
+          </svg>
+          メールで問い合わせる
+        </a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<script>
+(function () {
+  // Hamburger
+  const hamburger = document.getElementById('hamburger');
+  const sidebar   = document.getElementById('sidebar');
+  const overlay   = document.getElementById('sidebarOverlay');
+
+  function openSidebar()  { sidebar.classList.add('open'); overlay.classList.add('open'); }
+  function closeSidebar() { sidebar.classList.remove('open'); overlay.classList.remove('open'); }
+
+  hamburger.addEventListener('click', function () {
+    sidebar.classList.contains('open') ? closeSidebar() : openSidebar();
+  });
+  overlay.addEventListener('click', closeSidebar);
+
+  // Close sidebar on nav click (mobile)
+  sidebar.querySelectorAll('a[data-section]').forEach(function (a) {
+    a.addEventListener('click', function () {
+      if (window.innerWidth <= 768) closeSidebar();
+    });
+  });
+
+  // Scroll spy
+  var sections = ['home', 'features', 'system', 'contact'];
+  var navLinks = {};
+  sections.forEach(function (id) {
+    navLinks[id] = document.querySelector('.nav a[data-section="' + id + '"]');
+  });
+
+  function setActive(id) {
+    sections.forEach(function (s) {
+      if (navLinks[s]) navLinks[s].classList.toggle('active', s === id);
+    });
+  }
+
+  var observer = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) setActive(entry.target.id);
+    });
+  }, { rootMargin: '-40% 0px -55% 0px' });
+
+  sections.forEach(function (id) {
+    var el = document.getElementById(id);
+    if (el) observer.observe(el);
+  });
+})();
+</script>
+</body>
+</html>
