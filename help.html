@@ -8,7 +8,7 @@
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body {
     font-family: 'Yu Gothic UI', 'BIZ UDPGothic', Meiryo, sans-serif;
-    font-size: 14px;
+    font-size: 15px;
     color: #1a2340;
     background: #f5f7fa;
     line-height: 1.7;
@@ -34,8 +34,8 @@
     display: flex; align-items: center; justify-content: center;
     flex-shrink: 0;
   }
-  .header h1 { font-size: 20px; font-weight: bold; }
-  .header p  { font-size: 12px; color: #8fa3c8; margin-top: 2px; }
+  .header h1 { font-size: 21px; font-weight: bold; }
+  .header p  { font-size: 13px; color: #8fa3c8; margin-top: 2px; }
 
   /* 言語ボタン */
   #langBtn {
@@ -45,7 +45,7 @@
     color: #8fa3c8;
     border-radius: 6px;
     padding: 5px 14px;
-    font-size: 12px;
+    font-size: 13px;
     cursor: pointer;
     flex-shrink: 0;
     letter-spacing: .04em;
@@ -68,7 +68,7 @@
     overflow-y: auto;
   }
   nav h2 {
-    font-size: 11px;
+    font-size: 12px;
     color: #8fa3c8;
     text-transform: uppercase;
     letter-spacing: .08em;
@@ -77,7 +77,7 @@
   nav a {
     display: block;
     padding: 7px 20px;
-    font-size: 13px;
+    font-size: 14px;
     color: #3a4a6b;
     text-decoration: none;
     border-left: 3px solid transparent;
@@ -91,7 +91,7 @@
   /* セクション */
   section { margin-bottom: 48px; }
   section h2 {
-    font-size: 18px;
+    font-size: 19px;
     font-weight: bold;
     color: #1a2340;
     border-left: 4px solid #2d6fe8;
@@ -99,7 +99,7 @@
     margin-bottom: 16px;
   }
   section h3 {
-    font-size: 15px;
+    font-size: 16px;
     font-weight: bold;
     color: #2d6fe8;
     margin: 20px 0 10px;
@@ -119,7 +119,7 @@
     background: #2d6fe8;
     color: #fff;
     border-radius: 50%;
-    font-size: 12px;
+    font-size: 13px;
     font-weight: bold;
     display: flex; align-items: center; justify-content: center;
   }
@@ -132,7 +132,7 @@
     border-radius: 8px;
     padding: 14px 18px;
     margin: 16px 0;
-    font-size: 13px;
+    font-size: 14px;
     color: #92400e;
   }
   .note strong { display: block; margin-bottom: 4px; }
@@ -144,7 +144,7 @@
     border-radius: 8px;
     padding: 14px 18px;
     margin: 16px 0;
-    font-size: 13px;
+    font-size: 14px;
     color: #1e40af;
   }
 
@@ -157,7 +157,7 @@
     border: 1px solid #c7d4f8;
     border-radius: 8px;
     padding: 10px 16px;
-    font-size: 13px;
+    font-size: 14px;
     color: #2d6fe8;
     text-decoration: none;
     margin: 8px 4px;
@@ -171,7 +171,7 @@
   footer {
     text-align: center;
     padding: 24px;
-    font-size: 12px;
+    font-size: 13px;
     color: #8fa3c8;
     border-top: 1px solid #e2e8f0;
     background: #fff;
@@ -192,7 +192,7 @@
   #searchInput {
     width: 100%; padding: 7px 28px 7px 10px;
     border: 1px solid #dde4ee; border-radius: 6px;
-    font-size: 12px; color: #1a2340; outline: none;
+    font-size: 13px; color: #1a2340; outline: none;
     font-family: inherit;
   }
   #searchInput:focus { border-color: #2d6fe8; }
@@ -234,8 +234,8 @@
   @media (max-width: 768px) {
     /* ヘッダー */
     .header { padding: 12px 16px; gap: 10px; }
-    .header h1 { font-size: 16px; }
-    .header p  { font-size: 11px; }
+    .header h1 { font-size: 17px; }
+    .header p  { font-size: 12px; }
     .header-icon { width: 36px; height: 36px; border-radius: 9px; }
     .header-icon svg { width: 20px; height: 20px; }
     .nav-toggle { display: flex; }
@@ -261,12 +261,12 @@
 
     /* セクション */
     section { margin-bottom: 36px; }
-    section h2 { font-size: 16px; }
-    section h3 { font-size: 14px; }
+    section h2 { font-size: 17px; }
+    section h3 { font-size: 15px; }
 
     /* 手順ステップ */
     .steps li { gap: 10px; }
-    .step-num { width: 22px; height: 22px; font-size: 11px; }
+    .step-num { width: 22px; height: 22px; font-size: 12px; }
 
     /* アプリリンク */
     .app-link { display: flex; margin: 6px 0 0; }
@@ -277,7 +277,7 @@
 
     /* コードブロック */
     div[style*="font-family:Consolas"] {
-      font-size: 11px !important;
+      font-size: 12px !important;
       overflow-x: auto;
       -webkit-overflow-scrolling: touch;
     }
@@ -492,14 +492,14 @@ window.addEventListener('DOMContentLoaded', function() {
              placeholder="検索 / Search"
              oninput="doSearch(this.value)"
              style="width:100%;padding:7px 26px 7px 10px;border:1px solid #dde4ee;
-                    border-radius:6px;font-size:12px;color:#1a2340;outline:none;
+                    border-radius:6px;font-size:13px;color:#1a2340;outline:none;
                     font-family:inherit;box-sizing:border-box;">
       <span id="searchClear" onclick="clearSearch()"
             style="position:absolute;right:8px;top:50%;margin-top:-8px;
                    cursor:pointer;color:#9aa3b8;font-size:14px;display:none;
                    line-height:1;user-select:none;">&#10005;</span>
     </div>
-    <div id="searchCount" style="font-size:11px;margin-top:4px;padding-left:2px;min-height:15px;"></div>
+    <div id="searchCount" style="font-size:12px;margin-top:4px;padding-left:2px;min-height:15px;"></div>
   </div>
   <h2><span class="ja">目次</span><span class="en">Contents</span></h2>
   <a href="#intro"><span class="ja">はじめに</span><span class="en">Introduction</span></a>
@@ -970,7 +970,7 @@ window.addEventListener('DOMContentLoaded', function() {
     <h3><span class="ja">アップグレード後の設定確認</span><span class="en">Settings After Upgrade</span></h3>
     <p><span class="ja">以下の設定はアップグレード後も引き継がれます。再設定は不要です。</span><span class="en">The following settings are preserved after upgrading. No reconfiguration is required.</span></p>
     <div style="margin:12px 0;">
-      <table style="width:100%;border-collapse:collapse;font-size:13px;">
+      <table style="width:100%;border-collapse:collapse;font-size:14px;">
         <tr style="background:#f0f4ff;">
           <th style="padding:10px 14px;text-align:left;border:1px solid #dde4ee;width:40%;">
             <span class="ja">設定項目</span><span class="en">Setting</span>
@@ -1074,7 +1074,7 @@ window.addEventListener('DOMContentLoaded', function() {
       <span class="en">The dashboard screen is displayed on launch. The following information is shown in real time.</span>
     </p>
     <div style="margin:12px 0;">
-      <table style="width:100%;border-collapse:collapse;font-size:13px;">
+      <table style="width:100%;border-collapse:collapse;font-size:14px;">
         <tr style="background:#f0f4ff;">
           <th style="padding:10px 14px;text-align:left;border:1px solid #dde4ee;width:40%;">
             <span class="ja">項目</span><span class="en">Item</span>
@@ -1116,7 +1116,7 @@ window.addEventListener('DOMContentLoaded', function() {
       <span class="en">The "Logs" tab lets you view and filter detailed authentication logs.</span>
     </p>
     <div style="margin:12px 0;">
-      <table style="width:100%;border-collapse:collapse;font-size:13px;">
+      <table style="width:100%;border-collapse:collapse;font-size:14px;">
         <tr style="background:#f0f4ff;">
           <th style="padding:10px 14px;text-align:left;border:1px solid #dde4ee;width:40%;">
             <span class="ja">機能</span><span class="en">Feature</span>
@@ -1149,7 +1149,7 @@ window.addEventListener('DOMContentLoaded', function() {
       <span class="ja">以下のパターンを自動検出し、一覧内でハイライト表示します。</span>
       <span class="en">The following patterns are automatically detected and highlighted in the log list.</span>
     </p>
-    <ul style="margin:10px 0 0 18px;font-size:13px;line-height:2;">
+    <ul style="margin:10px 0 0 18px;font-size:14px;line-height:2;">
       <li>
         <span class="ja"><strong>繰り返し失敗 IP</strong> — 同一 IP アドレスで 2 回以上のエラーを検出</span>
         <span class="en"><strong>Repeat Failure IP</strong> — Detects 2 or more errors from the same IP address</span>
@@ -1162,10 +1162,10 @@ window.addEventListener('DOMContentLoaded', function() {
 
     <h3><span class="ja">ログの色分け</span><span class="en">Log Color Coding</span></h3>
     <div style="margin:12px 0;display:flex;gap:12px;flex-wrap:wrap;">
-      <span style="background:#f0fdf4;border:1px solid #6ee7b7;border-radius:8px;padding:6px 14px;font-size:12px;color:#15803d;">&#9632; <span class="ja">成功（SUCCESS / OK）</span><span class="en">Success (SUCCESS / OK)</span></span>
-      <span style="background:#fff0f0;border:1px solid #fca5a5;border-radius:8px;padding:6px 14px;font-size:12px;color:#dc2626;">&#9632; <span class="ja">失敗（FAIL / BAD-OTP）</span><span class="en">Failure (FAIL / BAD-OTP)</span></span>
-      <span style="background:#eef2ff;border:1px solid #a5b4fc;border-radius:8px;padding:6px 14px;font-size:12px;color:#4338ca;">&#9632; <span class="ja">IP アドレス</span><span class="en">IP Address</span></span>
-      <span style="background:#ffebeb;border:1px solid #c03030;border-radius:8px;padding:6px 14px;font-size:12px;color:#8b0000;">&#9632; <span class="ja">脅威（THREAT）— 行全体が暗赤色で強調表示</span><span class="en">Threat (THREAT) — Entire row highlighted in dark red</span></span>
+      <span style="background:#f0fdf4;border:1px solid #6ee7b7;border-radius:8px;padding:6px 14px;font-size:13px;color:#15803d;">&#9632; <span class="ja">成功（SUCCESS / OK）</span><span class="en">Success (SUCCESS / OK)</span></span>
+      <span style="background:#fff0f0;border:1px solid #fca5a5;border-radius:8px;padding:6px 14px;font-size:13px;color:#dc2626;">&#9632; <span class="ja">失敗（FAIL / BAD-OTP）</span><span class="en">Failure (FAIL / BAD-OTP)</span></span>
+      <span style="background:#eef2ff;border:1px solid #a5b4fc;border-radius:8px;padding:6px 14px;font-size:13px;color:#4338ca;">&#9632; <span class="ja">IP アドレス</span><span class="en">IP Address</span></span>
+      <span style="background:#ffebeb;border:1px solid #c03030;border-radius:8px;padding:6px 14px;font-size:13px;color:#8b0000;">&#9632; <span class="ja">脅威（THREAT）— 行全体が暗赤色で強調表示</span><span class="en">Threat (THREAT) — Entire row highlighted in dark red</span></span>
     </div>
   </section>
 
@@ -1179,7 +1179,7 @@ window.addEventListener('DOMContentLoaded', function() {
 
     <h3><span class="ja">検知対象一覧</span><span class="en">Detection Targets</span></h3>
     <div style="margin:12px 0;">
-      <table style="width:100%;border-collapse:collapse;font-size:13px;">
+      <table style="width:100%;border-collapse:collapse;font-size:14px;">
         <tr style="background:#f0f4ff;">
           <th style="padding:10px 14px;text-align:left;border:1px solid #dde4ee;width:28%;">
             <span class="ja">攻撃フェーズ</span><span class="en">Attack Phase</span>
@@ -1259,7 +1259,7 @@ window.addEventListener('DOMContentLoaded', function() {
       <span class="ja">脅威を検知すると、ログビューアは <strong>security_log.txt</strong> に自動記録します。このファイルはログビューアの「ログ」タブに認証ログと混在して表示され、THREAT 行として暗赤色で強調されます。</span>
       <span class="en">When a threat is detected, Log Viewer automatically writes to <strong>security_log.txt</strong>. This file is displayed alongside authentication logs in the "Logs" tab, with THREAT entries highlighted in dark red.</span>
     </p>
-    <div style="margin:12px 0;background:#1a1a2e;border-radius:8px;padding:14px 18px;font-family:Consolas,'Courier New',monospace;font-size:12px;color:#e0e0e0;overflow-x:auto;">
+    <div style="margin:12px 0;background:#1a1a2e;border-radius:8px;padding:14px 18px;font-family:Consolas,'Courier New',monospace;font-size:13px;color:#e0e0e0;overflow-x:auto;">
       <span style="color:#888;">// security_log.txt 記録フォーマット例</span><br>
       <span style="color:#ffd700;">02/07/2026</span> ,<span style="color:#ffd700;">19:42:11</span> ,<span style="color:#ff6b6b;">プロセス検知</span> ,<span style="color:#ff4444;">THREAT</span> ,<span style="color:#87ceeb;">mimikatz.exe</span> ,IP: ,<span style="color:#98fb98;">PC:DESKTOP-ABC</span> ,<span style="color:#ff9966;">パスワード窃取ツール（mimikatz）を検知</span> , ,
     </div>
@@ -1372,7 +1372,7 @@ window.addEventListener('DOMContentLoaded', function() {
 
     <h3><span class="ja">通知イベントの種類</span><span class="en">Notification Event Types</span></h3>
     <div style="margin:12px 0;">
-      <table style="width:100%;border-collapse:collapse;font-size:13px;">
+      <table style="width:100%;border-collapse:collapse;font-size:14px;">
         <tr style="background:#f0f4ff;">
           <th style="padding:10px 14px;text-align:left;border:1px solid #dde4ee;width:35%;">
             <span class="ja">イベント</span><span class="en">Event</span>
@@ -1415,7 +1415,7 @@ window.addEventListener('DOMContentLoaded', function() {
           <td style="padding:10px 14px;border:1px solid #dde4ee;">
             <span class="ja">不審なプロセス・コマンドを検知した場合に <strong>緊急通知</strong> を送信します。通知には攻撃フェーズ・検知対象・推奨対応が含まれます。この通知は設定の有無にかかわらず、脅威検知時に常に送信されます。</span>
             <span class="en">An <strong>emergency notification</strong> is sent when a suspicious process or command is detected. The notification includes the attack phase, detected target, and recommended action. This notification is always sent on threat detection regardless of settings.</span>
-            <div style="margin-top:10px;background:#1a1a2e;border-radius:8px;padding:12px 14px;font-family:Consolas,'Courier New',monospace;font-size:11px;color:#e0e0e0;line-height:1.7;">
+            <div style="margin-top:10px;background:#1a1a2e;border-radius:8px;padding:12px 14px;font-family:Consolas,'Courier New',monospace;font-size:12px;color:#e0e0e0;line-height:1.7;">
               <span style="color:#ff4444;font-weight:bold;">🆘 緊急：ランサムウェア予兆検知</span><br><br>
               <span style="color:#ffd700;">【フェーズ】</span>バックアップ破壊<br>
               <span style="color:#ffd700;">【検知対象】</span>VSS削除（vssadmin）<br>
@@ -1447,8 +1447,8 @@ window.addEventListener('DOMContentLoaded', function() {
 
     <h3><span class="ja">welcome.html のバッジ表示</span><span class="en">Badge in welcome.html</span></h3>
     <p>
-      <span class="ja">LINE User ID を保存すると、applippli-key の設定完了画面（welcome.html）に <span style="display:inline-block;background:#06C755;border-radius:8px;padding:1px 8px;font-size:11px;color:#fff;font-weight:bold;">&#9679; LINE通知 有効</span> バッジが表示されます。</span>
-      <span class="en">After saving a LINE User ID, a <span style="display:inline-block;background:#06C755;border-radius:8px;padding:1px 8px;font-size:11px;color:#fff;font-weight:bold;">&#9679; LINE Notification Active</span> badge appears on the applippli-key setup complete screen (welcome.html).</span>
+      <span class="ja">LINE User ID を保存すると、applippli-key の設定完了画面（welcome.html）に <span style="display:inline-block;background:#06C755;border-radius:8px;padding:1px 8px;font-size:12px;color:#fff;font-weight:bold;">&#9679; LINE通知 有効</span> バッジが表示されます。</span>
+      <span class="en">After saving a LINE User ID, a <span style="display:inline-block;background:#06C755;border-radius:8px;padding:1px 8px;font-size:12px;color:#fff;font-weight:bold;">&#9679; LINE Notification Active</span> badge appears on the applippli-key setup complete screen (welcome.html).</span>
     </p>
   </section>
 
