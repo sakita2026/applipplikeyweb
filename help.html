@@ -355,7 +355,7 @@ function clearSearch() {
       <span class="en">applippli-key Setup Manual</span>
     </h1>
     <p>
-      <span class="ja">更新日：</span><span class="en">Updated: </span>2026/6/30
+      <span class="ja">更新日：</span><span class="en">Updated: </span>2026/7/2
     </p>
   </div>
   <button id="langBtn" onclick="toggleLang()">EN</button>
@@ -399,6 +399,7 @@ function clearSearch() {
   <a href="#upgrade"><span class="ja">Ver 2 へのアップグレード</span><span class="en">Upgrade to Ver 2</span></a>
   <a href="#onetouch"><span class="ja">ワンタッチログインの設定</span><span class="en">One-Touch Login Setup</span></a>
   <a href="#logviewer"><span class="ja">ログビューア</span><span class="en">Log Viewer</span></a>
+  <a href="#ransomware"><span class="ja">ランサムウェア脅威検知</span><span class="en">Ransomware Threat Detection</span></a>
   <a href="#line-notify"><span class="ja">LINE通知設定</span><span class="en">LINE Notification</span></a>
   <a href="#faq">FAQ</a>
 </nav>
@@ -981,6 +982,10 @@ function clearSearch() {
           <td style="padding:10px 14px;border:1px solid #dde4ee;"><span class="ja">直近の認証イベント</span><span class="en">Recent Auth Events</span></td>
           <td style="padding:10px 14px;border:1px solid #dde4ee;"><span class="ja">最新 15 件の認証ログ一覧</span><span class="en">List of the latest 15 authentication log entries</span></td>
         </tr>
+        <tr style="background:#fafbfc;">
+          <td style="padding:10px 14px;border:1px solid #dde4ee;"><span class="ja">🦠 ランサム脅威検知（直近 7 日間）</span><span class="en">🦠 Ransomware Threats (Last 7 Days)</span></td>
+          <td style="padding:10px 14px;border:1px solid #dde4ee;"><span class="ja">過去 7 日間に検知したランサムウェア予兆イベント数。1 件でもある場合は赤色で強調表示されます。</span><span class="en">Number of ransomware precursor events detected in the past 7 days. Displayed in red if any are found.</span></td>
+        </tr>
       </table>
     </div>
 
@@ -1039,7 +1044,147 @@ function clearSearch() {
       <span style="background:#f0fdf4;border:1px solid #6ee7b7;border-radius:8px;padding:6px 14px;font-size:12px;color:#15803d;">&#9632; <span class="ja">成功（SUCCESS / OK）</span><span class="en">Success (SUCCESS / OK)</span></span>
       <span style="background:#fff0f0;border:1px solid #fca5a5;border-radius:8px;padding:6px 14px;font-size:12px;color:#dc2626;">&#9632; <span class="ja">失敗（FAIL / BAD-OTP）</span><span class="en">Failure (FAIL / BAD-OTP)</span></span>
       <span style="background:#eef2ff;border:1px solid #a5b4fc;border-radius:8px;padding:6px 14px;font-size:12px;color:#4338ca;">&#9632; <span class="ja">IP アドレス</span><span class="en">IP Address</span></span>
+      <span style="background:#ffebeb;border:1px solid #c03030;border-radius:8px;padding:6px 14px;font-size:12px;color:#8b0000;">&#9632; <span class="ja">脅威（THREAT）— 行全体が暗赤色で強調表示</span><span class="en">Threat (THREAT) — Entire row highlighted in dark red</span></span>
     </div>
+  </section>
+
+  <!-- ランサムウェア脅威検知 / Ransomware Threat Detection -->
+  <section id="ransomware">
+    <h2><span class="ja">ランサムウェア脅威検知</span><span class="en">Ransomware Threat Detection</span></h2>
+    <div class="info">
+      <span class="ja">applippli-key Ver 2 のログビューアは、MFA 認証の監視に加え、ランサムウェア攻撃の前兆となる不審なプロセス・コマンドをリアルタイムで検知します。検知した内容は <strong>security_log.txt</strong> に記録され、ログビューアの「ログ」タブに表示されます。</span>
+      <span class="en">In addition to MFA authentication monitoring, the applippli-key Ver 2 Log Viewer detects suspicious processes and commands that may indicate a ransomware attack in real time. Detected events are recorded in <strong>security_log.txt</strong> and displayed in the Log Viewer's "Logs" tab.</span>
+    </div>
+
+    <h3><span class="ja">検知対象一覧</span><span class="en">Detection Targets</span></h3>
+    <div style="margin:12px 0;">
+      <table style="width:100%;border-collapse:collapse;font-size:13px;">
+        <tr style="background:#f0f4ff;">
+          <th style="padding:10px 14px;text-align:left;border:1px solid #dde4ee;width:28%;">
+            <span class="ja">攻撃フェーズ</span><span class="en">Attack Phase</span>
+          </th>
+          <th style="padding:10px 14px;text-align:left;border:1px solid #dde4ee;width:32%;">
+            <span class="ja">検知対象</span><span class="en">Detection Target</span>
+          </th>
+          <th style="padding:10px 14px;text-align:left;border:1px solid #dde4ee;">
+            <span class="ja">検知方法</span><span class="en">Detection Method</span>
+          </th>
+        </tr>
+        <tr>
+          <td style="padding:10px 14px;border:1px solid #dde4ee;color:#92400e;font-weight:600;"><span class="ja">偵察</span><span class="en">Reconnaissance</span></td>
+          <td style="padding:10px 14px;border:1px solid #dde4ee;"><span class="ja">nltest.exe（ドメインコントローラー探索）</span><span class="en">nltest.exe (DC enumeration)</span></td>
+          <td style="padding:10px 14px;border:1px solid #dde4ee;"><span class="ja">WMI プロセス監視</span><span class="en">WMI process monitoring</span></td>
+        </tr>
+        <tr style="background:#fafbfc;">
+          <td style="padding:10px 14px;border:1px solid #dde4ee;color:#b91c1c;font-weight:600;" rowspan="2"><span class="ja">パスワード窃取</span><span class="en">Credential Theft</span></td>
+          <td style="padding:10px 14px;border:1px solid #dde4ee;"><span class="ja">mimikatz / procdump / nanodump など</span><span class="en">mimikatz / procdump / nanodump etc.</span></td>
+          <td style="padding:10px 14px;border:1px solid #dde4ee;"><span class="ja">WMI プロセス監視</span><span class="en">WMI process monitoring</span></td>
+        </tr>
+        <tr style="background:#fafbfc;">
+          <td style="padding:10px 14px;border:1px solid #dde4ee;"><span class="ja">reg save SAM/SYSTEM/SECURITY（ハッシュダンプ）</span><span class="en">reg save SAM/SYSTEM/SECURITY (hash dump)</span></td>
+          <td style="padding:10px 14px;border:1px solid #dde4ee;"><span class="ja">EventID 4688 コマンドライン検知</span><span class="en">EventID 4688 command-line detection</span></td>
+        </tr>
+        <tr>
+          <td style="padding:10px 14px;border:1px solid #dde4ee;color:#7c3aed;font-weight:600;"><span class="ja">横展開</span><span class="en">Lateral Movement</span></td>
+          <td style="padding:10px 14px;border:1px solid #dde4ee;"><span class="ja">psexec.exe / psexec64.exe（リモート実行）</span><span class="en">psexec.exe / psexec64.exe (remote execution)</span></td>
+          <td style="padding:10px 14px;border:1px solid #dde4ee;"><span class="ja">WMI プロセス監視</span><span class="en">WMI process monitoring</span></td>
+        </tr>
+        <tr style="background:#fafbfc;">
+          <td style="padding:10px 14px;border:1px solid #dde4ee;color:#b91c1c;font-weight:600;" rowspan="3"><span class="ja">防御無効化</span><span class="en">Defense Evasion</span></td>
+          <td style="padding:10px 14px;border:1px solid #dde4ee;"><span class="ja">Windows Defender レジストリ無効化</span><span class="en">Windows Defender registry disable</span></td>
+          <td style="padding:10px 14px;border:1px solid #dde4ee;"><span class="ja">EventID 4688 コマンドライン検知</span><span class="en">EventID 4688 command-line detection</span></td>
+        </tr>
+        <tr style="background:#fafbfc;">
+          <td style="padding:10px 14px;border:1px solid #dde4ee;"><span class="ja">Defender 除外パス追加（Add-MpPreference）</span><span class="en">Defender exclusion path (Add-MpPreference)</span></td>
+          <td style="padding:10px 14px;border:1px solid #dde4ee;"><span class="ja">EventID 4688 コマンドライン検知</span><span class="en">EventID 4688 command-line detection</span></td>
+        </tr>
+        <tr style="background:#fafbfc;">
+          <td style="padding:10px 14px;border:1px solid #dde4ee;"><span class="ja">ファイアウォール停止（Set-NetFirewallProfile）</span><span class="en">Firewall disable (Set-NetFirewallProfile)</span></td>
+          <td style="padding:10px 14px;border:1px solid #dde4ee;"><span class="ja">EventID 4688 コマンドライン検知</span><span class="en">EventID 4688 command-line detection</span></td>
+        </tr>
+        <tr>
+          <td style="padding:10px 14px;border:1px solid #dde4ee;color:#9333ea;font-weight:600;"><span class="ja">データ流出</span><span class="en">Data Exfiltration</span></td>
+          <td style="padding:10px 14px;border:1px solid #dde4ee;"><span class="ja">rclone.exe（外部クラウドへの大量転送）</span><span class="en">rclone.exe (bulk transfer to external cloud)</span></td>
+          <td style="padding:10px 14px;border:1px solid #dde4ee;"><span class="ja">WMI プロセス監視</span><span class="en">WMI process monitoring</span></td>
+        </tr>
+        <tr style="background:#fafbfc;">
+          <td style="padding:10px 14px;border:1px solid #dde4ee;color:#8b0000;font-weight:600;" rowspan="3"><span class="ja">バックアップ破壊</span><span class="en">Backup Destruction</span></td>
+          <td style="padding:10px 14px;border:1px solid #dde4ee;"><span class="ja">vssadmin delete shadows（シャドウコピー削除）</span><span class="en">vssadmin delete shadows (shadow copy deletion)</span></td>
+          <td style="padding:10px 14px;border:1px solid #dde4ee;"><span class="ja">EventID 4688 コマンドライン検知</span><span class="en">EventID 4688 command-line detection</span></td>
+        </tr>
+        <tr style="background:#fafbfc;">
+          <td style="padding:10px 14px;border:1px solid #dde4ee;"><span class="ja">bcdedit /set recoveryenabled no（回復無効化）</span><span class="en">bcdedit /set recoveryenabled no (recovery disable)</span></td>
+          <td style="padding:10px 14px;border:1px solid #dde4ee;"><span class="ja">EventID 4688 コマンドライン検知</span><span class="en">EventID 4688 command-line detection</span></td>
+        </tr>
+        <tr style="background:#fafbfc;">
+          <td style="padding:10px 14px;border:1px solid #dde4ee;"><span class="ja">diskshadow delete / /s（シャドウコピー操作）</span><span class="en">diskshadow delete / /s (shadow copy operation)</span></td>
+          <td style="padding:10px 14px;border:1px solid #dde4ee;"><span class="ja">EventID 4688 コマンドライン検知</span><span class="en">EventID 4688 command-line detection</span></td>
+        </tr>
+        <tr>
+          <td style="padding:10px 14px;border:1px solid #dde4ee;color:#b91c1c;font-weight:600;"><span class="ja">ペイロード実行</span><span class="en">Payload Execution</span></td>
+          <td style="padding:10px 14px;border:1px solid #dde4ee;"><span class="ja">mshta.exe / payload.exe / PowerShell IEX</span><span class="en">mshta.exe / payload.exe / PowerShell IEX</span></td>
+          <td style="padding:10px 14px;border:1px solid #dde4ee;"><span class="ja">WMI プロセス監視 / EventID 4688</span><span class="en">WMI process monitoring / EventID 4688</span></td>
+        </tr>
+        <tr style="background:#fafbfc;">
+          <td style="padding:10px 14px;border:1px solid #dde4ee;color:#8b0000;font-weight:600;"><span class="ja">プロセス偽装</span><span class="en">Process Impersonation</span></td>
+          <td style="padding:10px 14px;border:1px solid #dde4ee;"><span class="ja">svchost.exe / lsass.exe などを正規パス以外から実行</span><span class="en">svchost.exe / lsass.exe etc. executed from non-standard paths</span></td>
+          <td style="padding:10px 14px;border:1px solid #dde4ee;"><span class="ja">WMI 実行パス検証</span><span class="en">WMI executable path validation</span></td>
+        </tr>
+      </table>
+    </div>
+
+    <h3><span class="ja">security_log.txt について</span><span class="en">About security_log.txt</span></h3>
+    <p>
+      <span class="ja">脅威を検知すると、ログビューアは <strong>security_log.txt</strong> に自動記録します。このファイルはログビューアの「ログ」タブに認証ログと混在して表示され、THREAT 行として暗赤色で強調されます。</span>
+      <span class="en">When a threat is detected, Log Viewer automatically writes to <strong>security_log.txt</strong>. This file is displayed alongside authentication logs in the "Logs" tab, with THREAT entries highlighted in dark red.</span>
+    </p>
+    <div style="margin:12px 0;background:#1a1a2e;border-radius:8px;padding:14px 18px;font-family:Consolas,'Courier New',monospace;font-size:12px;color:#e0e0e0;overflow-x:auto;">
+      <span style="color:#888;">// security_log.txt 記録フォーマット例</span><br>
+      <span style="color:#ffd700;">02/07/2026</span> ,<span style="color:#ffd700;">19:42:11</span> ,<span style="color:#ff6b6b;">プロセス検知</span> ,<span style="color:#ff4444;">THREAT</span> ,<span style="color:#87ceeb;">mimikatz.exe</span> ,IP: ,<span style="color:#98fb98;">PC:DESKTOP-ABC</span> ,<span style="color:#ff9966;">パスワード窃取ツール（mimikatz）を検知</span> , ,
+    </div>
+
+    <h3><span class="ja">検知時の対応手順</span><span class="en">Response Procedure on Detection</span></h3>
+    <div class="note">
+      <strong><span class="ja">⚠ THREAT 検知時は即時対応が必要です</span><span class="en">⚠ Immediate action required on THREAT detection</span></strong>
+      <span class="ja">ランサムウェア攻撃はバックアップを破壊してから暗号化を行います。検知通知を受けた時点で速やかに対応することで被害を最小化できます。</span>
+      <span class="en">Ransomware attacks destroy backups before encrypting files. Responding promptly upon receiving a detection notification minimizes damage.</span>
+    </div>
+    <ul class="steps" style="margin-top:14px;">
+      <li><span class="step-num">1</span><span class="step-txt">
+        <span class="ja">LINE 通知の <strong>【対応】</strong> フィールドに記載された対処内容を確認します。</span>
+        <span class="en">Check the <strong>[Action]</strong> field in the LINE notification for recommended steps.</span>
+      </span></li>
+      <li><span class="step-num">2</span><span class="step-txt">
+        <span class="ja">対象 PC をネットワークから切断（LAN ケーブル抜去・Wi-Fi 無効化）します。</span>
+        <span class="en">Disconnect the target PC from the network (unplug LAN cable / disable Wi-Fi).</span>
+      </span></li>
+      <li><span class="step-num">3</span><span class="step-txt">
+        <span class="ja">LogViewer の「ログ」タブで THREAT 行（暗赤色）を確認し、攻撃フェーズ・対象プロセス・実行時刻を記録します。</span>
+        <span class="en">In the LogViewer "Logs" tab, locate THREAT entries (dark red) and note the attack phase, process name, and timestamp.</span>
+      </span></li>
+      <li><span class="step-num">4</span><span class="step-txt">
+        <span class="ja">システム管理者または社内セキュリティ担当者に報告し、フォレンジック調査や感染範囲の確認を行います。</span>
+        <span class="en">Report to your system administrator or security team and proceed with forensic investigation and infection scope assessment.</span>
+      </span></li>
+    </ul>
+
+    <h3><span class="ja">前提条件</span><span class="en">Prerequisites</span></h3>
+    <ul class="bullet">
+      <li>
+        <span class="ja"><strong>EventID 4688 のコマンドライン記録を有効化する必要があります。</strong><br>
+        グループポリシー：コンピューターの構成 → Windows の設定 → セキュリティの設定 → 詳細な監査ポリシーの構成 → 詳細な追跡 →「プロセス作成の監査」を有効にし、「コマンドラインの記録」を有効化してください。</span>
+        <span class="en"><strong>EventID 4688 command-line logging must be enabled.</strong><br>
+        Group Policy: Computer Configuration → Windows Settings → Security Settings → Advanced Audit Policy → Detailed Tracking → Enable "Audit Process Creation" and enable "Include command line in process creation events."</span>
+      </li>
+      <li>
+        <span class="ja">Sysmon（LSASS アクセス検知用）を別途インストールすることで、より高精度な検知が可能になります。</span>
+        <span class="en">Installing Sysmon separately (for LSASS access detection) enables higher-accuracy detection.</span>
+      </li>
+      <li>
+        <span class="ja">ログビューアが起動していない場合は検知・通知が行われません。Windows 起動時の自動起動設定を推奨します。</span>
+        <span class="en">Detection and notifications do not occur if Log Viewer is not running. We recommend enabling auto-start at Windows startup.</span>
+      </li>
+    </ul>
   </section>
 
   <!-- LINE通知設定 / LINE Notification -->
@@ -1140,6 +1285,24 @@ function clearSearch() {
           <td style="padding:10px 14px;border:1px solid #dde4ee;">
             <span class="ja"><strong>5 分間に 10 回以上の OTP 連続失敗</strong> を検知した場合に不正アクセス（ブルートフォース攻撃）として警告通知します。この検知はログビューアが行い、設定変更はできません。</span>
             <span class="en">A warning is sent when <strong>10 or more consecutive OTP failures occur within 5 minutes</strong>, indicating a possible brute-force attack. This detection is handled by Log Viewer and the threshold cannot be changed.</span>
+          </td>
+        </tr>
+        <tr style="background:#fff5f5;">
+          <td style="padding:10px 14px;border:1px solid #dde4ee;">
+            <span style="color:#8b0000;font-weight:bold;">🆘 <span class="ja">ランサムウェア予兆検知</span><span class="en">Ransomware Threat</span></span>
+          </td>
+          <td style="padding:10px 14px;border:1px solid #dde4ee;">
+            <span class="ja">不審なプロセス・コマンドを検知した場合に <strong>緊急通知</strong> を送信します。通知には攻撃フェーズ・検知対象・推奨対応が含まれます。この通知は設定の有無にかかわらず、脅威検知時に常に送信されます。</span>
+            <span class="en">An <strong>emergency notification</strong> is sent when a suspicious process or command is detected. The notification includes the attack phase, detected target, and recommended action. This notification is always sent on threat detection regardless of settings.</span>
+            <div style="margin-top:10px;background:#1a1a2e;border-radius:8px;padding:12px 14px;font-family:Consolas,'Courier New',monospace;font-size:11px;color:#e0e0e0;line-height:1.7;">
+              <span style="color:#ff4444;font-weight:bold;">🆘 緊急：ランサムウェア予兆検知</span><br><br>
+              <span style="color:#ffd700;">【フェーズ】</span>バックアップ破壊<br>
+              <span style="color:#ffd700;">【検知対象】</span>VSS削除（vssadmin）<br>
+              <span style="color:#ffd700;">【プロセス　】</span>vssadmin.exe<br>
+              <span style="color:#ffd700;">【詳　　細】</span>ランサムウェア前兆：シャドウコピーの削除を検知<br>
+              <span style="color:#ffd700;">【日　　時】</span>2026/07/02 19:42:11<br><br>
+              <span style="color:#ff9966;">⚠️ 対応: PC隔離・バックアップ確認</span>
+            </div>
           </td>
         </tr>
       </table>
