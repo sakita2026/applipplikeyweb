@@ -394,15 +394,19 @@ function toggleNav() {
   var isOpen = nav.classList.contains('open');
   if (isOpen) {
     nav.classList.remove('open');
+    nav.style.transform = '';
     overlay.classList.remove('open');
   } else {
     nav.classList.add('open');
+    nav.style.transform = 'translateX(0)';
     overlay.classList.add('open');
   }
 }
 
 function closeNav() {
-  document.getElementById('sideNav').classList.remove('open');
+  var nav = document.getElementById('sideNav');
+  nav.classList.remove('open');
+  nav.style.transform = '';
   document.getElementById('navOverlay').classList.remove('open');
 }
 
