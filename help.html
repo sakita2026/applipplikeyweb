@@ -219,7 +219,6 @@
       top: 0; bottom: 0;
       width: 240px;
       z-index: 100;
-      transform: translateX(-100%);
       transition: transform 0.25s ease;
       height: 100%;
       box-shadow: 4px 0 16px rgba(0,0,0,0.15);
@@ -388,17 +387,19 @@ function clearSearch() {
   clearMarks();
 }
 
+function isMobile() { return window.innerWidth <= 700; }
+
 function toggleNav() {
   var nav = document.getElementById('sideNav');
   var overlay = document.getElementById('navOverlay');
   var isOpen = nav.classList.contains('open');
   if (isOpen) {
     nav.classList.remove('open');
-    nav.style.transform = '';
+    nav.style.transform = 'translateX(-100%)';
     overlay.classList.remove('open');
   } else {
     nav.classList.add('open');
-    nav.style.transform = 'translateX(0)';
+    nav.style.transform = 'translateX(0px)';
     overlay.classList.add('open');
   }
 }
@@ -406,16 +407,19 @@ function toggleNav() {
 function closeNav() {
   var nav = document.getElementById('sideNav');
   nav.classList.remove('open');
-  nav.style.transform = '';
+  nav.style.transform = 'translateX(-100%)';
   document.getElementById('navOverlay').classList.remove('open');
 }
 
-/* ナビのリンクをタップしたらドロワーを閉じる */
+/* モバイル時にナビを初期非表示・リンククリックでドロワーを閉じる */
 window.addEventListener('load', function() {
+  if (isMobile()) {
+    document.getElementById('sideNav').style.transform = 'translateX(-100%)';
+  }
   var links = document.querySelectorAll('#sideNav a');
   for (var i = 0; i < links.length; i++) {
     links[i].addEventListener('click', function() {
-      if (window.innerWidth <= 700) closeNav();
+      if (isMobile()) closeNav();
     });
   }
 });
