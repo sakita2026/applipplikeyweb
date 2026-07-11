@@ -8,7 +8,7 @@
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body {
     font-family: 'Yu Gothic UI', 'BIZ UDPGothic', Meiryo, sans-serif;
-    font-size: 15px;
+    font-size: 14px;
     color: #1a2340;
     background: #f5f7fa;
     line-height: 1.7;
@@ -34,8 +34,8 @@
     display: flex; align-items: center; justify-content: center;
     flex-shrink: 0;
   }
-  .header h1 { font-size: 21px; font-weight: bold; }
-  .header p  { font-size: 13px; color: #8fa3c8; margin-top: 2px; }
+  .header h1 { font-size: 20px; font-weight: bold; }
+  .header p  { font-size: 12px; color: #8fa3c8; margin-top: 2px; }
 
   /* 言語ボタン */
   #langBtn {
@@ -45,7 +45,7 @@
     color: #8fa3c8;
     border-radius: 6px;
     padding: 5px 14px;
-    font-size: 13px;
+    font-size: 12px;
     cursor: pointer;
     flex-shrink: 0;
     letter-spacing: .04em;
@@ -68,7 +68,7 @@
     overflow-y: auto;
   }
   nav h2 {
-    font-size: 12px;
+    font-size: 11px;
     color: #8fa3c8;
     text-transform: uppercase;
     letter-spacing: .08em;
@@ -77,7 +77,7 @@
   nav a {
     display: block;
     padding: 7px 20px;
-    font-size: 14px;
+    font-size: 13px;
     color: #3a4a6b;
     text-decoration: none;
     border-left: 3px solid transparent;
@@ -91,7 +91,7 @@
   /* セクション */
   section { margin-bottom: 48px; }
   section h2 {
-    font-size: 19px;
+    font-size: 18px;
     font-weight: bold;
     color: #1a2340;
     border-left: 4px solid #2d6fe8;
@@ -99,7 +99,7 @@
     margin-bottom: 16px;
   }
   section h3 {
-    font-size: 16px;
+    font-size: 15px;
     font-weight: bold;
     color: #2d6fe8;
     margin: 20px 0 10px;
@@ -119,7 +119,7 @@
     background: #2d6fe8;
     color: #fff;
     border-radius: 50%;
-    font-size: 13px;
+    font-size: 12px;
     font-weight: bold;
     display: flex; align-items: center; justify-content: center;
   }
@@ -132,7 +132,7 @@
     border-radius: 8px;
     padding: 14px 18px;
     margin: 16px 0;
-    font-size: 14px;
+    font-size: 13px;
     color: #92400e;
   }
   .note strong { display: block; margin-bottom: 4px; }
@@ -144,7 +144,7 @@
     border-radius: 8px;
     padding: 14px 18px;
     margin: 16px 0;
-    font-size: 14px;
+    font-size: 13px;
     color: #1e40af;
   }
 
@@ -157,7 +157,7 @@
     border: 1px solid #c7d4f8;
     border-radius: 8px;
     padding: 10px 16px;
-    font-size: 14px;
+    font-size: 13px;
     color: #2d6fe8;
     text-decoration: none;
     margin: 8px 4px;
@@ -171,7 +171,7 @@
   footer {
     text-align: center;
     padding: 24px;
-    font-size: 13px;
+    font-size: 12px;
     color: #8fa3c8;
     border-top: 1px solid #e2e8f0;
     background: #fff;
@@ -185,6 +185,57 @@
     main { padding: 20px; }
   }
 
+  /* ===== モバイル対応 ===== */
+  #navOverlay {
+    display: none;
+    position: fixed; inset: 0;
+    background: rgba(0,0,0,0.45);
+    z-index: 99;
+  }
+  #navOverlay.open { display: block; }
+
+  #hamburger {
+    display: none;
+    background: transparent;
+    border: none;
+    color: #fff;
+    font-size: 22px;
+    cursor: pointer;
+    padding: 4px 8px;
+    margin-right: 4px;
+    flex-shrink: 0;
+  }
+
+  @media (max-width: 700px) {
+    .header { padding: 14px 16px; gap: 10px; }
+    .header h1 { font-size: 15px; }
+    .header p  { font-size: 11px; }
+    #hamburger { display: block; }
+
+    nav {
+      position: fixed;
+      left: -260px;
+      top: 0; bottom: 0;
+      width: 240px;
+      z-index: 100;
+      transition: left 0.25s ease;
+      height: 100%;
+      box-shadow: 4px 0 16px rgba(0,0,0,0.15);
+    }
+    nav.open { left: 0; }
+
+    .container { display: block; }
+    main { padding: 20px 16px; max-width: 100%; }
+
+    section h2 { font-size: 16px; }
+    section h3 { font-size: 14px; }
+
+    table { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    img   { max-width: 100%; height: auto; }
+
+    pre, code { font-size: 11px; overflow-x: auto; display: block; }
+  }
+
   /* 検索ハイライト */
   mark { background: #fef08a; border-radius: 2px; padding: 0 1px; }
 
@@ -192,96 +243,10 @@
   #searchInput {
     width: 100%; padding: 7px 28px 7px 10px;
     border: 1px solid #dde4ee; border-radius: 6px;
-    font-size: 13px; color: #1a2340; outline: none;
+    font-size: 12px; color: #1a2340; outline: none;
     font-family: inherit;
   }
   #searchInput:focus { border-color: #2d6fe8; }
-
-  /* ===== テーブル横スクロール ===== */
-  .table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
-  .table-wrap table { min-width: 480px; }
-
-  /* 画像レスポンシブ */
-  main img { max-width: 100%; height: auto; display: block; }
-
-  /* ===== ハンバーガーボタン ===== */
-  .nav-toggle {
-    display: none;
-    background: transparent;
-    border: 1px solid #4a6fa5;
-    color: #c0d0ea;
-    border-radius: 6px;
-    padding: 5px 10px;
-    font-size: 20px;
-    cursor: pointer;
-    line-height: 1;
-    flex-shrink: 0;
-    align-items: center;
-    justify-content: center;
-  }
-
-  /* ===== ナビ バックドロップ ===== */
-  #navBackdrop {
-    display: none;
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.45);
-    z-index: 99;
-  }
-  #navBackdrop.open { display: block; }
-
-  /* ===== スマートフォン対応 ===== */
-  @media (max-width: 768px) {
-    /* ヘッダー */
-    .header { padding: 12px 16px; gap: 10px; }
-    .header h1 { font-size: 17px; }
-    .header p  { font-size: 12px; }
-    .header-icon { width: 36px; height: 36px; border-radius: 9px; }
-    .header-icon svg { width: 20px; height: 20px; }
-    .nav-toggle { display: flex; }
-
-    /* レイアウト */
-    .container { flex-direction: column; }
-
-    /* サイドナビ → スライドイン */
-    nav {
-      position: fixed;
-      left: -270px;
-      top: 0;
-      width: 260px;
-      height: 100%;
-      z-index: 100;
-      transition: left .25s ease;
-      box-shadow: 4px 0 24px rgba(0,0,0,0.18);
-    }
-    nav.open { left: 0; }
-
-    /* 本文エリア */
-    main { padding: 20px 16px; max-width: 100%; }
-
-    /* セクション */
-    section { margin-bottom: 36px; }
-    section h2 { font-size: 17px; }
-    section h3 { font-size: 15px; }
-
-    /* 手順ステップ */
-    .steps li { gap: 10px; }
-    .step-num { width: 22px; height: 22px; font-size: 12px; }
-
-    /* アプリリンク */
-    .app-link { display: flex; margin: 6px 0 0; }
-
-    /* ログ色分けバッジ */
-    .log-badges { flex-direction: column !important; }
-    .log-badges span { display: block !important; }
-
-    /* コードブロック */
-    div[style*="font-family:Consolas"] {
-      font-size: 12px !important;
-      overflow-x: auto;
-      -webkit-overflow-scrolling: touch;
-    }
-  }
 </style>
 <script>
 function toggleLang() {
@@ -422,36 +387,36 @@ function clearSearch() {
   clearMarks();
 }
 
-/* ===== ハンバーガーナビ ===== */
 function toggleNav() {
-  document.querySelector('nav').classList.toggle('open');
-  document.getElementById('navBackdrop').classList.toggle('open');
+  var nav = document.getElementById('sideNav');
+  var overlay = document.getElementById('navOverlay');
+  var isOpen = nav.classList.contains('open');
+  if (isOpen) {
+    nav.classList.remove('open');
+    nav.style.left = '';
+    overlay.classList.remove('open');
+  } else {
+    nav.classList.add('open');
+    nav.style.left = '0px';
+    overlay.classList.add('open');
+  }
 }
+
 function closeNav() {
-  document.querySelector('nav').classList.remove('open');
-  document.getElementById('navBackdrop').classList.remove('open');
+  var nav = document.getElementById('sideNav');
+  nav.classList.remove('open');
+  nav.style.left = '';
+  document.getElementById('navOverlay').classList.remove('open');
 }
 
-window.addEventListener('DOMContentLoaded', function() {
-  /* モバイル：ナビリンクをタップしたら閉じる */
-  document.querySelectorAll('nav a[href^="#"]').forEach(function(a) {
-    a.addEventListener('click', function() {
-      if (window.innerWidth <= 768) closeNav();
+/* ナビのリンクをタップしたらドロワーを閉じる */
+window.addEventListener('load', function() {
+  var links = document.querySelectorAll('#sideNav a');
+  for (var i = 0; i < links.length; i++) {
+    links[i].addEventListener('click', function() {
+      if (window.innerWidth <= 700) closeNav();
     });
-  });
-
-  /* テーブルをスクロール用ラッパーで囲む */
-  document.querySelectorAll('#mainContent table').forEach(function(t) {
-    if (t.parentNode.classList && t.parentNode.classList.contains('table-wrap')) return;
-    var w = document.createElement('div');
-    w.className = 'table-wrap';
-    t.parentNode.insertBefore(w, t);
-    w.appendChild(t);
-  });
-
-  /* ログ色分けバッジのコンテナにクラス追加 */
-  var badges = document.querySelector('div[style*="display:flex"][style*="flex-wrap:wrap"]');
-  if (badges) badges.classList.add('log-badges');
+  }
 });
 </script>
 </head>
@@ -459,7 +424,6 @@ window.addEventListener('DOMContentLoaded', function() {
 
 <!-- ===== ヘッダー ===== -->
 <div class="header">
-  <button class="nav-toggle" id="navToggle" onclick="toggleNav()" aria-label="メニュー">&#9776;</button>
   <div class="header-icon">
     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
          fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -474,35 +438,37 @@ window.addEventListener('DOMContentLoaded', function() {
       <span class="en">applippli-key Setup Manual</span>
     </h1>
     <p>
-      <span class="ja">更新日：</span><span class="en">Updated: </span>2026/7/2
+      <span class="ja">更新日：</span><span class="en">Updated: </span>2026/6/30
     </p>
   </div>
+  <button id="hamburger" onclick="toggleNav()" aria-label="メニュー">☰</button>
   <button id="langBtn" onclick="toggleLang()">EN</button>
 </div>
 
-<div id="navBackdrop" onclick="closeNav()"></div>
+<div id="navOverlay" onclick="closeNav()"></div>
 
 <div class="container">
 
 <!-- ===== サイドナビ ===== -->
-<nav>
+<nav id="sideNav">
   <div style="padding:12px 14px 4px;">
     <div style="position:relative;">
       <input type="text" id="searchInput"
              placeholder="検索 / Search"
              oninput="doSearch(this.value)"
              style="width:100%;padding:7px 26px 7px 10px;border:1px solid #dde4ee;
-                    border-radius:6px;font-size:13px;color:#1a2340;outline:none;
+                    border-radius:6px;font-size:12px;color:#1a2340;outline:none;
                     font-family:inherit;box-sizing:border-box;">
       <span id="searchClear" onclick="clearSearch()"
             style="position:absolute;right:8px;top:50%;margin-top:-8px;
                    cursor:pointer;color:#9aa3b8;font-size:14px;display:none;
                    line-height:1;user-select:none;">&#10005;</span>
     </div>
-    <div id="searchCount" style="font-size:12px;margin-top:4px;padding-left:2px;min-height:15px;"></div>
+    <div id="searchCount" style="font-size:11px;margin-top:4px;padding-left:2px;min-height:15px;"></div>
   </div>
   <h2><span class="ja">目次</span><span class="en">Contents</span></h2>
   <a href="#intro"><span class="ja">はじめに</span><span class="en">Introduction</span></a>
+  <a href="#changelog"><span class="ja">変更履歴</span><span class="en">Changelog</span></a>
   <a href="#caution"><span class="ja">使用上の注意事項</span><span class="en">Important Notes</span></a>
   <a href="#app-download"><span class="ja">OTPアプリのダウンロード</span><span class="en">Download OTP App</span></a>
   <a href="#installer-download"><span class="ja">インストーラーダウンロード</span><span class="en">Download Installer</span></a>
@@ -520,8 +486,7 @@ window.addEventListener('DOMContentLoaded', function() {
   <a href="#upgrade"><span class="ja">Ver 2 へのアップグレード</span><span class="en">Upgrade to Ver 2</span></a>
   <a href="#onetouch"><span class="ja">ワンタッチログインの設定</span><span class="en">One-Touch Login Setup</span></a>
   <a href="#logviewer"><span class="ja">ログビューア</span><span class="en">Log Viewer</span></a>
-  <a href="#ransomware"><span class="ja">ランサムウェア脅威検知</span><span class="en">Ransomware Threat Detection</span></a>
-  <a href="#line-notify"><span class="ja">LINE通知設定</span><span class="en">LINE Notification</span></a>
+  <a href="#line-notify" style="padding-left:24px;font-size:12px;"><span class="ja">└ LINE 通知</span><span class="en">└ LINE Notification</span></a>
   <a href="#faq">FAQ</a>
 </nav>
 
@@ -554,6 +519,20 @@ window.addEventListener('DOMContentLoaded', function() {
     </ul>
   </section>
 
+  <!-- 変更履歴 / Changelog -->
+  <section id="changelog">
+    <h2><span class="ja">変更履歴</span><span class="en">Changelog</span></h2>
+
+    <h3>applippli-key V1</h3>
+
+    <h3>applippli-key V2</h3>
+    <ul class="bullet">
+      <li><span class="ja">UI を変更しました。</span><span class="en">The UI has been updated.</span></li>
+      <li><span class="ja">ワンタッチログイン機能を追加しました。（新機能）</span><span class="en">One-Touch Login has been added. (New)</span></li>
+      <li><span class="ja">applippli-key ログ機能を追加しました。（新機能）</span><span class="en">applippli-key log feature has been added. (New)</span></li>
+    </ul>
+  </section>
+
   <!-- 使用上の注意事項 / Important Notes -->
   <section id="caution">
     <h2><span class="ja">使用上の注意事項（必ずお読みください）</span><span class="en">Important Notes (Please Read)</span></h2>
@@ -569,8 +548,8 @@ window.addEventListener('DOMContentLoaded', function() {
     </div>
     <h3><span class="ja">インストール・初期設定の注意事項</span><span class="en">Installation &amp; Setup Notes</span></h3>
     <ul class="bullet">
-      <li><span class="ja">applippli-key の OS 対応状況については<a href="https://applippli-key.com/specifications/" target="_blank" rel="noopener" style="color:#2d6fe8;">公式サイト</a>を参照してください。</span><span class="en">Refer to the <a href="https://applippli-key.com/specifications/" target="_blank" rel="noopener" style="color:#2d6fe8;">official website</a> for supported operating systems.</span></li>
-      <li><span class="ja">必要なソフトウェアとハードウェアについては、<a href="https://applippli-key.com/specifications/" target="_blank" rel="noopener" style="color:#2d6fe8;">製品仕様</a>を参照してください。</span><span class="en">Refer to the <a href="https://applippli-key.com/specifications/" target="_blank" rel="noopener" style="color:#2d6fe8;">product specifications</a> for required software and hardware.</span></li>
+      <li><span class="ja">applippli-key の OS 対応状況については公式サイトを参照してください。</span><span class="en">Refer to the official website for supported operating systems.</span></li>
+      <li><span class="ja">必要なソフトウェアとハードウェアについては、製品仕様を参照してください。</span><span class="en">Refer to the product specifications for required software and hardware.</span></li>
       <li><span class="ja">applippli-key をセットアップする PC の <strong>管理者権限を持っている方</strong>が、インストール作業を行ってください。</span><span class="en">Installation must be performed by a user with <strong>administrator privileges</strong> on the PC.</span></li>
       <li><span class="ja">管理者権限がない場合はインストールできません。</span><span class="en">Installation is not possible without administrator privileges.</span></li>
       <li><span class="ja">インストールを始める前に、すべてのプログラムを終了してください。</span><span class="en">Close all running programs before starting the installation.</span></li>
@@ -651,7 +630,7 @@ window.addEventListener('DOMContentLoaded', function() {
         <span class="en">Select a security question from the drop-down and enter your answer in the field on the right.<br><em>※ Use half-width alphanumeric characters only.</em></span>
       </span></li>
       <li style="list-style:none;display:block;margin:12px 0 16px;">
-        <img src="img/6_001.png" alt="緊急ログオンの設定画面"
+        <img src="helpimg/601.png" alt="緊急ログオンの設定画面"
              style="max-width:100%;border:1px solid #dde4ee;border-radius:6px;box-shadow:0 2px 6px rgba(0,0,0,0.08);">
       </li>
       <li><span class="step-num">2</span><span class="step-txt">
@@ -970,7 +949,7 @@ window.addEventListener('DOMContentLoaded', function() {
     <h3><span class="ja">アップグレード後の設定確認</span><span class="en">Settings After Upgrade</span></h3>
     <p><span class="ja">以下の設定はアップグレード後も引き継がれます。再設定は不要です。</span><span class="en">The following settings are preserved after upgrading. No reconfiguration is required.</span></p>
     <div style="margin:12px 0;">
-      <table style="width:100%;border-collapse:collapse;font-size:14px;">
+      <table style="width:100%;border-collapse:collapse;font-size:13px;">
         <tr style="background:#f0f4ff;">
           <th style="padding:10px 14px;text-align:left;border:1px solid #dde4ee;width:40%;">
             <span class="ja">設定項目</span><span class="en">Setting</span>
@@ -1056,8 +1035,8 @@ window.addEventListener('DOMContentLoaded', function() {
   <section id="logviewer">
     <h2><span class="ja">ログビューア</span><span class="en">Log Viewer</span></h2>
     <div class="info">
-      <span class="ja">ログビューアは applippli-key Ver 2 から追加された管理ツールです。MFA 認証ログをグラフィカルに確認・分析できます。</span>
-      <span class="en">The Log Viewer is a management tool added in applippli-key Ver 2. It lets you visually review and analyze MFA authentication logs.</span>
+      <span class="ja">ログビューアは applippli-key Ver 2 から追加された管理ツールです。MFA 認証ログの確認・分析に加え、脅威の自動検知・自動 IP ブロック・LINE 通知などのセキュリティ機能を提供します。</span>
+      <span class="en">The Log Viewer is a management tool added in applippli-key Ver 2. In addition to viewing and analyzing MFA authentication logs, it provides security features such as automatic threat detection, automatic IP blocking, and LINE notifications.</span>
     </div>
 
     <h3><span class="ja">起動方法</span><span class="en">How to Launch</span></h3>
@@ -1070,11 +1049,11 @@ window.addEventListener('DOMContentLoaded', function() {
 
     <h3><span class="ja">ダッシュボード</span><span class="en">Dashboard</span></h3>
     <p>
-      <span class="ja">起動すると最初にダッシュボード画面が表示されます。以下の情報をリアルタイムで確認できます。</span>
-      <span class="en">The dashboard screen is displayed on launch. The following information is shown in real time.</span>
+      <span class="ja">起動すると最初にダッシュボード画面が表示されます。画面上部の期間ボタン（本日 / 昨日 / 1週間 / 1カ月 / 3カ月 / 6カ月 / 1年）で集計期間を切り替えられます。</span>
+      <span class="en">The dashboard screen appears on launch. Use the period buttons at the top (Today / Yesterday / 1 Week / 1 Month / 3 Months / 6 Months / 1 Year) to switch the aggregation period.</span>
     </p>
     <div style="margin:12px 0;">
-      <table style="width:100%;border-collapse:collapse;font-size:14px;">
+      <table style="width:100%;border-collapse:collapse;font-size:13px;">
         <tr style="background:#f0f4ff;">
           <th style="padding:10px 14px;text-align:left;border:1px solid #dde4ee;width:40%;">
             <span class="ja">項目</span><span class="en">Item</span>
@@ -1084,39 +1063,89 @@ window.addEventListener('DOMContentLoaded', function() {
           </th>
         </tr>
         <tr>
-          <td style="padding:10px 14px;border:1px solid #dde4ee;"><span class="ja">登録ユーザー数</span><span class="en">Registered Users</span></td>
-          <td style="padding:10px 14px;border:1px solid #dde4ee;"><span class="ja">MFA 登録済みユーザーの総数</span><span class="en">Total number of MFA-registered users</span></td>
+          <td style="padding:10px 14px;border:1px solid #dde4ee;"><span class="ja">登録ユーザー</span><span class="en">Registered Users</span></td>
+          <td style="padding:10px 14px;border:1px solid #dde4ee;"><span class="ja">ログに登録されたユーザーの総数</span><span class="en">Total number of users recorded in the log</span></td>
         </tr>
         <tr style="background:#fafbfc;">
-          <td style="padding:10px 14px;border:1px solid #dde4ee;"><span class="ja">認証成功（直近 7 日間）</span><span class="en">Auth Success (Last 7 Days)</span></td>
-          <td style="padding:10px 14px;border:1px solid #dde4ee;"><span class="ja">過去 7 日間のログオン成功回数</span><span class="en">Number of successful logons in the past 7 days</span></td>
+          <td style="padding:10px 14px;border:1px solid #dde4ee;"><span class="ja">成功</span><span class="en">Success</span></td>
+          <td style="padding:10px 14px;border:1px solid #dde4ee;"><span class="ja">選択期間内のログオン成功回数</span><span class="en">Number of successful logons in the selected period</span></td>
         </tr>
         <tr>
-          <td style="padding:10px 14px;border:1px solid #dde4ee;"><span class="ja">認証失敗（直近 7 日間）</span><span class="en">Auth Failures (Last 7 Days)</span></td>
-          <td style="padding:10px 14px;border:1px solid #dde4ee;"><span class="ja">過去 7 日間のログオン失敗回数</span><span class="en">Number of failed logon attempts in the past 7 days</span></td>
+          <td style="padding:10px 14px;border:1px solid #dde4ee;"><span class="ja">失敗</span><span class="en">Failures</span></td>
+          <td style="padding:10px 14px;border:1px solid #dde4ee;"><span class="ja">選択期間内のログオン失敗回数</span><span class="en">Number of failed logon attempts in the selected period</span></td>
         </tr>
         <tr style="background:#fafbfc;">
-          <td style="padding:10px 14px;border:1px solid #dde4ee;"><span class="ja">最終アクティビティ</span><span class="en">Last Activity</span></td>
-          <td style="padding:10px 14px;border:1px solid #dde4ee;"><span class="ja">最後に記録された認証イベントの日時</span><span class="en">Date and time of the most recent authentication event</span></td>
+          <td style="padding:10px 14px;border:1px solid #dde4ee;"><span class="ja">不正ログイン検知</span><span class="en">Attack Detected</span></td>
+          <td style="padding:10px 14px;border:1px solid #dde4ee;"><span class="ja">選択期間内に OTP 連続失敗（5 分間に 10 回以上）のバーストを検知した件数</span><span class="en">Number of OTP burst attacks detected (10+ failures within 5 minutes) in the selected period</span></td>
         </tr>
         <tr>
-          <td style="padding:10px 14px;border:1px solid #dde4ee;"><span class="ja">直近の認証イベント</span><span class="en">Recent Auth Events</span></td>
-          <td style="padding:10px 14px;border:1px solid #dde4ee;"><span class="ja">最新 15 件の認証ログ一覧</span><span class="en">List of the latest 15 authentication log entries</span></td>
+          <td style="padding:10px 14px;border:1px solid #dde4ee;"><span class="ja">ランサム脅威検知</span><span class="en">Ransomware Threat</span></td>
+          <td style="padding:10px 14px;border:1px solid #dde4ee;"><span class="ja">選択期間内にプロセス監視やコマンドライン監視で検知した THREAT 件数</span><span class="en">Number of THREAT events detected by process and command-line monitoring in the selected period</span></td>
         </tr>
         <tr style="background:#fafbfc;">
-          <td style="padding:10px 14px;border:1px solid #dde4ee;"><span class="ja">🦠 ランサム脅威検知（直近 7 日間）</span><span class="en">🦠 Ransomware Threats (Last 7 Days)</span></td>
-          <td style="padding:10px 14px;border:1px solid #dde4ee;"><span class="ja">過去 7 日間に検知したランサムウェア予兆イベント数。1 件でもある場合は赤色で強調表示されます。</span><span class="en">Number of ransomware precursor events detected in the past 7 days. Displayed in red if any are found.</span></td>
+          <td style="padding:10px 14px;border:1px solid #dde4ee;"><span class="ja">期間別ログイングラフ</span><span class="en">Login Trend Chart</span></td>
+          <td style="padding:10px 14px;border:1px solid #dde4ee;"><span class="ja">成功・失敗の推移を折れ線グラフで表示（期間に応じて時間別 / 日別 / 週別 / 月別で自動切替）</span><span class="en">Line chart of success/failure trends, automatically switching between hourly / daily / weekly / monthly based on the selected period</span></td>
+        </tr>
+        <tr>
+          <td style="padding:10px 14px;border:1px solid #dde4ee;"><span class="ja">最近の認証イベント</span><span class="en">Recent Auth Events</span></td>
+          <td style="padding:10px 14px;border:1px solid #dde4ee;"><span class="ja">最新 10 件の認証ログ一覧</span><span class="en">List of the latest 10 authentication log entries</span></td>
+        </tr>
+      </table>
+    </div>
+
+    <h3><span class="ja">セキュリティダッシュボード</span><span class="en">Security Dashboard</span></h3>
+    <p>
+      <span class="ja">左メニューの「セキュリティダッシュボード」では、脅威の状況を多角的に分析できます。</span>
+      <span class="en">The "Security Dashboard" in the left menu provides a multi-dimensional view of the threat landscape.</span>
+    </p>
+    <div style="margin:12px 0;">
+      <table style="width:100%;border-collapse:collapse;font-size:13px;">
+        <tr style="background:#f0f4ff;">
+          <th style="padding:10px 14px;text-align:left;border:1px solid #dde4ee;width:40%;">
+            <span class="ja">項目</span><span class="en">Item</span>
+          </th>
+          <th style="padding:10px 14px;text-align:left;border:1px solid #dde4ee;">
+            <span class="ja">内容</span><span class="en">Description</span>
+          </th>
+        </tr>
+        <tr>
+          <td style="padding:10px 14px;border:1px solid #dde4ee;"><span class="ja">脅威レベル</span><span class="en">Threat Level</span></td>
+          <td style="padding:10px 14px;border:1px solid #dde4ee;"><span class="ja">過去 24 時間の脅威件数をもとに LOW / MEDIUM / HIGH を表示</span><span class="en">Shows LOW / MEDIUM / HIGH based on the number of threats in the last 24 hours</span></td>
+        </tr>
+        <tr style="background:#fafbfc;">
+          <td style="padding:10px 14px;border:1px solid #dde4ee;"><span class="ja">未解決アラート</span><span class="en">Unresolved Alerts</span></td>
+          <td style="padding:10px 14px;border:1px solid #dde4ee;"><span class="ja">選択期間内の脅威検知件数（対応待ち件数）</span><span class="en">Number of threat events detected in the selected period (awaiting response)</span></td>
+        </tr>
+        <tr>
+          <td style="padding:10px 14px;border:1px solid #dde4ee;"><span class="ja">攻撃フェーズ別検知件数</span><span class="en">Detections by Attack Phase</span></td>
+          <td style="padding:10px 14px;border:1px solid #dde4ee;"><span class="ja">バックアップ破壊 / 権限昇格 / 防御無効化 / 偵察 / 不正ログイン（MFA）の 5 フェーズ別に集計・スパークラインで表示</span><span class="en">Aggregated by 5 attack phases: backup destruction / privilege escalation / defense evasion / reconnaissance / MFA bypass, shown with sparklines</span></td>
+        </tr>
+        <tr style="background:#fafbfc;">
+          <td style="padding:10px 14px;border:1px solid #dde4ee;"><span class="ja">時間帯別攻撃分布</span><span class="en">Hourly Attack Heatmap</span></td>
+          <td style="padding:10px 14px;border:1px solid #dde4ee;"><span class="ja">0〜23 時の時間帯ごとにエラー・脅威件数をヒートマップで可視化</span><span class="en">Heatmap showing error and threat counts by hour (0–23)</span></td>
+        </tr>
+        <tr>
+          <td style="padding:10px 14px;border:1px solid #dde4ee;"><span class="ja">PC 別リスクスコア</span><span class="en">Risk Score by PC</span></td>
+          <td style="padding:10px 14px;border:1px solid #dde4ee;"><span class="ja">THREAT×10 + 不正ログイン×2 + 失敗×1 で算出したリスクスコアを上位 5 PC 分表示</span><span class="en">Risk score (THREAT×10 + failed login×2 + failure×1) shown for the top 5 PCs</span></td>
+        </tr>
+        <tr style="background:#fafbfc;">
+          <td style="padding:10px 14px;border:1px solid #dde4ee;"><span class="ja">上位攻撃 IP アドレス</span><span class="en">Top Attacking IPs</span></td>
+          <td style="padding:10px 14px;border:1px solid #dde4ee;"><span class="ja">エラー件数の多い送信元 IP を最大 8 件表示（社内 / 外部を自動判別）</span><span class="en">Shows up to 8 source IPs with the most errors (auto-classified as internal or external)</span></td>
+        </tr>
+        <tr>
+          <td style="padding:10px 14px;border:1px solid #dde4ee;"><span class="ja">脅威イベントタイムライン</span><span class="en">Threat Event Timeline</span></td>
+          <td style="padding:10px 14px;border:1px solid #dde4ee;"><span class="ja">直近の脅威イベントを時系列で最大 8 件表示</span><span class="en">Shows up to the 8 most recent threat events in chronological order</span></td>
         </tr>
       </table>
     </div>
 
     <h3><span class="ja">ログ閲覧</span><span class="en">Log Browser</span></h3>
     <p>
-      <span class="ja">「ログ」タブでは詳細な認証ログを確認・絞り込みできます。</span>
+      <span class="ja">「Logs」タブでは詳細な認証ログを確認・絞り込みできます。</span>
       <span class="en">The "Logs" tab lets you view and filter detailed authentication logs.</span>
     </p>
     <div style="margin:12px 0;">
-      <table style="width:100%;border-collapse:collapse;font-size:14px;">
+      <table style="width:100%;border-collapse:collapse;font-size:13px;">
         <tr style="background:#f0f4ff;">
           <th style="padding:10px 14px;text-align:left;border:1px solid #dde4ee;width:40%;">
             <span class="ja">機能</span><span class="en">Feature</span>
@@ -1127,329 +1156,451 @@ window.addEventListener('DOMContentLoaded', function() {
         </tr>
         <tr>
           <td style="padding:10px 14px;border:1px solid #dde4ee;"><span class="ja">日時範囲フィルター</span><span class="en">Date Range Filter</span></td>
-          <td style="padding:10px 14px;border:1px solid #dde4ee;"><span class="ja">開始・終了日時を指定して絞り込み（デフォルト：直近 1 か月）</span><span class="en">Filter by start/end date and time (default: last 1 month)</span></td>
+          <td style="padding:10px 14px;border:1px solid #dde4ee;"><span class="ja">開始・終了日を指定して絞り込み（デフォルト：直近 1 か月）</span><span class="en">Filter by start/end date (default: last 1 month)</span></td>
         </tr>
         <tr style="background:#fafbfc;">
           <td style="padding:10px 14px;border:1px solid #dde4ee;"><span class="ja">エラーのみ表示</span><span class="en">Show Errors Only</span></td>
-          <td style="padding:10px 14px;border:1px solid #dde4ee;"><span class="ja">FAIL・BAD-OTP の結果のみ表示するフィルター</span><span class="en">Filter to show only FAIL and BAD-OTP results</span></td>
+          <td style="padding:10px 14px;border:1px solid #dde4ee;"><span class="ja">FAIL・BAD-OTP・THREAT の結果のみ表示</span><span class="en">Filter to show only FAIL, BAD-OTP, and THREAT results</span></td>
         </tr>
         <tr>
-          <td style="padding:10px 14px;border:1px solid #dde4ee;"><span class="ja">ユーザー・IP 検索</span><span class="en">User / IP Search</span></td>
-          <td style="padding:10px 14px;border:1px solid #dde4ee;"><span class="ja">ユーザー名または IP アドレスでログを検索</span><span class="en">Search logs by username or IP address</span></td>
+          <td style="padding:10px 14px;border:1px solid #dde4ee;"><span class="ja">脅威検知のみ表示</span><span class="en">Show Threats Only</span></td>
+          <td style="padding:10px 14px;border:1px solid #dde4ee;"><span class="ja">結果が THREAT のログのみ表示（ランサムウェア前兆・プロセス偽装など）</span><span class="en">Filter to show only THREAT logs (ransomware precursors, process masquerading, etc.)</span></td>
         </tr>
         <tr style="background:#fafbfc;">
+          <td style="padding:10px 14px;border:1px solid #dde4ee;"><span class="ja">ユーザー・IP・PC 名 検索</span><span class="en">User / IP / PC Name Search</span></td>
+          <td style="padding:10px 14px;border:1px solid #dde4ee;"><span class="ja">ユーザー名・IP アドレス・PC 名でログを絞り込み</span><span class="en">Filter logs by username, IP address, or PC name</span></td>
+        </tr>
+        <tr>
           <td style="padding:10px 14px;border:1px solid #dde4ee;"><span class="ja">CSV エクスポート</span><span class="en">CSV Export</span></td>
           <td style="padding:10px 14px;border:1px solid #dde4ee;"><span class="ja">表示中のログを CSV ファイルとして保存</span><span class="en">Save the current log view as a CSV file</span></td>
         </tr>
       </table>
     </div>
 
-    <h3><span class="ja">セキュリティアラート</span><span class="en">Security Alerts</span></h3>
+    <h3><span class="ja">脅威自動検知</span><span class="en">Automatic Threat Detection</span></h3>
     <p>
-      <span class="ja">以下のパターンを自動検出し、一覧内でハイライト表示します。</span>
-      <span class="en">The following patterns are automatically detected and highlighted in the log list.</span>
+      <span class="ja">ログビューアはバックグラウンドで以下を常時監視します。検知した場合に LINE 通知（設定済みの場合）を送信します。</span>
+      <span class="en">The Log Viewer continuously monitors the following in the background. A LINE notification is sent when a threat is detected (if configured).</span>
     </p>
-    <ul style="margin:10px 0 0 18px;font-size:14px;line-height:2;">
-      <li>
-        <span class="ja"><strong>繰り返し失敗 IP</strong> — 同一 IP アドレスで 2 回以上のエラーを検出</span>
-        <span class="en"><strong>Repeat Failure IP</strong> — Detects 2 or more errors from the same IP address</span>
-      </li>
-      <li>
-        <span class="ja"><strong>BAD-OTP 攻撃バースト</strong> — 同一 IP またはユーザーが 1 分以内に 3 回以上の OTP 失敗を検出</span>
-        <span class="en"><strong>BAD-OTP Attack Burst</strong> — Detects 3 or more OTP failures from the same IP or user within one minute</span>
-      </li>
-    </ul>
-
-    <h3><span class="ja">ログの色分け</span><span class="en">Log Color Coding</span></h3>
-    <div style="margin:12px 0;display:flex;gap:12px;flex-wrap:wrap;">
-      <span style="background:#f0fdf4;border:1px solid #6ee7b7;border-radius:8px;padding:6px 14px;font-size:13px;color:#15803d;">&#9632; <span class="ja">成功（SUCCESS / OK）</span><span class="en">Success (SUCCESS / OK)</span></span>
-      <span style="background:#fff0f0;border:1px solid #fca5a5;border-radius:8px;padding:6px 14px;font-size:13px;color:#dc2626;">&#9632; <span class="ja">失敗（FAIL / BAD-OTP）</span><span class="en">Failure (FAIL / BAD-OTP)</span></span>
-      <span style="background:#eef2ff;border:1px solid #a5b4fc;border-radius:8px;padding:6px 14px;font-size:13px;color:#4338ca;">&#9632; <span class="ja">IP アドレス</span><span class="en">IP Address</span></span>
-      <span style="background:#ffebeb;border:1px solid #c03030;border-radius:8px;padding:6px 14px;font-size:13px;color:#8b0000;">&#9632; <span class="ja">脅威（THREAT）— 行全体が暗赤色で強調表示</span><span class="en">Threat (THREAT) — Entire row highlighted in dark red</span></span>
-    </div>
-  </section>
-
-  <!-- ランサムウェア脅威検知 / Ransomware Threat Detection -->
-  <section id="ransomware">
-    <h2><span class="ja">ランサムウェア脅威検知</span><span class="en">Ransomware Threat Detection</span></h2>
-    <div class="info">
-      <span class="ja">applippli-key Ver 2 のログビューアは、MFA 認証の監視に加え、ランサムウェア攻撃の前兆となる不審なプロセス・コマンドをリアルタイムで検知します。検知した内容は <strong>security_log.txt</strong> に記録され、ログビューアの「ログ」タブに表示されます。</span>
-      <span class="en">In addition to MFA authentication monitoring, the applippli-key Ver 2 Log Viewer detects suspicious processes and commands that may indicate a ransomware attack in real time. Detected events are recorded in <strong>security_log.txt</strong> and displayed in the Log Viewer's "Logs" tab.</span>
-    </div>
-
-    <h3><span class="ja">検知対象一覧</span><span class="en">Detection Targets</span></h3>
     <div style="margin:12px 0;">
-      <table style="width:100%;border-collapse:collapse;font-size:14px;">
+      <table style="width:100%;border-collapse:collapse;font-size:13px;">
         <tr style="background:#f0f4ff;">
-          <th style="padding:10px 14px;text-align:left;border:1px solid #dde4ee;width:28%;">
-            <span class="ja">攻撃フェーズ</span><span class="en">Attack Phase</span>
-          </th>
-          <th style="padding:10px 14px;text-align:left;border:1px solid #dde4ee;width:32%;">
-            <span class="ja">検知対象</span><span class="en">Detection Target</span>
+          <th style="padding:10px 14px;text-align:left;border:1px solid #dde4ee;width:35%;">
+            <span class="ja">監視対象</span><span class="en">Monitor Target</span>
           </th>
           <th style="padding:10px 14px;text-align:left;border:1px solid #dde4ee;">
-            <span class="ja">検知方法</span><span class="en">Detection Method</span>
+            <span class="ja">検知内容</span><span class="en">Detection Details</span>
           </th>
         </tr>
         <tr>
-          <td style="padding:10px 14px;border:1px solid #dde4ee;color:#92400e;font-weight:600;"><span class="ja">偵察</span><span class="en">Reconnaissance</span></td>
-          <td style="padding:10px 14px;border:1px solid #dde4ee;"><span class="ja">nltest.exe（ドメインコントローラー探索）</span><span class="en">nltest.exe (DC enumeration)</span></td>
-          <td style="padding:10px 14px;border:1px solid #dde4ee;"><span class="ja">WMI プロセス監視</span><span class="en">WMI process monitoring</span></td>
+          <td style="padding:10px 14px;border:1px solid #dde4ee;"><span class="ja">不審プロセス起動</span><span class="en">Suspicious Process</span></td>
+          <td style="padding:10px 14px;border:1px solid #dde4ee;"><span class="ja">mimikatz・psexec・rclone・BloodHound など既知の攻撃ツール 25 種の起動を検知</span><span class="en">Detects launch of 25 known attack tools such as mimikatz, psexec, rclone, and BloodHound</span></td>
         </tr>
         <tr style="background:#fafbfc;">
-          <td style="padding:10px 14px;border:1px solid #dde4ee;color:#b91c1c;font-weight:600;" rowspan="2"><span class="ja">パスワード窃取</span><span class="en">Credential Theft</span></td>
-          <td style="padding:10px 14px;border:1px solid #dde4ee;"><span class="ja">mimikatz / procdump / nanodump など</span><span class="en">mimikatz / procdump / nanodump etc.</span></td>
-          <td style="padding:10px 14px;border:1px solid #dde4ee;"><span class="ja">WMI プロセス監視</span><span class="en">WMI process monitoring</span></td>
-        </tr>
-        <tr style="background:#fafbfc;">
-          <td style="padding:10px 14px;border:1px solid #dde4ee;"><span class="ja">reg save SAM/SYSTEM/SECURITY（ハッシュダンプ）</span><span class="en">reg save SAM/SYSTEM/SECURITY (hash dump)</span></td>
-          <td style="padding:10px 14px;border:1px solid #dde4ee;"><span class="ja">EventID 4688 コマンドライン検知</span><span class="en">EventID 4688 command-line detection</span></td>
+          <td style="padding:10px 14px;border:1px solid #dde4ee;"><span class="ja">プロセス偽装（5種）</span><span class="en">Process Masquerading (5 types)</span></td>
+          <td style="padding:10px 14px;border:1px solid #dde4ee;">
+            <span class="ja">
+              ① ファイルタイプ偽装 — .txt/.jpg 等の拡張子で実行ファイルを偽装<br>
+              ② システムプロセス偽装 — svchost.exe 等が正規パス外または Microsoft 署名なし<br>
+              ③ 二重拡張子偽装 — 例: report.doc.exe<br>
+              ④ 不正署名 — AppData/Temp 等から署名検証に失敗するバイナリを実行<br>
+              ⑤ リネーム偽装 — 実行ファイルのバージョン情報（OriginalFilename）と実ファイル名が不一致
+            </span>
+            <span class="en">
+              ① File type masquerade — executable disguised with .txt/.jpg extension<br>
+              ② System process masquerade — svchost.exe etc. outside legitimate path or without Microsoft signature<br>
+              ③ Double extension — e.g. report.doc.exe<br>
+              ④ Invalid signature — binary with failed signature verification run from AppData/Temp<br>
+              ⑤ Rename masquerade — mismatch between PE OriginalFilename and actual filename
+            </span>
+          </td>
         </tr>
         <tr>
-          <td style="padding:10px 14px;border:1px solid #dde4ee;color:#7c3aed;font-weight:600;"><span class="ja">横展開</span><span class="en">Lateral Movement</span></td>
-          <td style="padding:10px 14px;border:1px solid #dde4ee;"><span class="ja">psexec.exe / psexec64.exe（リモート実行）</span><span class="en">psexec.exe / psexec64.exe (remote execution)</span></td>
-          <td style="padding:10px 14px;border:1px solid #dde4ee;"><span class="ja">WMI プロセス監視</span><span class="en">WMI process monitoring</span></td>
+          <td style="padding:10px 14px;border:1px solid #dde4ee;"><span class="ja">不審コマンドライン</span><span class="en">Suspicious Command Line</span></td>
+          <td style="padding:10px 14px;border:1px solid #dde4ee;"><span class="ja">以下のコマンドをイベントログ（EventID 4688）から検知：<br>
+            ・SAM/SYSTEM/SECURITY ハッシュダンプ（reg save）<br>
+            ・回復オプション無効化（bcdedit / REAgentC）<br>
+            ・Windows Defender 無効化・除外パス追加<br>
+            ・ファイアウォール停止<br>
+            ・PowerShell ダウンローダー（IEX / Invoke-Expression）<br>
+            ・LOLBin 悪用（certutil -urlcache / bitsadmin /transfer）<br>
+            ・バックアップ削除（diskshadow / wbadmin / vssadmin）<br>
+            ・ネットワーク共有探索（net view / net share）<br>
+            ・ドメイン偵察（PowerSploit Get-NetDomainTrust 等）
+          </span>
+          <span class="en">Detects the following via Event Log (EventID 4688):<br>
+            · SAM/SYSTEM/SECURITY hash dump (reg save)<br>
+            · Recovery option disabling (bcdedit / REAgentC)<br>
+            · Windows Defender disabling / exclusion path addition<br>
+            · Firewall shutdown<br>
+            · PowerShell downloader (IEX / Invoke-Expression)<br>
+            · LOLBin abuse (certutil -urlcache / bitsadmin /transfer)<br>
+            · Backup deletion (diskshadow / wbadmin / vssadmin)<br>
+            · Network share discovery (net view / net share)<br>
+            · Domain reconnaissance (PowerSploit Get-NetDomainTrust, etc.)
+          </span></td>
         </tr>
         <tr style="background:#fafbfc;">
-          <td style="padding:10px 14px;border:1px solid #dde4ee;color:#b91c1c;font-weight:600;" rowspan="3"><span class="ja">防御無効化</span><span class="en">Defense Evasion</span></td>
-          <td style="padding:10px 14px;border:1px solid #dde4ee;"><span class="ja">Windows Defender レジストリ無効化</span><span class="en">Windows Defender registry disable</span></td>
-          <td style="padding:10px 14px;border:1px solid #dde4ee;"><span class="ja">EventID 4688 コマンドライン検知</span><span class="en">EventID 4688 command-line detection</span></td>
-        </tr>
-        <tr style="background:#fafbfc;">
-          <td style="padding:10px 14px;border:1px solid #dde4ee;"><span class="ja">Defender 除外パス追加（Add-MpPreference）</span><span class="en">Defender exclusion path (Add-MpPreference)</span></td>
-          <td style="padding:10px 14px;border:1px solid #dde4ee;"><span class="ja">EventID 4688 コマンドライン検知</span><span class="en">EventID 4688 command-line detection</span></td>
-        </tr>
-        <tr style="background:#fafbfc;">
-          <td style="padding:10px 14px;border:1px solid #dde4ee;"><span class="ja">ファイアウォール停止（Set-NetFirewallProfile）</span><span class="en">Firewall disable (Set-NetFirewallProfile)</span></td>
-          <td style="padding:10px 14px;border:1px solid #dde4ee;"><span class="ja">EventID 4688 コマンドライン検知</span><span class="en">EventID 4688 command-line detection</span></td>
+          <td style="padding:10px 14px;border:1px solid #dde4ee;"><span class="ja">ネットワーク不正アクセス</span><span class="en">Network Brute Force</span></td>
+          <td style="padding:10px 14px;border:1px solid #dde4ee;"><span class="ja">ネットワーク経由のログオン失敗（EventID 4625 Type3）が 5 分間に 10 回以上で LINE 通知 + 自動 IP ブロック</span><span class="en">LINE notification + automatic IP block triggered when network logon failures (EventID 4625 Type 3) reach 10 within 5 minutes</span></td>
         </tr>
         <tr>
-          <td style="padding:10px 14px;border:1px solid #dde4ee;color:#9333ea;font-weight:600;"><span class="ja">データ流出</span><span class="en">Data Exfiltration</span></td>
-          <td style="padding:10px 14px;border:1px solid #dde4ee;"><span class="ja">rclone.exe（外部クラウドへの大量転送）</span><span class="en">rclone.exe (bulk transfer to external cloud)</span></td>
-          <td style="padding:10px 14px;border:1px solid #dde4ee;"><span class="ja">WMI プロセス監視</span><span class="en">WMI process monitoring</span></td>
+          <td style="padding:10px 14px;border:1px solid #dde4ee;"><span class="ja">LSASS アクセス（Sysmon）</span><span class="en">LSASS Access (Sysmon)</span></td>
+          <td style="padding:10px 14px;border:1px solid #dde4ee;"><span class="ja">Sysmon インストール済み環境で、lsass.exe への不正プロセスアクセス（EventID 10）を検知</span><span class="en">Detects unauthorized process access to lsass.exe (EventID 10) in environments with Sysmon installed</span></td>
         </tr>
         <tr style="background:#fafbfc;">
-          <td style="padding:10px 14px;border:1px solid #dde4ee;color:#8b0000;font-weight:600;" rowspan="3"><span class="ja">バックアップ破壊</span><span class="en">Backup Destruction</span></td>
-          <td style="padding:10px 14px;border:1px solid #dde4ee;"><span class="ja">vssadmin delete shadows（シャドウコピー削除）</span><span class="en">vssadmin delete shadows (shadow copy deletion)</span></td>
-          <td style="padding:10px 14px;border:1px solid #dde4ee;"><span class="ja">EventID 4688 コマンドライン検知</span><span class="en">EventID 4688 command-line detection</span></td>
-        </tr>
-        <tr style="background:#fafbfc;">
-          <td style="padding:10px 14px;border:1px solid #dde4ee;"><span class="ja">bcdedit /set recoveryenabled no（回復無効化）</span><span class="en">bcdedit /set recoveryenabled no (recovery disable)</span></td>
-          <td style="padding:10px 14px;border:1px solid #dde4ee;"><span class="ja">EventID 4688 コマンドライン検知</span><span class="en">EventID 4688 command-line detection</span></td>
-        </tr>
-        <tr style="background:#fafbfc;">
-          <td style="padding:10px 14px;border:1px solid #dde4ee;"><span class="ja">diskshadow delete / /s（シャドウコピー操作）</span><span class="en">diskshadow delete / /s (shadow copy operation)</span></td>
-          <td style="padding:10px 14px;border:1px solid #dde4ee;"><span class="ja">EventID 4688 コマンドライン検知</span><span class="en">EventID 4688 command-line detection</span></td>
+          <td style="padding:10px 14px;border:1px solid #dde4ee;"><span class="ja">サービス偽装</span><span class="en">Service Masquerading</span></td>
+          <td style="padding:10px 14px;border:1px solid #dde4ee;"><span class="ja">「Windows Defender」「Microsoft」等を名乗りながら、システムパス外で動作する新規サービスの作成（EventID 7045）を検知</span><span class="en">Detects new service creation (EventID 7045) that uses a legitimate-sounding name (e.g. "Windows Defender") but runs outside system paths</span></td>
         </tr>
         <tr>
-          <td style="padding:10px 14px;border:1px solid #dde4ee;color:#b91c1c;font-weight:600;"><span class="ja">ペイロード実行</span><span class="en">Payload Execution</span></td>
-          <td style="padding:10px 14px;border:1px solid #dde4ee;"><span class="ja">mshta.exe / payload.exe / PowerShell IEX</span><span class="en">mshta.exe / payload.exe / PowerShell IEX</span></td>
-          <td style="padding:10px 14px;border:1px solid #dde4ee;"><span class="ja">WMI プロセス監視 / EventID 4688</span><span class="en">WMI process monitoring / EventID 4688</span></td>
-        </tr>
-        <tr style="background:#fafbfc;">
-          <td style="padding:10px 14px;border:1px solid #dde4ee;color:#8b0000;font-weight:600;"><span class="ja">プロセス偽装</span><span class="en">Process Impersonation</span></td>
-          <td style="padding:10px 14px;border:1px solid #dde4ee;"><span class="ja">svchost.exe / lsass.exe などを正規パス以外から実行</span><span class="en">svchost.exe / lsass.exe etc. executed from non-standard paths</span></td>
-          <td style="padding:10px 14px;border:1px solid #dde4ee;"><span class="ja">WMI 実行パス検証</span><span class="en">WMI executable path validation</span></td>
+          <td style="padding:10px 14px;border:1px solid #dde4ee;"><span class="ja">RDP 有効化</span><span class="en">RDP Enablement</span></td>
+          <td style="padding:10px 14px;border:1px solid #dde4ee;"><span class="ja">侵入後の永続アクセス確保として悪用されるリモートデスクトップの有効化（fDenyTSConnections レジストリ変更）を検知</span><span class="en">Detects Remote Desktop enablement (fDenyTSConnections registry change) commonly used to establish persistent access after intrusion</span></td>
         </tr>
       </table>
     </div>
 
-    <h3><span class="ja">security_log.txt について</span><span class="en">About security_log.txt</span></h3>
+    <h3 id="line-notify"><span class="ja">LINE 通知</span><span class="en">LINE Notification</span></h3>
     <p>
-      <span class="ja">脅威を検知すると、ログビューアは <strong>security_log.txt</strong> に自動記録します。このファイルはログビューアの「ログ」タブに認証ログと混在して表示され、THREAT 行として暗赤色で強調されます。</span>
-      <span class="en">When a threat is detected, Log Viewer automatically writes to <strong>security_log.txt</strong>. This file is displayed alongside authentication logs in the "Logs" tab, with THREAT entries highlighted in dark red.</span>
+      <span class="ja">脅威を検知した場合、事前に設定した LINE アカウントへ即時通知を送信します。深夜・外出中でも管理者がスマートフォンで状況を把握し、迅速に対応できます。</span>
+      <span class="en">When a threat is detected, an instant notification is sent to the pre-configured LINE account. Administrators can monitor and respond from their smartphone, even at night or away from the office.</span>
     </p>
-    <div style="margin:12px 0;background:#1a1a2e;border-radius:8px;padding:14px 18px;font-family:Consolas,'Courier New',monospace;font-size:13px;color:#e0e0e0;overflow-x:auto;">
-      <span style="color:#888;">// security_log.txt 記録フォーマット例</span><br>
-      <span style="color:#ffd700;">02/07/2026</span> ,<span style="color:#ffd700;">19:42:11</span> ,<span style="color:#ff6b6b;">プロセス検知</span> ,<span style="color:#ff4444;">THREAT</span> ,<span style="color:#87ceeb;">mimikatz.exe</span> ,IP: ,<span style="color:#98fb98;">PC:DESKTOP-ABC</span> ,<span style="color:#ff9966;">パスワード窃取ツール（mimikatz）を検知</span> , ,
+
+    <!-- Visual mockup -->
+    <div style="display:flex;gap:20px;flex-wrap:wrap;margin:20px 0;align-items:flex-start;">
+
+      <!-- Lock screen -->
+      <div style="flex-shrink:0;">
+        <div style="font-size:11px;color:#6b7280;text-align:center;margin-bottom:6px;"><span class="ja">ロック画面通知イメージ</span><span class="en">Lock Screen Notification</span></div>
+        <div style="width:220px;background:#1c1c1e;border-radius:36px;padding:10px;box-shadow:0 8px 32px rgba(0,0,0,0.35);border:3px solid #3a3a3c;">
+          <div style="display:flex;justify-content:space-between;padding:4px 14px 8px;color:white;font-size:9px;">
+            <span style="font-weight:600;">9:41</span>
+            <span>WiFi ▌▌🔋</span>
+          </div>
+          <div style="text-align:center;padding:10px 0 12px;color:white;">
+            <div style="font-size:34px;font-weight:200;letter-spacing:-1px;">9:41</div>
+            <div style="font-size:11px;opacity:0.6;">2026年7月9日 水曜日</div>
+          </div>
+          <!-- LINE notification banner -->
+          <div style="background:rgba(255,255,255,0.18);backdrop-filter:blur(12px);border-radius:14px;padding:10px 12px;margin:0 2px;">
+            <div style="display:flex;align-items:center;gap:7px;margin-bottom:5px;">
+              <div style="width:18px;height:18px;background:#06C755;border-radius:4px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                <span style="color:white;font-size:10px;font-weight:900;line-height:1;">L</span>
+              </div>
+              <span style="color:white;font-size:10px;font-weight:700;">LINE</span>
+              <span style="color:rgba(255,255,255,0.45);font-size:9px;margin-left:auto;">今</span>
+            </div>
+            <div style="color:white;font-size:10px;font-weight:700;margin-bottom:3px;">applippli-key公式アカウント</div>
+            <div style="color:rgba(255,255,255,0.88);font-size:10px;line-height:1.5;">🚨 [脅威検知] ネットワーク不正アクセスを検知しました。<br>PC: DESKTOP-OWNER<br>IP: 91.202.233.79</div>
+          </div>
+          <div style="text-align:center;margin-top:10px;">
+            <div style="width:80px;height:3px;background:rgba(255,255,255,0.3);border-radius:2px;margin:0 auto;"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- LINE chat mockup -->
+      <div style="flex:1;min-width:250px;max-width:320px;">
+        <div style="font-size:11px;color:#6b7280;text-align:center;margin-bottom:6px;"><span class="ja">LINE チャット画面イメージ</span><span class="en">LINE Chat Screen</span></div>
+        <div style="border-radius:16px;overflow:hidden;box-shadow:0 4px 20px rgba(0,0,0,0.12);border:1px solid #e5e7eb;">
+          <!-- Header -->
+          <div style="background:#06C755;padding:10px 14px;display:flex;align-items:center;gap:9px;">
+            <div style="width:34px;height:34px;background:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:17px;flex-shrink:0;">🛡️</div>
+            <div>
+              <div style="color:white;font-weight:bold;font-size:12px;">applippli-key 公式アカウント</div>
+              <div style="color:rgba(255,255,255,0.75);font-size:10px;"><span class="ja">セキュリティ通知サービス</span><span class="en">Security Notification Service</span></div>
+            </div>
+          </div>
+          <!-- Chat area -->
+          <div style="background:#bacde3;padding:12px 10px;display:flex;flex-direction:column;gap:8px;min-height:200px;">
+            <!-- Bot icon -->
+            <div style="display:flex;gap:6px;align-items:flex-end;">
+              <div style="width:28px;height:28px;background:#06C755;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;align-self:flex-start;">
+                <span style="color:white;font-size:12px;">🛡</span>
+              </div>
+              <div>
+                <div style="font-size:9px;color:#374151;margin-bottom:3px;">applippli-key</div>
+                <!-- Bubble 1 -->
+                <div style="background:white;border-radius:0 12px 12px 12px;padding:8px 10px;max-width:210px;font-size:11px;line-height:1.5;color:#1f2937;box-shadow:0 1px 2px rgba(0,0,0,0.1);">
+                  🚨 <strong style="color:#dc2626;">[脅威検知]</strong><br>
+                  <span class="ja">ネットワーク不正アクセスを検知しました。</span><span class="en">Network intrusion attempt detected.</span><br>
+                  <span style="color:#6b7280;font-size:10px;">PC: DESKTOP-OWNER</span><br>
+                  <span style="color:#ef4444;font-size:10px;">IP: 91.202.233.79</span><br>
+                  <span style="color:#6b7280;font-size:10px;">2026/07/09 09:32:01</span>
+                </div>
+              </div>
+              <div style="font-size:9px;color:#6b7280;align-self:flex-end;white-space:nowrap;">9:32</div>
+            </div>
+
+            <div style="display:flex;gap:6px;align-items:flex-end;">
+              <div style="width:28px;flex-shrink:0;"></div>
+              <div>
+                <!-- Bubble 2 -->
+                <div style="background:white;border-radius:0 12px 12px 12px;padding:8px 10px;max-width:210px;font-size:11px;line-height:1.5;color:#1f2937;box-shadow:0 1px 2px rgba(0,0,0,0.1);">
+                  🔐 <strong style="color:#f97316;">[ログイン失敗多発]</strong><br>
+                  <span class="ja">5分間に10回以上の認証失敗を検知しました。</span><span class="en">10+ failed logins in 5 minutes.</span><br>
+                  <span style="color:#6b7280;font-size:10px;">USER: owner / DESKTOP-OWNER</span><br>
+                  <span style="color:#6b7280;font-size:10px;">2026/07/09 09:30:00</span>
+                </div>
+              </div>
+              <div style="font-size:9px;color:#6b7280;align-self:flex-end;white-space:nowrap;">9:30</div>
+            </div>
+
+            <div style="display:flex;gap:6px;align-items:flex-end;">
+              <div style="width:28px;flex-shrink:0;"></div>
+              <div>
+                <!-- Bubble 3 -->
+                <div style="background:white;border-radius:0 12px 12px 12px;padding:8px 10px;max-width:210px;font-size:11px;line-height:1.5;color:#1f2937;box-shadow:0 1px 2px rgba(0,0,0,0.1);">
+                  ✅ <strong style="color:#16a34a;">[ログイン成功]</strong><br>
+                  <span class="ja">ワンタッチログインに成功しました。</span><span class="en">One-touch login successful.</span><br>
+                  <span style="color:#6b7280;font-size:10px;">USER: owner / DESKTOP-OWNER</span><br>
+                  <span style="color:#6b7280;font-size:10px;">2026/07/08 07:42:26</span>
+                </div>
+              </div>
+              <div style="font-size:9px;color:#6b7280;align-self:flex-end;white-space:nowrap;">7:42</div>
+            </div>
+          </div>
+          <!-- Input bar -->
+          <div style="background:white;padding:8px 10px;display:flex;align-items:center;gap:6px;border-top:1px solid #e5e7eb;">
+            <div style="flex:1;background:#f3f4f6;border-radius:20px;padding:6px 12px;font-size:10px;color:#9ca3af;">メッセージを入力</div>
+            <div style="width:28px;height:28px;background:#06C755;border-radius:50%;display:flex;align-items:center;justify-content:center;">
+              <span style="color:white;font-size:12px;">↑</span>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
-    <h3><span class="ja">検知時の対応手順</span><span class="en">Response Procedure on Detection</span></h3>
-    <div class="note">
-      <strong><span class="ja">⚠ THREAT 検知時は即時対応が必要です</span><span class="en">⚠ Immediate action required on THREAT detection</span></strong>
-      <span class="ja">ランサムウェア攻撃はバックアップを破壊してから暗号化を行います。検知通知を受けた時点で速やかに対応することで被害を最小化できます。</span>
-      <span class="en">Ransomware attacks destroy backups before encrypting files. Responding promptly upon receiving a detection notification minimizes damage.</span>
-    </div>
-    <ul class="steps" style="margin-top:14px;">
-      <li><span class="step-num">1</span><span class="step-txt">
-        <span class="ja">LINE 通知の <strong>【対応】</strong> フィールドに記載された対処内容を確認します。</span>
-        <span class="en">Check the <strong>[Action]</strong> field in the LINE notification for recommended steps.</span>
-      </span></li>
-      <li><span class="step-num">2</span><span class="step-txt">
-        <span class="ja">対象 PC をネットワークから切断（LAN ケーブル抜去・Wi-Fi 無効化）します。</span>
-        <span class="en">Disconnect the target PC from the network (unplug LAN cable / disable Wi-Fi).</span>
-      </span></li>
-      <li><span class="step-num">3</span><span class="step-txt">
-        <span class="ja">LogViewer の「ログ」タブで THREAT 行（暗赤色）を確認し、攻撃フェーズ・対象プロセス・実行時刻を記録します。</span>
-        <span class="en">In the LogViewer "Logs" tab, locate THREAT entries (dark red) and note the attack phase, process name, and timestamp.</span>
-      </span></li>
-      <li><span class="step-num">4</span><span class="step-txt">
-        <span class="ja">システム管理者または社内セキュリティ担当者に報告し、フォレンジック調査や感染範囲の確認を行います。</span>
-        <span class="en">Report to your system administrator or security team and proceed with forensic investigation and infection scope assessment.</span>
-      </span></li>
-    </ul>
-
-    <h3><span class="ja">前提条件</span><span class="en">Prerequisites</span></h3>
-    <ul class="bullet">
-      <li>
-        <span class="ja"><strong>EventID 4688 のコマンドライン記録を有効化する必要があります。</strong><br>
-        グループポリシー：コンピューターの構成 → Windows の設定 → セキュリティの設定 → 詳細な監査ポリシーの構成 → 詳細な追跡 →「プロセス作成の監査」を有効にし、「コマンドラインの記録」を有効化してください。</span>
-        <span class="en"><strong>EventID 4688 command-line logging must be enabled.</strong><br>
-        Group Policy: Computer Configuration → Windows Settings → Security Settings → Advanced Audit Policy → Detailed Tracking → Enable "Audit Process Creation" and enable "Include command line in process creation events."</span>
-      </li>
-      <li>
-        <span class="ja">Sysmon（LSASS アクセス検知用）を別途インストールすることで、より高精度な検知が可能になります。</span>
-        <span class="en">Installing Sysmon separately (for LSASS access detection) enables higher-accuracy detection.</span>
-      </li>
-      <li>
-        <span class="ja">ログビューアが起動していない場合は検知・通知が行われません。Windows 起動時の自動起動設定を推奨します。</span>
-        <span class="en">Detection and notifications do not occur if Log Viewer is not running. We recommend enabling auto-start at Windows startup.</span>
-      </li>
-    </ul>
-  </section>
-
-  <!-- LINE通知設定 / LINE Notification -->
-  <section id="line-notify">
-    <h2>
-      <span class="ja">LINE通知設定</span>
-      <span class="en">LINE Notification Setup</span>
-    </h2>
-    <div class="info">
-      <span class="ja">LINE通知機能はアクティベーション済みライセンスが必要です。ライセンスが有効な場合、ログビューアの「LINE通知」タブに設定画面が表示されます。</span>
-      <span class="en">The LINE notification feature requires an activated license. When your license is active, a "LINE Notification" tab appears in the Log Viewer.</span>
-    </div>
-
-    <h3><span class="ja">概要</span><span class="en">Overview</span></h3>
-    <p>
-      <span class="ja">applippli-key の認証イベント（ログイン成功・失敗・不正アクセス検知）をリアルタイムで LINE に通知する機能です。ログビューアが起動している間、認証ログを監視し自動で通知を送信します。</span>
-      <span class="en">This feature sends real-time LINE notifications for applippli-key authentication events (login success, failure, and unauthorized access detection). Notifications are sent automatically while Log Viewer is running.</span>
-    </p>
-    <div class="note">
-      <strong><span class="ja">⚠ ご注意</span><span class="en">⚠ Note</span></strong>
-      <span class="ja">ログビューアが起動していない場合は通知は届きません。パソコン起動時に自動起動するよう設定することをお勧めします（後述）。</span>
-      <span class="en">Notifications will not be sent if Log Viewer is not running. We recommend configuring it to launch automatically at Windows startup (see below).</span>
-    </div>
-
-    <h3><span class="ja">① LINEボットを友達追加する</span><span class="en">① Add the LINE Bot as a Friend</span></h3>
-    <ul class="steps">
-      <li><span class="step-num">1</span><span class="step-txt">
-        <span class="ja">ログビューアを起動し、左メニューの <strong>「LINE通知」</strong> をクリックします。</span>
-        <span class="en">Launch Log Viewer and click <strong>"LINE Notification"</strong> in the left menu.</span>
-      </span></li>
-      <li><span class="step-num">2</span><span class="step-txt">
-        <span class="ja">設定画面に表示されている QR コードを LINE アプリで読み取り、<strong>「applippli-key 通知サービス」</strong> を友達追加します。</span>
-        <span class="en">Scan the QR code shown in the settings screen using the LINE app to add <strong>"applippli-key 通知サービス"</strong> as a friend.</span>
-      </span></li>
-      <li><span class="step-num">3</span><span class="step-txt">
-        <span class="ja">友達追加すると、ボットから <strong>LINE User ID</strong>（例：<code>U1234567890abcdef...</code>）が自動返信されます。</span>
-        <span class="en">After adding the bot, it will automatically reply with your <strong>LINE User ID</strong> (e.g., <code>U1234567890abcdef...</code>).</span>
-      </span></li>
-    </ul>
-    <div class="info">
-      <span class="ja">すでに友達追加済みの場合は、ボットにメッセージ（内容は何でも可）を送信すると LINE User ID が返信されます。</span>
-      <span class="en">If you have already added the bot as a friend, simply send any message to the bot and it will reply with your LINE User ID.</span>
-    </div>
-
-    <h3><span class="ja">② LINE User ID を設定して保存する</span><span class="en">② Enter and Save Your LINE User ID</span></h3>
-    <ul class="steps">
-      <li><span class="step-num">1</span><span class="step-txt">
-        <span class="ja">ボットから返信された LINE User ID を「LINE 通知」設定画面の入力欄に貼り付けます。</span>
-        <span class="en">Paste the LINE User ID received from the bot into the input field in the "LINE Notification" settings screen.</span>
-      </span></li>
-      <li><span class="step-num">2</span><span class="step-txt">
-        <span class="ja"><strong>「保存」</strong> ボタンをクリックして設定を保存します。</span>
-        <span class="en">Click the <strong>"Save"</strong> button to save the settings.</span>
-      </span></li>
-      <li><span class="step-num">3</span><span class="step-txt">
-        <span class="ja">通知するイベントの種類（後述）にチェックを入れ、再度 <strong>「保存」</strong> をクリックします。</span>
-        <span class="en">Check the event types you want to be notified about (see below), then click <strong>"Save"</strong> again.</span>
-      </span></li>
-      <li><span class="step-num">4</span><span class="step-txt">
-        <span class="ja"><strong>「テスト送信」</strong> ボタンをクリックして、LINE にテスト通知が届くことを確認します。</span>
-        <span class="en">Click the <strong>"Test Send"</strong> button and confirm that a test notification arrives on LINE.</span>
-      </span></li>
-    </ul>
-
-    <h3><span class="ja">通知イベントの種類</span><span class="en">Notification Event Types</span></h3>
-    <div style="margin:12px 0;">
-      <table style="width:100%;border-collapse:collapse;font-size:14px;">
+    <!-- Notification patterns -->
+    <h4 style="margin-top:20px;margin-bottom:8px;font-size:14px;color:#1a2340;"><span class="ja">通知パターン一覧</span><span class="en">Notification Patterns</span></h4>
+    <div style="margin:0 0 16px;">
+      <table style="width:100%;border-collapse:collapse;font-size:13px;">
         <tr style="background:#f0f4ff;">
-          <th style="padding:10px 14px;text-align:left;border:1px solid #dde4ee;width:35%;">
-            <span class="ja">イベント</span><span class="en">Event</span>
+          <th style="padding:10px 14px;text-align:left;border:1px solid #dde4ee;width:30%;"><span class="ja">通知種別</span><span class="en">Type</span></th>
+          <th style="padding:10px 14px;text-align:left;border:1px solid #dde4ee;"><span class="ja">通知内容</span><span class="en">Message Content</span></th>
+          <th style="padding:10px 14px;text-align:left;border:1px solid #dde4ee;width:18%;"><span class="ja">緊急度</span><span class="en">Severity</span></th>
+        </tr>
+        <tr>
+          <td style="padding:10px 14px;border:1px solid #dde4ee;font-weight:600;">🚨 <span class="ja">ネットワーク不正アクセス</span><span class="en">Network Intrusion</span></td>
+          <td style="padding:10px 14px;border:1px solid #dde4ee;font-size:12px;color:#374151;"><span class="ja">送信元IP・PC名・検知時刻を通知</span><span class="en">Notifies source IP, PC name, and detection time</span></td>
+          <td style="padding:10px 14px;border:1px solid #dde4ee;"><span style="background:#fee2e2;color:#dc2626;border-radius:4px;padding:2px 8px;font-size:11px;font-weight:600;"><span class="ja">高</span><span class="en">High</span></span></td>
+        </tr>
+        <tr style="background:#fafbfc;">
+          <td style="padding:10px 14px;border:1px solid #dde4ee;font-weight:600;">🔐 <span class="ja">ログイン失敗多発</span><span class="en">Brute Force</span></td>
+          <td style="padding:10px 14px;border:1px solid #dde4ee;font-size:12px;color:#374151;"><span class="ja">5分間に10回以上の失敗を検知した際に通知</span><span class="en">Triggered when 10+ failures occur in 5 minutes</span></td>
+          <td style="padding:10px 14px;border:1px solid #dde4ee;"><span style="background:#fee2e2;color:#dc2626;border-radius:4px;padding:2px 8px;font-size:11px;font-weight:600;"><span class="ja">高</span><span class="en">High</span></span></td>
+        </tr>
+        <tr>
+          <td style="padding:10px 14px;border:1px solid #dde4ee;font-weight:600;">🦠 <span class="ja">ランサムウェア検知</span><span class="en">Ransomware</span></td>
+          <td style="padding:10px 14px;border:1px solid #dde4ee;font-size:12px;color:#374151;"><span class="ja">ランサムウェア特有の挙動（ファイル大量変更・シャドウコピー削除等）を検知</span><span class="en">Detects ransomware behaviors (mass file changes, shadow copy deletion, etc.)</span></td>
+          <td style="padding:10px 14px;border:1px solid #dde4ee;"><span style="background:#fee2e2;color:#dc2626;border-radius:4px;padding:2px 8px;font-size:11px;font-weight:600;"><span class="ja">緊急</span><span class="en">Critical</span></span></td>
+        </tr>
+        <tr style="background:#fafbfc;">
+          <td style="padding:10px 14px;border:1px solid #dde4ee;font-weight:600;">⚠️ <span class="ja">管理者権限の不正取得</span><span class="en">Privilege Escalation</span></td>
+          <td style="padding:10px 14px;border:1px solid #dde4ee;font-size:12px;color:#374151;"><span class="ja">通常アカウントからの管理者権限昇格を検知</span><span class="en">Detects privilege escalation from standard accounts</span></td>
+          <td style="padding:10px 14px;border:1px solid #dde4ee;"><span style="background:#fee2e2;color:#dc2626;border-radius:4px;padding:2px 8px;font-size:11px;font-weight:600;"><span class="ja">緊急</span><span class="en">Critical</span></span></td>
+        </tr>
+        <tr>
+          <td style="padding:10px 14px;border:1px solid #dde4ee;font-weight:600;">✅ <span class="ja">ログイン成功</span><span class="en">Login Success</span></td>
+          <td style="padding:10px 14px;border:1px solid #dde4ee;font-size:12px;color:#374151;"><span class="ja">ワンタッチ・OTP によるログイン成功を通知（任意設定）</span><span class="en">Notifies on successful one-touch/OTP login (optional)</span></td>
+          <td style="padding:10px 14px;border:1px solid #dde4ee;"><span style="background:#dcfce7;color:#16a34a;border-radius:4px;padding:2px 8px;font-size:11px;font-weight:600;"><span class="ja">情報</span><span class="en">Info</span></span></td>
+        </tr>
+        <tr style="background:#fafbfc;">
+          <td style="padding:10px 14px;border:1px solid #dde4ee;font-weight:600;">🛡️ <span class="ja">IP 自動ブロック</span><span class="en">Auto IP Block</span></td>
+          <td style="padding:10px 14px;border:1px solid #dde4ee;font-size:12px;color:#374151;"><span class="ja">攻撃元 IP をファイアウォールで自動ブロックした際に通知</span><span class="en">Notifies when the attack source IP is automatically blocked by firewall</span></td>
+          <td style="padding:10px 14px;border:1px solid #dde4ee;"><span style="background:#fef3c7;color:#d97706;border-radius:4px;padding:2px 8px;font-size:11px;font-weight:600;"><span class="ja">中</span><span class="en">Medium</span></span></td>
+        </tr>
+      </table>
+    </div>
+
+    <!-- Setup steps -->
+    <h4 style="margin-top:20px;margin-bottom:8px;font-size:14px;color:#1a2340;"><span class="ja">LINE 通知の設定方法</span><span class="en">How to Set Up LINE Notifications</span></h4>
+    <ol style="padding-left:20px;line-height:2;font-size:13px;color:#374151;">
+      <li><span class="ja">ログビューアを起動し、「LINE通知設定」タブを開く</span><span class="en">Launch Log Viewer and open the "LINE Notification Settings" tab</span></li>
+      <li><span class="ja">LINE Notify または LINE 公式アカウントの連携トークンを入力</span><span class="en">Enter the LINE Notify or official account integration token</span></li>
+      <li><span class="ja">「テスト送信」ボタンで通知が届くことを確認</span><span class="en">Click "Send Test" to confirm the notification is received</span></li>
+      <li><span class="ja">通知したいイベント種別にチェックを入れて保存</span><span class="en">Check the event types you want to be notified about and save</span></li>
+    </ol>
+
+    <h3><span class="ja">自動 IP ブロック</span><span class="en">Automatic IP Blocking</span></h3>
+    <p>
+      <span class="ja">「自動防御設定」タブで有効にすると、ネットワーク不正アクセスを検知した送信元 IP を Windows ファイアウォールで自動ブロックします。</span>
+      <span class="en">When enabled in the "Auto Block Settings" tab, the source IP of detected network intrusion attempts is automatically blocked by Windows Firewall.</span>
+    </p>
+    <div style="margin:12px 0;">
+      <table style="width:100%;border-collapse:collapse;font-size:13px;">
+        <tr style="background:#f0f4ff;">
+          <th style="padding:10px 14px;text-align:left;border:1px solid #dde4ee;width:40%;">
+            <span class="ja">設定項目</span><span class="en">Setting</span>
           </th>
           <th style="padding:10px 14px;text-align:left;border:1px solid #dde4ee;">
             <span class="ja">説明</span><span class="en">Description</span>
           </th>
         </tr>
         <tr>
-          <td style="padding:10px 14px;border:1px solid #dde4ee;">
-            <span style="color:#15803d;font-weight:bold;">✅ <span class="ja">認証成功</span><span class="en">Login Success</span></span>
-          </td>
-          <td style="padding:10px 14px;border:1px solid #dde4ee;">
-            <span class="ja">OTP またはワンタッチによるログインが成功したときに通知します。</span>
-            <span class="en">Notified when a login succeeds via OTP or One-Touch authentication.</span>
-          </td>
+          <td style="padding:10px 14px;border:1px solid #dde4ee;"><span class="ja">ブロック対象</span><span class="en">Block Target</span></td>
+          <td style="padding:10px 14px;border:1px solid #dde4ee;"><span class="ja">検知した IP の /24 サブネット単位でブロック（IP 変更による回避に対応）</span><span class="en">Blocks the /24 subnet of the detected IP (to counter evasion via IP rotation)</span></td>
         </tr>
         <tr style="background:#fafbfc;">
-          <td style="padding:10px 14px;border:1px solid #dde4ee;">
-            <span style="color:#dc2626;font-weight:bold;">❌ <span class="ja">認証失敗</span><span class="en">Login Failure</span></span>
-          </td>
-          <td style="padding:10px 14px;border:1px solid #dde4ee;">
-            <span class="ja">OTP の入力ミスなど、認証に失敗したときに通知します。</span>
-            <span class="en">Notified when authentication fails due to an incorrect OTP or similar error.</span>
-          </td>
+          <td style="padding:10px 14px;border:1px solid #dde4ee;"><span class="ja">ブロック期間</span><span class="en">Block Duration</span></td>
+          <td style="padding:10px 14px;border:1px solid #dde4ee;"><span class="ja">デフォルト 24 時間（1〜720 時間で設定可）または無期限。期限切れルールは 30 分おきに自動削除。</span><span class="en">Default 24 hours (configurable from 1–720 hours) or permanent. Expired rules are automatically removed every 30 minutes.</span></td>
         </tr>
         <tr>
-          <td style="padding:10px 14px;border:1px solid #dde4ee;">
-            <span style="color:#b91c1c;font-weight:bold;">🚨 <span class="ja">不正アクセス</span><span class="en">Unauthorized Access</span></span>
-          </td>
-          <td style="padding:10px 14px;border:1px solid #dde4ee;">
-            <span class="ja"><strong>5 分間に 10 回以上の OTP 連続失敗</strong> を検知した場合に不正アクセス（ブルートフォース攻撃）として警告通知します。この検知はログビューアが行い、設定変更はできません。</span>
-            <span class="en">A warning is sent when <strong>10 or more consecutive OTP failures occur within 5 minutes</strong>, indicating a possible brute-force attack. This detection is handled by Log Viewer and the threshold cannot be changed.</span>
-          </td>
+          <td style="padding:10px 14px;border:1px solid #dde4ee;"><span class="ja">除外 IP レンジ</span><span class="en">Excluded IP Ranges</span></td>
+          <td style="padding:10px 14px;border:1px solid #dde4ee;"><span class="ja">社内ネットワーク（10.x / 172.16.x / 192.168.x 等）はデフォルトで除外。CIDR 形式で追加設定可。</span><span class="en">Internal networks (10.x / 172.16.x / 192.168.x etc.) are excluded by default. Additional ranges can be added in CIDR notation.</span></td>
         </tr>
-        <tr style="background:#fff5f5;">
-          <td style="padding:10px 14px;border:1px solid #dde4ee;">
-            <span style="color:#8b0000;font-weight:bold;">🆘 <span class="ja">ランサムウェア予兆検知</span><span class="en">Ransomware Threat</span></span>
-          </td>
-          <td style="padding:10px 14px;border:1px solid #dde4ee;">
-            <span class="ja">不審なプロセス・コマンドを検知した場合に <strong>緊急通知</strong> を送信します。通知には攻撃フェーズ・検知対象・推奨対応が含まれます。この通知は設定の有無にかかわらず、脅威検知時に常に送信されます。</span>
-            <span class="en">An <strong>emergency notification</strong> is sent when a suspicious process or command is detected. The notification includes the attack phase, detected target, and recommended action. This notification is always sent on threat detection regardless of settings.</span>
-            <div style="margin-top:10px;background:#1a1a2e;border-radius:8px;padding:12px 14px;font-family:Consolas,'Courier New',monospace;font-size:12px;color:#e0e0e0;line-height:1.7;">
-              <span style="color:#ff4444;font-weight:bold;">🆘 緊急：ランサムウェア予兆検知</span><br><br>
-              <span style="color:#ffd700;">【フェーズ】</span>バックアップ破壊<br>
-              <span style="color:#ffd700;">【検知対象】</span>VSS削除（vssadmin）<br>
-              <span style="color:#ffd700;">【プロセス　】</span>vssadmin.exe<br>
-              <span style="color:#ffd700;">【詳　　細】</span>ランサムウェア前兆：シャドウコピーの削除を検知<br>
-              <span style="color:#ffd700;">【日　　時】</span>2026/07/02 19:42:11<br><br>
-              <span style="color:#ff9966;">⚠️ 対応: PC隔離・バックアップ確認</span>
-            </div>
-          </td>
+        <tr style="background:#fafbfc;">
+          <td style="padding:10px 14px;border:1px solid #dde4ee;"><span class="ja">手動解除</span><span class="en">Manual Unblock</span></td>
+          <td style="padding:10px 14px;border:1px solid #dde4ee;"><span class="ja">「自動防御設定」タブのリストから「今すぐ解除」ボタンで即時解除可。</span><span class="en">Click "Unblock Now" in the list on the "Auto Block Settings" tab to unblock immediately.</span></td>
         </tr>
       </table>
     </div>
 
-    <h3><span class="ja">ログビューアの自動起動設定</span><span class="en">Auto-Start Log Viewer at Startup</span></h3>
-    <p>
-      <span class="ja">Windows 起動時にログビューアを自動的に起動させることで、ログオン前からリアルタイム通知を受け取ることができます。</span>
-      <span class="en">By configuring Log Viewer to start automatically at Windows startup, you can receive real-time notifications from the moment the PC boots.</span>
-    </p>
-    <ul class="steps">
-      <li><span class="step-num">1</span><span class="step-txt">
-        <span class="ja">applippli-key のインストーラーを実行すると、ログビューアは Windows 起動時に自動起動するよう設定されます。</span>
-        <span class="en">Running the applippli-key installer automatically registers Log Viewer to launch at Windows startup.</span>
-      </span></li>
-      <li><span class="step-num">2</span><span class="step-txt">
-        <span class="ja">ログビューアを閉じるとタスクトレイ（画面右下）に最小化されます。完全に終了するにはトレイアイコンを右クリックして <strong>「終了」</strong> を選択してください。</span>
-        <span class="en">Closing the Log Viewer window minimizes it to the system tray (bottom right). To exit completely, right-click the tray icon and select <strong>"Exit."</strong></span>
-      </span></li>
-    </ul>
+    <h3><span class="ja">ログの色分け</span><span class="en">Log Color Coding</span></h3>
+    <div style="margin:12px 0;display:flex;gap:12px;flex-wrap:wrap;">
+      <span style="background:#f0fdf4;border:1px solid #6ee7b7;border-radius:8px;padding:6px 14px;font-size:12px;color:#15803d;">&#9632; <span class="ja">成功（SUCCESS / OK）</span><span class="en">Success (SUCCESS / OK)</span></span>
+      <span style="background:#fff0f0;border:1px solid #fca5a5;border-radius:8px;padding:6px 14px;font-size:12px;color:#dc2626;">&#9632; <span class="ja">失敗（FAIL / BAD-OTP）</span><span class="en">Failure (FAIL / BAD-OTP)</span></span>
+      <span style="background:#ffebeb;border:1px solid #c00;border-radius:8px;padding:6px 14px;font-size:12px;color:#8b0000;">&#9632; <span class="ja">脅威（THREAT）— 行全体が赤背景</span><span class="en">Threat (THREAT) — entire row highlighted red</span></span>
+      <span style="background:#eef2ff;border:1px solid #a5b4fc;border-radius:8px;padding:6px 14px;font-size:12px;color:#4338ca;">&#9632; <span class="ja">IP アドレス（繰り返し失敗 IP は赤表示）</span><span class="en">IP Address (repeat failure IPs shown in red)</span></span>
+    </div>
 
-    <h3><span class="ja">welcome.html のバッジ表示</span><span class="en">Badge in welcome.html</span></h3>
+    <h3><span class="ja">ログ イベント早見表</span><span class="en">Log Event Quick Reference</span></h3>
     <p>
-      <span class="ja">LINE User ID を保存すると、applippli-key の設定完了画面（welcome.html）に <span style="display:inline-block;background:#06C755;border-radius:8px;padding:1px 8px;font-size:12px;color:#fff;font-weight:bold;">&#9679; LINE通知 有効</span> バッジが表示されます。</span>
-      <span class="en">After saving a LINE User ID, a <span style="display:inline-block;background:#06C755;border-radius:8px;padding:1px 8px;font-size:12px;color:#fff;font-weight:bold;">&#9679; LINE Notification Active</span> badge appears on the applippli-key setup complete screen (welcome.html).</span>
+      <span class="ja">ログ一覧の各フィールドに表示されるコードの意味と、対応が必要なケースをまとめています。</span>
+      <span class="en">Quick reference for codes shown in each log field and when action is required.</span>
     </p>
+
+    <!-- イベント種別 -->
+    <p style="margin:16px 0 6px;font-weight:bold;font-size:13px;color:#3456f6;">
+      <span class="ja">■ イベント（Event）</span><span class="en">■ Event</span>
+    </p>
+    <div style="overflow-x:auto;">
+    <table style="width:100%;border-collapse:collapse;font-size:13px;min-width:360px;">
+      <tr style="background:#f0f4ff;">
+        <th style="padding:8px 12px;text-align:left;border:1px solid #dde4ee;width:38%;">
+          <span class="ja">表示名</span><span class="en">Display Name</span>
+        </th>
+        <th style="padding:8px 12px;text-align:left;border:1px solid #dde4ee;">
+          <span class="ja">内容</span><span class="en">Description</span>
+        </th>
+      </tr>
+      <tr>
+        <td style="padding:8px 12px;border:1px solid #dde4ee;"><span class="ja">2段階認証ログオン</span><span class="en">2-Step Auth Logon</span></td>
+        <td style="padding:8px 12px;border:1px solid #dde4ee;"><span class="ja">MFA によるログオン</span><span class="en">Logon via MFA</span></td>
+      </tr>
+      <tr style="background:#fafbfc;">
+        <td style="padding:8px 12px;border:1px solid #dde4ee;"><span class="ja">2段階認証ロック解除</span><span class="en">2-Step Auth Unlock</span></td>
+        <td style="padding:8px 12px;border:1px solid #dde4ee;"><span class="ja">MFA による画面ロック解除</span><span class="en">Screen unlock via MFA</span></td>
+      </tr>
+      <tr>
+        <td style="padding:8px 12px;border:1px solid #dde4ee;"><span class="ja">緊急ログオン</span><span class="en">Emergency Logon</span></td>
+        <td style="padding:8px 12px;border:1px solid #dde4ee;"><span class="ja">緊急コードを使用したログオン</span><span class="en">Logon using emergency code</span></td>
+      </tr>
+      <tr style="background:#fafbfc;">
+        <td style="padding:8px 12px;border:1px solid #dde4ee;"><span class="ja">リモートデスクトップ接続</span><span class="en">Remote Desktop</span></td>
+        <td style="padding:8px 12px;border:1px solid #dde4ee;"><span class="ja">RDP 経由のログオン</span><span class="en">Logon via Remote Desktop Protocol</span></td>
+      </tr>
+      <tr>
+        <td style="padding:8px 12px;border:1px solid #dde4ee;"><span class="ja">バージョン通知</span><span class="en">Version Info</span></td>
+        <td style="padding:8px 12px;border:1px solid #dde4ee;"><span class="ja">クライアントのバージョン確認ログ。バージョン欄に番号を表示。</span><span class="en">Client version check log. Version number shown in the version column.</span></td>
+      </tr>
+      <tr style="background:#fafbfc;">
+        <td style="padding:8px 12px;border:1px solid #dde4ee;"><span class="ja">脅威検知 〈プロセス名〉</span><span class="en">Threat — 〈process name〉</span></td>
+        <td style="padding:8px 12px;border:1px solid #dde4ee;"><span class="ja">プロセス監視・コマンドライン監視・サービス偽装・RDP有効化などの検知イベント</span><span class="en">Detection from process monitoring, command-line monitoring, service masquerading, or RDP enablement</span></td>
+      </tr>
+      <tr>
+        <td style="padding:8px 12px;border:1px solid #dde4ee;"><span class="ja">ネットワーク不正アクセス</span><span class="en">Network Intrusion</span></td>
+        <td style="padding:8px 12px;border:1px solid #dde4ee;"><span class="ja">ネットワーク経由のログオン連続失敗（5分間に10回以上）を検知</span><span class="en">Network logon burst failure detected (10+ within 5 minutes)</span></td>
+      </tr>
+    </table>
+    </div>
+
+    <!-- 結果コード -->
+    <p style="margin:20px 0 6px;font-weight:bold;font-size:13px;color:#3456f6;">
+      <span class="ja">■ 結果（Result）</span><span class="en">■ Result</span>
+    </p>
+    <div style="overflow-x:auto;">
+    <table style="width:100%;border-collapse:collapse;font-size:13px;min-width:440px;">
+      <tr style="background:#f0f4ff;">
+        <th style="padding:8px 12px;text-align:left;border:1px solid #dde4ee;width:22%;">
+          <span class="ja">表示</span><span class="en">Display</span>
+        </th>
+        <th style="padding:8px 12px;text-align:left;border:1px solid #dde4ee;width:18%;">
+          <span class="ja">要対応</span><span class="en">Action</span>
+        </th>
+        <th style="padding:8px 12px;text-align:left;border:1px solid #dde4ee;">
+          <span class="ja">意味</span><span class="en">Meaning</span>
+        </th>
+      </tr>
+      <tr>
+        <td style="padding:8px 12px;border:1px solid #dde4ee;color:#15803d;font-weight:bold;"><span class="ja">成功</span><span class="en">Success</span></td>
+        <td style="padding:8px 12px;border:1px solid #dde4ee;">—</td>
+        <td style="padding:8px 12px;border:1px solid #dde4ee;"><span class="ja">認証が正常に完了した</span><span class="en">Authentication completed successfully</span></td>
+      </tr>
+      <tr style="background:#fafbfc;">
+        <td style="padding:8px 12px;border:1px solid #dde4ee;color:#dc2626;font-weight:bold;"><span class="ja">失敗</span><span class="en">Failure</span></td>
+        <td style="padding:8px 12px;border:1px solid #dde4ee;"><span class="ja">継続時は要確認</span><span class="en">Check if repeated</span></td>
+        <td style="padding:8px 12px;border:1px solid #dde4ee;"><span class="ja">パスワードまたは OTP が不一致</span><span class="en">Password or OTP mismatch</span></td>
+      </tr>
+      <tr>
+        <td style="padding:8px 12px;border:1px solid #dde4ee;color:#dc2626;font-weight:bold;"><span class="ja">OTP間違い</span><span class="en">OTP Error</span></td>
+        <td style="padding:8px 12px;border:1px solid #dde4ee;"><span class="ja">連続時は要確認</span><span class="en">Check if repeated</span></td>
+        <td style="padding:8px 12px;border:1px solid #dde4ee;"><span class="ja">ワンタイムパスワードが不正解。5分間に10回以上でバースト検知・LINE通知。</span><span class="en">One-time password incorrect. Burst detection and LINE notification triggered at 10+ within 5 minutes.</span></td>
+      </tr>
+      <tr style="background:#fafbfc;">
+        <td style="padding:8px 12px;border:1px solid #dde4ee;color:#dc2626;font-weight:bold;">BYPASS</td>
+        <td style="padding:8px 12px;border:1px solid #dde4ee;color:#dc2626;font-weight:bold;"><span class="ja">要確認</span><span class="en">Review</span></td>
+        <td style="padding:8px 12px;border:1px solid #dde4ee;"><span class="ja">MFA をバイパスしてログオン。意図しない場合は原因を調査してください。</span><span class="en">Logon bypassed MFA. Investigate if unintentional.</span></td>
+      </tr>
+      <tr>
+        <td style="padding:8px 12px;border:1px solid #dde4ee;font-weight:bold;background:#fff0f0;"><span style="background:#8b0000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;"><span class="ja">脅威</span><span class="en">Threat</span></span></td>
+        <td style="padding:8px 12px;border:1px solid #dde4ee;background:#fff0f0;color:#8b0000;font-weight:bold;"><span class="ja">即対応</span><span class="en">Immediate</span></td>
+        <td style="padding:8px 12px;border:1px solid #dde4ee;background:#fff0f0;"><span class="ja">プロセス偽装・不審コマンド・ネットワーク攻撃などの脅威を検知。備考欄に詳細と推奨対応を記録。</span><span class="en">Threat detected (process masquerade, suspicious command, network attack, etc.). Details and recommended action recorded in the notes column.</span></td>
+      </tr>
+      <tr style="background:#fafbfc;">
+        <td style="padding:8px 12px;border:1px solid #dde4ee;color:#6b7280;"><span class="ja">情報</span><span class="en">Info</span></td>
+        <td style="padding:8px 12px;border:1px solid #dde4ee;">—</td>
+        <td style="padding:8px 12px;border:1px solid #dde4ee;"><span class="ja">参考情報の記録（例：RDP接続元クライアント名）</span><span class="en">Informational record (e.g. RDP client name)</span></td>
+      </tr>
+      <tr>
+        <td style="padding:8px 12px;border:1px solid #dde4ee;color:#6b7280;">SKIP</td>
+        <td style="padding:8px 12px;border:1px solid #dde4ee;">—</td>
+        <td style="padding:8px 12px;border:1px solid #dde4ee;"><span class="ja">バージョン確認をスキップ（オフライン等）</span><span class="en">Version check skipped (offline, etc.)</span></td>
+      </tr>
+    </table>
+    </div>
+
+    <!-- 方式 -->
+    <p style="margin:20px 0 6px;font-weight:bold;font-size:13px;color:#3456f6;">
+      <span class="ja">■ 方式（Method）</span><span class="en">■ Method</span>
+    </p>
+    <div style="overflow-x:auto;">
+    <table style="width:100%;border-collapse:collapse;font-size:13px;min-width:360px;">
+      <tr style="background:#f0f4ff;">
+        <th style="padding:8px 12px;text-align:left;border:1px solid #dde4ee;width:30%;">
+          <span class="ja">表示</span><span class="en">Display</span>
+        </th>
+        <th style="padding:8px 12px;text-align:left;border:1px solid #dde4ee;">
+          <span class="ja">説明</span><span class="en">Description</span>
+        </th>
+      </tr>
+      <tr>
+        <td style="padding:8px 12px;border:1px solid #dde4ee;"><span class="ja">手入力</span><span class="en">Manual entry</span></td>
+        <td style="padding:8px 12px;border:1px solid #dde4ee;"><span class="ja">認証アプリに表示された 6 桁コードを手入力</span><span class="en">6-digit code from the authenticator app entered manually</span></td>
+      </tr>
+      <tr style="background:#fafbfc;">
+        <td style="padding:8px 12px;border:1px solid #dde4ee;"><span class="ja">ワンタッチ</span><span class="en">One-touch</span></td>
+        <td style="padding:8px 12px;border:1px solid #dde4ee;"><span class="ja">スマートフォンアプリでのワンタッチ承認</span><span class="en">One-touch approval via smartphone app</span></td>
+      </tr>
+      <tr>
+        <td style="padding:8px 12px;border:1px solid #dde4ee;"><span class="ja">RDP接続</span><span class="en">RDP</span></td>
+        <td style="padding:8px 12px;border:1px solid #dde4ee;"><span class="ja">リモートデスクトップ経由の接続</span><span class="en">Connection via Remote Desktop Protocol</span></td>
+      </tr>
+      <tr style="background:#fafbfc;">
+        <td style="padding:8px 12px;border:1px solid #dde4ee;"><span class="ja">コンソール接続</span><span class="en">Console</span></td>
+        <td style="padding:8px 12px;border:1px solid #dde4ee;"><span class="ja">コンソールセッション経由の接続</span><span class="en">Connection via console session</span></td>
+      </tr>
+    </table>
+    </div>
   </section>
 
   <!-- FAQ -->
@@ -1471,6 +1622,9 @@ window.addEventListener('DOMContentLoaded', function() {
 
 <footer>
   &copy; applippli-key &nbsp;|&nbsp; 2026/6/26
+  <div id="internalLinks" style="margin-top:8px;font-size:11px;color:#b0b8c8;">
+    <a href="build_log.html" style="color:#b0b8c8;">社内用: ビルドログ</a>
+  </div>
 </footer>
 
 </body>
