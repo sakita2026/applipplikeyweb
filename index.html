@@ -13,6 +13,260 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Noto+Sans+JP:wght@400;500;600;700&display=swap" rel="stylesheet" />
     <script type="module" crossorigin src="/assets/index-NJJ3lVUw.js"></script>
     <link rel="stylesheet" crossorigin href="/assets/index-BTMOcng_.css">
+    <!-- ===== readability overrides (added on request) ===== -->
+    <style id="readability-overrides">
+      /* 最多の極小テキストを底上げ（12px→14px, 14px→16px） */
+      .text-xs { font-size: 14px !important; line-height: 1.55 !important; }
+      .text-sm { font-size: 16px !important; line-height: 1.6 !important; }
+      /* データテーブルのセル（10px→12px） */
+      td, th { font-size: 12px !important; }
+      /* ユーザー名/ホスト名など切り詰め表示の識別テキスト（10〜11px→12px） */
+      .truncate.text-slate-400, .truncate.text-slate-500,
+      .truncate.text-slate-700, .truncate.text-slate-800 { font-size: 12px !important; }
+      /* グラフ(SVG)の軸ラベルなど極小文字（7〜9px→10px） */
+      svg text { font-size: 10px !important; }
+
+      /* ===== 指定の見出し・ラベルを「かなり大きく」 ===== */
+      /* eyebrowラベル（被害拡大の実態 / 管理ダッシュボード / LINE 通知パターン） */
+      .rounded-full.uppercase.tracking-wider { font-size: 18px !important; }
+      span.text-xs.font-semibold.text-emerald-400 { font-size: 18px !important; }
+      /* セクション小見出し（セキュリティの現実 / applippli-key のアプローチ / セキュリティ診断） */
+      .tracking-widest { font-size: 18px !important; letter-spacing: 0.1em !important; }
+      /* ソリューション名（次世代セキュリティソリューション / 国産ハイブリッド認証ソリューション） */
+      .text-sm.font-semibold.text-accent,
+      span.text-sm.font-semibold { font-size: 20px !important; white-space: nowrap !important; }
+      /* ヒーローの3特徴ピル（不正ログインをブロック / 検知の壁 / 即時通知 とその説明） */
+      /* 暗い背景なので文字色も白に。さらに拡大 */
+      .flex.flex-col.items-center.gap-2 .text-sm { font-size: 22px !important; color: #ffffff !important; }
+      .flex.flex-col.items-center.gap-2 .text-xs { font-size: 18px !important; color: #ffffff !important; }
+
+      /* 比較タイムラインの列見出しバッジ（従来 / applippli-key）を強調 */
+      [class*="bg-red-900/40"][class*="rounded-full"][class*="border-red-700/40"][class*="uppercase"][class*="tracking-wider"] {
+        font-size: 22px !important; font-weight: 800 !important;
+        color: #fecaca !important; background-color: rgba(153, 27, 27, 0.85) !important;
+        border-color: rgba(248, 113, 113, 0.75) !important;
+      }
+      [class*="bg-emerald-900/40"][class*="rounded-full"][class*="border-emerald-700/40"][class*="uppercase"][class*="tracking-wider"] {
+        font-size: 22px !important; font-weight: 800 !important;
+        color: #d1fae5 !important; background-color: rgba(6, 95, 70, 0.85) !important;
+        border-color: rgba(52, 211, 153, 0.75) !important;
+      }
+
+      /* 比較タイムライン（従来 / applippli-key）の文字を拡大 */
+      .space-y-6.max-w-4xl .text-xs,
+      [class*="bg-slate-950"] .text-xs { font-size: 16px !important; }
+      .space-y-6.max-w-4xl .text-sm,
+      [class*="bg-slate-950"] .text-sm { font-size: 17px !important; }
+      /* 診断カードの補足（所要時間 約1分 · 登録不要）：暗い背景なので白文字に */
+      p.mt-3.text-xs { font-size: 16px !important; color: #ffffff !important; }
+      /* ヘッダーのブランド副題（Security Suite） */
+      header .text-xs { font-size: 16px !important; }
+
+      /* ===== 最上部の空白に「答え」メッセージを配置 ===== */
+      /* ヒーローの過大な上パディングを詰める（空白の縮小） */
+      section[class*="md:py-32"] { padding-top: 1.75rem !important; }
+
+      /* 最上段：答えメッセージ（背景なし・クリーン） */
+      .ah2 { width: 100%; max-width: 100%; margin: 0 auto 1.5rem; }
+      .ah2 .ah-card { position: relative; text-align: center; width: 100%; border-radius: 1.25rem; padding: 2.25rem 2.5rem; }
+      .ah2 .ah-headline { font-size: clamp(1.85rem, 4.8vw, 3rem); font-weight: 800; line-height: 1.4; color: #0f172a; margin: 0 0 1.2rem; }
+      .ah2 .ah-accent {
+        background: linear-gradient(90deg, #059669, #2563eb);
+        -webkit-background-clip: text; background-clip: text;
+        -webkit-text-fill-color: transparent; color: #059669;
+      }
+      .ah2 .ah-sub { display: flex; flex-wrap: wrap; gap: 0.6rem; justify-content: center; align-items: center; margin: 0 0 1.5rem; }
+      .ah2 .ah-chip {
+        display: inline-flex; align-items: center; gap: 0.35rem;
+        font-size: clamp(0.92rem, 2.4vw, 1.1rem); font-weight: 700; color: #065f46;
+        background: #ffffff; border: 1px solid rgba(16,185,129,0.45);
+        border-radius: 999px; padding: 0.45rem 1rem; box-shadow: 0 2px 6px -2px rgba(16,185,129,0.3);
+      }
+      .ah2 .ah-sub-tail { font-size: clamp(0.95rem, 2.4vw, 1.15rem); font-weight: 700; color: #334155; }
+      .ah2 .ah-highlight {
+        text-align: left; font-size: clamp(1.12rem, 2.9vw, 1.45rem); line-height: 1.9; font-weight: 600;
+        color: #0f172a; border-radius: 0.9rem; padding: 1.3rem 1.5rem; border-left: 6px solid #10b981;
+      }
+      .ah2 .ah-highlight b { color: #047857; font-weight: 800; }
+      /* ① 背景なし（クリーン） */
+      #answer-hero-a .ah-card { background: transparent; border: none; box-shadow: none; padding: 1rem 0.5rem 1.5rem; }
+      #answer-hero-a .ah-highlight { background: transparent; border: none; border-left: none; padding: 0; text-align: center; }
+      /* 上部バナー：3つの利点 */
+      #answer-hero-a .ah-benefits {
+        display: flex; flex-wrap: wrap; justify-content: center; align-items: center; margin-top: 1.6rem;
+      }
+      #answer-hero-a .ah-benefits span {
+        position: relative; padding: 0.2rem 1.5rem;
+        font-size: clamp(1rem, 2.4vw, 1.2rem); font-weight: 700; color: #0f172a;
+      }
+      #answer-hero-a .ah-benefits span:not(:first-child)::before {
+        content: ""; position: absolute; left: 0; top: 50%; transform: translateY(-50%);
+        width: 1px; height: 1.05em; background: rgba(15,23,42,0.18);
+      }
+      @media (max-width: 640px) {
+        #answer-hero-a .ah-benefits { flex-direction: column; gap: 0.55rem; }
+        #answer-hero-a .ah-benefits span { padding: 0.2rem 0; }
+        #answer-hero-a .ah-benefits span:not(:first-child)::before { display: none; }
+      }
+      @media (max-width: 640px) {
+        .ah2 .ah-card { padding: 1.6rem 1.15rem; border-radius: 1.1rem; }
+        #answer-hero-a .ah-card { padding: 0.75rem 0.4rem 1.25rem; }
+        .ah2 .ah-highlight { padding: 1.05rem 1.05rem; line-height: 1.8; }
+      }
+
+
+      /* 暗い背景カード内の薄いスレート文字を白にして可読性UP
+         （12種の攻撃パターン一覧 / 比較タイムライン） */
+      /* 不透明な暗い箱の中のスレート文字は白（攻撃パターン一覧 / タイムラインのステップ箱） */
+      [class*="bg-slate-950"] [class*="text-slate-"],
+      [class*="bg-slate-900"] [class*="text-slate-"],
+      [class*="bg-slate-800"] [class*="text-slate-"],
+      [class*="bg-slate-700"] [class*="text-slate-"],
+      [class*="bg-slate-600"] [class*="text-slate-"],
+      [class*="bg-slate-500"] [class*="text-slate-"],
+      [class*="bg-red-700"] [class*="text-slate-"],
+      [class*="bg-red-600"] [class*="text-slate-"],
+      [class*="bg-emerald-700"] [class*="text-slate-"],
+      [class*="bg-emerald-600"] [class*="text-slate-"],
+      [class*="bg-emerald-500"] [class*="text-slate-"] {
+        color: #ffffff !important;
+      }
+      /* 淡い地のカード（従来=bg-red-950/15 / applippli-key=bg-emerald-950/15）の
+         副題・まとめ文は明るい背景なので濃色（黒）に */
+      [class*="bg-red-950/15"] .text-sm.text-slate-400,
+      [class*="bg-emerald-950/15"] .text-sm.text-slate-400,
+      [class*="bg-red-950/15"] [class*="items-start"][class*="text-xs"],
+      [class*="bg-emerald-950/15"] [class*="items-start"][class*="text-xs"] {
+        color: #0f172a !important;
+      }
+      /* まとめ文内のエメラルド強調も黒に（…次に何をすべきか即断できる） */
+      [class*="bg-emerald-950/15"] [class*="items-start"] .text-emerald-400 { color: #0f172a !important; }
+      /* タイムライン後半の薄いステップ箱を暗くして白文字を読みやすく */
+      .space-y-6.max-w-4xl [class*="bg-slate-400"],
+      .space-y-6.max-w-4xl [class*="bg-slate-500"],
+      .space-y-6.max-w-4xl [class*="bg-slate-600"] { background-color: #1f2937 !important; }
+
+      /* 長文に差し替えた緑ラベルピルを画面幅内で折り返す */
+      [class*="bg-emerald-900/50"] { max-width: 100% !important; flex-wrap: wrap !important; }
+      [class*="bg-emerald-900/50"] .text-xs { min-width: 0 !important; white-space: normal !important; }
+
+      /* ===== モバイル調整（狭い画面での折り返し・はみ出し対策） ===== */
+      @media (max-width: 640px) {
+        /* ソリューション名ピルは画面幅に収める（20px→15px, 1行維持） */
+        .text-sm.font-semibold.text-accent,
+        span.text-sm.font-semibold { font-size: 15px !important; }
+        /* eyebrowラベルもやや抑える */
+        .rounded-full.uppercase.tracking-wider,
+        span.text-xs.font-semibold.text-emerald-400 { font-size: 15px !important; }
+        .tracking-widest { font-size: 15px !important; }
+        /* ソリューション名ピルの横並びを縦積みにして画面内に収める */
+        .flex.items-center.justify-center.gap-3.mb-6 { flex-wrap: wrap !important; }
+      }
+    </style>
+    <script id="answer-hero-injector">
+      (function () {
+        function contentHTML() {
+          return '' +
+            '<div class="ah-card">' +
+              '<h2 class="ah-headline">面倒だったWindowsログインが<br><span class="ah-accent">「スマホからワンタッチログイン」</span>に</h2>' +
+              '<div class="ah-sub">' +
+                '<span class="ah-chip">🔐 二段階認証</span>' +
+                '<span class="ah-chip">📖 アクセスログ</span>' +
+                '<span class="ah-chip">🛡️ 脅威発見</span>' +
+                '<span class="ah-chip">📲 通知</span>' +
+                '<span class="ah-sub-tail">の4つを兼ねそろえました</span>' +
+              '</div>' +
+              '<div class="ah-highlight">多要素認証と高度なログ監視で<b>多層防御</b>を実現。<b>自動検知・自動ブロック</b>機能がIT管理者の運用負荷を<b>劇的に軽減</b>し、企業の重要な資産を確実に保護します。</div>' +
+              '<div class="ah-benefits">' +
+                '<span>スマホをタッチするだけでログイン</span>' +
+                '<span>面倒なロック解除からの解放</span>' +
+                '<span>ユーザー名(ID)も入力不要</span>' +
+              '</div>' +
+            '</div>';
+        }
+        function buildNode(id) {
+          var el = document.createElement('div');
+          el.id = id;
+          el.className = 'ah2';
+          el.innerHTML = contentHTML();
+          return el;
+        }
+        function findHeroTarget() {
+          // 横幅いっぱいに使うため、狭い max-w-3xl ではなく親のセクションに挿入する
+          var candidates = document.querySelectorAll('.max-w-3xl.mx-auto.text-center');
+          var inner = null;
+          for (var i = 0; i < candidates.length; i++) {
+            if (candidates[i].textContent.indexOf('ソリューション') !== -1 ||
+                candidates[i].textContent.indexOf('Windows') !== -1) {
+              inner = candidates[i]; break;
+            }
+          }
+          if (!inner) inner = candidates[0] || null;
+          if (!inner) return null;
+          return (inner.closest && inner.closest('section')) || inner.parentElement || inner;
+        }
+        function inject() {
+          if (document.getElementById('answer-hero-a')) return true;
+          var target = findHeroTarget();
+          if (!target) return false;
+          target.insertBefore(buildNode('answer-hero-a'), target.firstChild);
+          return true;
+        }
+        // テキスト差し替え（旧→新）。React 再描画にも追従。
+        var REPLACEMENTS = [
+          {
+            from: 'applippli-key はここで止める',
+            to: 'applippli-key は下記の「侵入当日」もしくは「その前段階」で効果を発揮する設計'
+          }
+        ];
+        function applyReplacements() {
+          var walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, null);
+          var n;
+          while ((n = walker.nextNode())) {
+            for (var i = 0; i < REPLACEMENTS.length; i++) {
+              var t = n.textContent.trim();
+              if (t === REPLACEMENTS[i].from) { n.textContent = REPLACEMENTS[i].to; }
+            }
+          }
+        }
+        // 重複している下段の段落を非表示（上段=answer-hero を残す）
+        var HIDE_TEXTS = [
+          '多要素認証と高度なログ監視で多層防御を実現。自動検知・自動ブロック機能がIT管理者の運用負荷を劇的に軽減し、企業の重要な資産を確実に保護します。',
+          'デモを見る',
+          '詳しく知る'
+        ];
+        function hideDuplicates() {
+          var els = document.querySelectorAll('p, div, span, button, a');
+          for (var i = 0; i < els.length; i++) {
+            var el = els[i];
+            if (el.closest && el.closest('.ah2')) continue;
+            var t = el.textContent.trim();
+            for (var j = 0; j < HIDE_TEXTS.length; j++) {
+              if (t === HIDE_TEXTS[j]) { el.style.display = 'none'; }
+            }
+          }
+        }
+        function start() {
+          inject();
+          applyReplacements();
+          hideDuplicates();
+          // React が再描画で消した/戻した場合に備え、数秒間だけ監視
+          var tries = 0;
+          var t = setInterval(function () {
+            tries++;
+            inject();
+              applyReplacements();
+            hideDuplicates();
+            if (tries > 40) clearInterval(t); // ~20s
+          }, 500);
+        }
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', start);
+        } else {
+          start();
+        }
+      })();
+    </script>
   </head>
 
   <body>
