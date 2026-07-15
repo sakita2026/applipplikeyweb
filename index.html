@@ -154,9 +154,18 @@
         .ak-hscroll::-webkit-scrollbar { height: 6px; }
         .ak-hscroll::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 3px; }
         .ak-hscroll::-webkit-scrollbar-track { background: #f1f5f9; }
-        /* PC管理画面モックは全体を横スクロール（サイドバーで中身が潰れるため） */
-        div[class*="rounded-xl"][class*="border-slate-300"] { overflow-x: auto !important; }
-        div[class*="rounded-xl"][class*="border-slate-300"] > div[class*="bg-slate-800"] { min-width: 560px; }
+        /* 管理画面モック：全体を縮小して全表示・固定（JSでzoom設定） */
+        .ak-mock-fit { overflow: hidden !important; }
+        /* ログ機能デモ：静的コピーは一切動かさない */
+        .ak-demo-clone, .ak-demo-clone * { animation: none !important; transition: none !important; }
+        /* 被害拡大の4列表：本来幅にして横スクロール */
+        .ak-damage-card { overflow-x: auto !important; -webkit-overflow-scrolling: touch; }
+        .ak-wide-grid { min-width: 620px !important; }
+        /* ゼロトラストのセクションを非表示 */
+        .ak-hide-mobile { display: none !important; }
+        /* 小さすぎるテキストを底上げ（読みやすさ優先） */
+        section .text-xs { font-size: 13.5px !important; }
+        section .text-sm { font-size: 15px !important; }
       }
       /* フッター：テキストリンクのみ */
       #akey-footer-links {
@@ -807,6 +816,87 @@
           }
           return true;
         }
+        // モバイル：ログ機能の「3段階に伸びる」デモを、フル状態の静的コピーで固定（動く本体は非表示）
+        function freezeLogDemo() {
+          if (window.innerWidth > 768) {
+            var c0 = document.querySelector('.ak-demo-clone'); if (c0) c0.remove();
+            var live0 = document.querySelector('[data-ak-demo="1"]'); if (live0) live0.style.display = '';
+            return true;
+          }
+          if (document.querySelector('.ak-demo-clone')) return true; // 固定済み
+          var grids = document.querySelectorAll('div[class*="grid-cols-3"]');
+          var card = null;
+          for (var g = 0; g < grids.length && !card; g++) {
+            var kids = grids[g].children;
+            for (var k = 0; k < kids.length; k++) {
+              if (kids[k].textContent.indexOf('ログ機能') > -1) { card = kids[k]; break; }
+            }
+          }
+          if (!card) return false;
+          var box = null, divs = card.querySelectorAll('div');
+          for (var d = 0; d < divs.length; d++) {
+            var cl = typeof divs[d].className === 'string' ? divs[d].className : '';
+            if (cl.indexOf('mt-4') > -1 && cl.indexOf('rounded-xl') > -1) { box = divs[d]; break; }
+          }
+          if (!box) return false;
+          // フル状態（最下部の「LINE通知送信済み」が出ている瞬間）だけ複製
+          if (box.textContent.indexOf('LINE通知送信済み') < 0) return false;
+          box.setAttribute('data-ak-demo', '1');
+          var clone = box.cloneNode(true);
+          clone.classList.add('ak-demo-clone');
+          clone.removeAttribute('data-ak-demo');
+          box.style.display = 'none';
+          box.parentNode.insertBefore(clone, box.nextSibling);
+          return true;
+        }
+        // モバイル：管理画面モックを縮小して全表示・固定（横スクロールしない）
+        function fitDashboardMock() {
+          var card = document.querySelector('div[class*="rounded-xl"][class*="border-slate-300"]');
+          if (!card) return false;
+          var inner = card.querySelector('div[class*="bg-slate-800"]');
+          if (!inner) return false;
+          if (window.innerWidth > 768) {
+            inner.style.zoom = ''; inner.style.minWidth = ''; card.style.overflow = '';
+            card.classList.remove('ak-mock-fit');
+            return true;
+          }
+          inner.style.minWidth = '560px';
+          card.style.overflow = 'hidden';
+          card.classList.add('ak-mock-fit');
+          var z = card.clientWidth / 560;
+          inner.style.zoom = z.toFixed(3);
+          return true;
+        }
+        // モバイル：被害拡大の4列表を本来幅にして横スクロール
+        function fixDamageGrid() {
+          var secs = document.querySelectorAll('section');
+          var grid = null;
+          for (var i = 0; i < secs.length; i++) {
+            if (secs[i].textContent.indexOf('1日気づくのが遅れる') > -1) {
+              var gs = secs[i].querySelectorAll('div[class*="grid-cols-4"]');
+              for (var j = 0; j < gs.length; j++) {
+                if (gs[j].textContent.indexOf('侵入当日') > -1) { grid = gs[j]; break; }
+              }
+              break;
+            }
+          }
+          if (!grid) return false;
+          grid.classList.add('ak-wide-grid');
+          var card = grid.parentElement; // max-w-4xl の暗色カード
+          if (card) card.classList.add('ak-damage-card');
+          return true;
+        }
+        // モバイル：ゼロトラストのセクションを非表示
+        function hideZeroTrustMobile() {
+          var secs = document.querySelectorAll('section');
+          for (var i = 0; i < secs.length; i++) {
+            if (secs[i].textContent.indexOf('ゼロトラスト原則で多層防御') > -1) {
+              secs[i].classList.add('ak-hide-mobile');
+              return true;
+            }
+          }
+          return false;
+        }
         // モバイル：横スクロール領域に「スクロールできる」ヒントを付ける
         function markHScrollAreas() {
           var els = document.querySelectorAll('div, section');
@@ -1051,6 +1141,10 @@
           injectContactBlock();
           styleFooter();
           makeHeaderLogoClickable();
+          hideZeroTrustMobile();
+          fixDamageGrid();
+          fitDashboardMock();
+          freezeLogDemo();
           markHScrollAreas();
           injectScsBadge();
           // React が再描画で消した/戻した場合に備え、数秒間だけ監視
@@ -1077,9 +1171,13 @@
             injectContactBlock();
             styleFooter();
             makeHeaderLogoClickable();
+            hideZeroTrustMobile();
+            fixDamageGrid();
+            fitDashboardMock();
+            freezeLogDemo();
             markHScrollAreas();
             injectScsBadge();
-            if (tries > 40) clearInterval(t); // ~20s
+            if (tries > 120) clearInterval(t); // ~60s（デモのフル状態を確実に捕捉）
           }, 500);
         }
         if (document.readyState === 'loading') {
