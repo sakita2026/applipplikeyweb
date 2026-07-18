@@ -1,0 +1,918 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>applippli-key Console (Mockup)</title>
+<style>
+  :root {
+    --navy: #12161f;
+    --navy-hover: #1c2331;
+    --blue: #1f6feb;
+    --blue-dark: #1657c0;
+    --ink: #1f2328;
+    --mute: #6b7280;
+    --mute-light: #9aa2ad;
+    --red: #cf3742;
+    --red-bg: #fdedee;
+    --red-bg-strong: #b02a33;
+    --green: #1e9e5c;
+    --amber: #d98a2b;
+    --line: #e3e6ea;
+    --paper: #f4f6f8;
+    --card: #ffffff;
+  }
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0;
+    height: 100%;
+    font-family: "Segoe UI", "Hiragino Kaku Gothic ProN", "Yu Gothic", Meiryo, sans-serif;
+    color: var(--ink);
+    background: var(--paper);
+  }
+  button { font-family: inherit; cursor: pointer; }
+  input, textarea { font-family: inherit; }
+
+  .app {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    border: 1px solid #d7dade;
+    overflow: hidden;
+  }
+
+  /* ---------- OS-style title bar (decorative) ---------- */
+  .titlebar {
+    height: 32px;
+    flex: none;
+    background: #f3f3f3;
+    border-bottom: 1px solid #e2e2e2;
+    display: flex;
+    align-items: center;
+    padding: 0 0 0 10px;
+    gap: 8px;
+    font-size: 12.5px;
+    color: #333;
+    -webkit-user-select: none;
+    user-select: none;
+  }
+  .titlebar .app-icon {
+    width: 15px; height: 15px; border-radius: 3px;
+    background: var(--blue);
+    display: inline-flex; align-items: center; justify-content: center;
+  }
+  .titlebar .app-icon svg { width: 10px; height: 10px; }
+  .titlebar .win-controls { margin-left: auto; display: flex; height: 100%; }
+  .titlebar .win-btn {
+    width: 44px; height: 100%;
+    display: flex; align-items: center; justify-content: center;
+    background: transparent; border: none; color: #444;
+  }
+  .titlebar .win-btn:hover { background: #e5e5e5; }
+  .titlebar .win-btn.close:hover { background: #e81123; color: #fff; }
+
+  /* ---------- header ---------- */
+  .app-header {
+    flex: none;
+    background: var(--navy);
+    color: #fff;
+    padding: 16px 24px;
+    font-size: 19px;
+    font-weight: 700;
+  }
+
+  /* ---------- layout ---------- */
+  .layout { flex: 1; display: flex; min-height: 0; }
+
+  .sidebar {
+    width: 210px;
+    flex: none;
+    background: var(--navy);
+    display: flex;
+    flex-direction: column;
+    padding-top: 6px;
+  }
+  .sidebar .nav-label {
+    font-size: 11px;
+    color: var(--mute-light);
+    padding: 12px 18px 8px;
+  }
+  .nav-list { list-style: none; margin: 0; padding: 0; flex: 1; }
+  .nav-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 11px 18px;
+    color: #cdd3db;
+    font-size: 13.5px;
+    border: none;
+    background: transparent;
+    width: 100%;
+    text-align: left;
+    border-left: 3px solid transparent;
+  }
+  .nav-item svg { width: 16px; height: 16px; flex: none; color: #6f9ceb; }
+  .nav-item:hover { background: var(--navy-hover); }
+  .nav-item.active {
+    background: var(--blue);
+    color: #fff;
+    border-left-color: #fff;
+  }
+  .nav-item.active svg { color: #fff; }
+  .sidebar-footer {
+    padding: 14px 18px 16px;
+    font-size: 10.5px;
+    color: var(--mute-light);
+    line-height: 1.6;
+  }
+
+  .main {
+    flex: 1;
+    overflow-y: auto;
+    padding: 26px 32px 60px;
+    min-width: 0;
+  }
+  .page { display: none; }
+  .page.active { display: block; }
+
+  h1.page-title {
+    font-size: 22px;
+    font-weight: 700;
+    margin: 0 0 20px;
+  }
+  h2.settings-title { font-size: 19px; font-weight: 700; margin: 0 0 14px; }
+  h3.panel-title { font-size: 13.5px; font-weight: 700; margin: 0 0 14px; color: var(--ink); }
+  h3.block-title { font-size: 14.5px; font-weight: 700; margin: 26px 0 10px; }
+
+  /* ---------- tabs ---------- */
+  .tabs { display: flex; gap: 8px; margin-bottom: 20px; flex-wrap: wrap; }
+  .tab {
+    border: 1px solid var(--line);
+    background: #fff;
+    color: var(--ink);
+    font-size: 12.5px;
+    padding: 7px 14px;
+    border-radius: 4px;
+  }
+  .tab.active { background: var(--blue); border-color: var(--blue); color: #fff; }
+
+  /* ---------- stat cards ---------- */
+  .stat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+    gap: 14px;
+    margin-bottom: 26px;
+  }
+  .stat-card {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    padding: 14px 16px;
+  }
+  .stat-card .stat-icon { color: var(--blue); margin-bottom: 8px; }
+  .stat-card .stat-icon svg { width: 20px; height: 20px; }
+  .stat-card .stat-label { font-size: 11.5px; color: var(--mute); margin-bottom: 6px; }
+  .stat-card .stat-value { font-size: 26px; font-weight: 700; }
+  .stat-card.red .stat-value { color: var(--red); }
+  .stat-card.red .stat-icon { color: var(--red); }
+
+  /* ---------- generic card/panel ---------- */
+  .card {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    padding: 18px 20px;
+    margin-bottom: 14px;
+  }
+  .panel-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 14px;
+    margin-bottom: 14px;
+  }
+
+  /* ---------- security status cards ---------- */
+  .sec-status-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 14px;
+    margin-bottom: 22px;
+  }
+  .sec-status-card {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    padding: 14px 16px;
+  }
+  .sec-status-card .label { font-size: 11.5px; color: var(--mute); margin-bottom: 6px; }
+  .sec-status-card .value { font-size: 24px; font-weight: 700; margin-bottom: 4px; }
+  .sec-status-card .sub { font-size: 11px; color: var(--mute); }
+  .value.green { color: var(--green); }
+  .value.amber { color: var(--amber); }
+
+  /* ---------- phase list ---------- */
+  .phase-row {
+    display: grid;
+    grid-template-columns: 150px 1fr 46px;
+    align-items: center;
+    gap: 10px;
+    font-size: 12px;
+    padding: 7px 0;
+  }
+  .phase-row .dot { width: 7px; height: 7px; border-radius: 50%; display: inline-block; margin-right: 6px; }
+  .phase-bar-track { height: 6px; background: #eef0f2; border-radius: 3px; position: relative; }
+  .phase-bar-fill { height: 100%; border-radius: 3px; }
+  .phase-row .count { text-align: right; color: var(--ink); font-weight: 600; }
+
+  /* ---------- heatmap ---------- */
+  .heatmap-row { display: flex; gap: 2px; margin-bottom: 6px; }
+  .heat-cell { flex: 1; height: 26px; border-radius: 2px; }
+  .heatmap-axis { display: flex; justify-content: space-between; font-size: 10.5px; color: var(--mute); margin-bottom: 12px; }
+  .heat-legend { display: flex; gap: 14px; font-size: 11px; color: var(--mute); align-items: center; margin-bottom: 8px; }
+  .heat-legend .sw { width: 10px; height: 10px; border-radius: 2px; display: inline-block; margin-right: 4px; vertical-align: middle; }
+  .panel-caption { font-size: 11.5px; color: var(--mute); }
+
+  /* ---------- risk bars ---------- */
+  .risk-row { display: grid; grid-template-columns: 130px 1fr 26px; align-items: center; gap: 10px; font-size: 12px; padding: 6px 0; }
+  .risk-bar-track { height: 9px; background: #eef0f2; border-radius: 3px; }
+  .risk-bar-fill { height: 100%; border-radius: 3px; }
+  .risk-row .lvl { font-size: 11px; color: var(--mute); font-weight: 600; }
+
+  /* ---------- generic tables ---------- */
+  table { width: 100%; border-collapse: collapse; font-size: 12.3px; }
+  thead th {
+    background: #eef1f4;
+    text-align: left;
+    padding: 8px 10px;
+    font-weight: 700;
+    color: var(--ink);
+    border-bottom: 1px solid var(--line);
+    white-space: nowrap;
+  }
+  tbody td {
+    padding: 7px 10px;
+    border-bottom: 1px solid var(--line);
+    white-space: nowrap;
+  }
+  tbody tr:nth-child(even) { background: #fafbfc; }
+  tbody tr.row-selected { background: var(--blue) !important; color: #fff; }
+  tbody tr.row-selected a { color: #fff; text-decoration: underline; }
+  tbody tr.row-threat { background: var(--red-bg); }
+  td.remark { white-space: normal; max-width: 340px; color: var(--mute); font-size: 11.8px; }
+  td a { color: var(--blue); text-decoration: none; }
+  td a:hover { text-decoration: underline; }
+  .pill { display: inline-block; padding: 2px 9px; border-radius: 3px; font-size: 11px; font-weight: 700; }
+  .pill.threat { background: var(--red-bg-strong); color: #fff; }
+  .pill.success { color: var(--blue); font-weight: 700; }
+  .pill.remote { color: var(--ink); font-weight: 600; }
+
+  .table-scroll { overflow-x: auto; border: 1px solid var(--line); border-radius: 6px; }
+  .table-scroll table { border: none; }
+  .table-scroll .table-scroll { border: none; }
+
+  /* ---------- timeline ---------- */
+  .timeline-item {
+    display: grid;
+    grid-template-columns: 54px 1fr;
+    gap: 10px;
+    padding: 7px 0;
+    font-size: 12.3px;
+    border-bottom: 1px dashed var(--line);
+  }
+  .timeline-item:last-child { border-bottom: none; }
+  .timeline-item .time { color: var(--mute); }
+  .timeline-item .tag { color: var(--red); font-weight: 700; }
+  .timeline-item .desc { color: var(--ink); }
+  .timeline-item .desc a { color: var(--blue); }
+
+  /* ---------- logs filter toolbar ---------- */
+  .logs-toolbar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 12px;
+    font-size: 12.5px;
+  }
+  .logs-toolbar input[type="date"] {
+    border: 1px solid var(--line); border-radius: 4px; padding: 6px 8px; font-size: 12.3px;
+  }
+  .btn {
+    border: 1px solid var(--line);
+    background: #fff;
+    padding: 6px 14px;
+    border-radius: 4px;
+    font-size: 12.3px;
+    color: var(--ink);
+  }
+  .btn:hover { background: #f2f4f6; }
+  .btn.primary { background: var(--blue); border-color: var(--blue); color: #fff; }
+  .btn.primary:hover { background: var(--blue-dark); }
+  .btn.primary:disabled { opacity: .55; cursor: default; }
+  .chk-label { display: inline-flex; align-items: center; gap: 5px; color: var(--ink); }
+  .logs-filters {
+    display: flex; gap: 14px; margin-bottom: 14px; flex-wrap: wrap;
+  }
+  .logs-filters label { font-size: 12px; color: var(--mute); display: flex; flex-direction: column; gap: 4px; }
+  .logs-filters input[type="text"] {
+    border: 1px solid var(--line); border-radius: 4px; padding: 6px 8px; font-size: 12.3px; width: 180px;
+  }
+  .logs-footer {
+    margin-top: 10px; font-size: 11.8px; color: var(--mute);
+  }
+  .logs-footer .warn { color: var(--amber); font-weight: 600; }
+
+  /* ---------- auto-defense form ---------- */
+  .form-note { font-size: 12.3px; color: var(--mute); line-height: 1.7; margin-bottom: 14px; }
+  .form-note .warn-icon { color: var(--amber); }
+  .form-row { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; flex-wrap: wrap; }
+  .form-row input[type="number"] {
+    width: 70px; border: 1px solid var(--line); border-radius: 4px; padding: 6px 8px; font-size: 12.5px;
+  }
+  .form-row input:disabled { background: #f0f1f3; color: var(--mute-light); }
+  .form-block-label { font-size: 12.8px; font-weight: 600; margin: 4px 0 8px; }
+  textarea.cidr-box {
+    width: 100%; max-width: 380px; height: 110px;
+    border: 1px solid var(--line); border-radius: 4px; padding: 8px 10px;
+    font-family: "Cascadia Code", "Consolas", monospace; font-size: 12.3px;
+    resize: vertical;
+  }
+  .save-row { display: flex; align-items: center; gap: 12px; margin-top: 14px; }
+  .save-toast { font-size: 12.3px; color: var(--green); opacity: 0; transition: opacity .25s; }
+  .save-toast.show { opacity: 1; }
+  .form-disabled { opacity: .5; pointer-events: none; }
+
+  /* ---------- LINE page ---------- */
+  .line-steps { font-size: 13px; line-height: 2; margin: 16px 0 20px; max-width: 640px; }
+  .qr-box {
+    width: 150px; height: 150px;
+    border: 1px dashed var(--mute-light);
+    border-radius: 6px;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: 8px;
+    background: #fafbfc;
+    margin-bottom: 8px;
+  }
+  .qr-box canvas { image-rendering: pixelated; }
+  .qr-caption { font-size: 10.5px; color: var(--mute); max-width: 150px; text-align: center; line-height: 1.5; }
+  .line-panel { max-width: 460px; }
+  .line-panel label { font-size: 12px; color: var(--mute); display: block; margin-bottom: 6px; }
+  .line-id-row { display: flex; align-items: center; gap: 8px; margin-bottom: 12px; }
+  .line-id-row input {
+    flex: 1; border: 1px solid var(--line); border-radius: 4px; padding: 7px 9px;
+    font-family: "Cascadia Code", "Consolas", monospace; font-size: 12px;
+  }
+  .clear-x { color: var(--red); border: none; background: none; font-size: 15px; font-weight: 700; }
+  .line-btn-row { display: flex; gap: 10px; margin-bottom: 12px; }
+  .btn.outline { background: #fff; border: 1px solid var(--blue); color: var(--blue); }
+  .line-status { font-size: 12.3px; color: var(--green); min-height: 16px; }
+</style>
+</head>
+<body>
+
+<div class="app">
+
+  <div class="titlebar">
+    <span class="app-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><rect x="3" y="11" width="18" height="10" rx="1.5"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg></span>
+    applippli-key Console
+    <div class="win-controls">
+      <button class="win-btn" title="モックアップのため無効">&#8211;</button>
+      <button class="win-btn" title="モックアップのため無効">&#9633;</button>
+      <button class="win-btn close" title="モックアップのため無効">&#10005;</button>
+    </div>
+  </div>
+
+  <div class="app-header">applippli-key ログ/LINE通知設定</div>
+
+  <div class="layout">
+    <aside class="sidebar">
+      <div class="nav-label">Navigation / ナビゲーション</div>
+      <ul class="nav-list">
+        <li><button class="nav-item active" data-target="page-dashboard">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="8" height="8" rx="1.2"/><rect x="13" y="3" width="8" height="8" rx="1.2"/><rect x="3" y="13" width="8" height="8" rx="1.2"/><rect x="13" y="13" width="8" height="8" rx="1.2"/></svg>
+          ログダッシュボード
+        </button></li>
+        <li><button class="nav-item" data-target="page-security">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3l7 3v6c0 5-3 7.5-7 9-4-1.5-7-4-7-9V6l7-3z"/></svg>
+          セキュリティダッシュボード
+        </button></li>
+        <li><button class="nav-item" data-target="page-logs">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="5" y="3" width="14" height="18" rx="1.5"/><path d="M8 8h8M8 12h8M8 16h5"/></svg>
+          Logs
+        </button></li>
+        <li><button class="nav-item" data-target="page-autodefense">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="8"/><path d="M6.5 17.5l11-11"/></svg>
+          自動防御設定
+        </button></li>
+        <li><button class="nav-item" data-target="page-line">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 5h16v11H8l-4 4V5z"/></svg>
+          LINE通知設定
+        </button></li>
+      </ul>
+      <div class="sidebar-footer">
+        Version 2.1.8<br>
+        &copy;2026 applippli-key team
+      </div>
+    </aside>
+
+    <main class="main">
+
+      <!-- ============ PAGE 1: ログダッシュボード ============ -->
+      <section class="page active" id="page-dashboard">
+        <h1 class="page-title">Dashboard / ダッシュボード</h1>
+
+        <div class="tabs">
+          <button class="tab">本日</button>
+          <button class="tab">昨日</button>
+          <button class="tab">1週間</button>
+          <button class="tab">1カ月</button>
+          <button class="tab">3カ月</button>
+          <button class="tab">6カ月</button>
+          <button class="tab active">1年</button>
+        </div>
+
+        <div class="stat-grid">
+          <div class="stat-card">
+            <div class="stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="9" cy="8" r="3"/><path d="M2 20c1-3.5 3.5-5.5 7-5.5S15 16.5 16 20"/><circle cx="17" cy="9" r="2.4"/><path d="M15 20c.6-2.4 2-3.8 4-3.8"/></svg></div>
+            <div class="stat-label">登録ユーザー / Total Users</div>
+            <div class="stat-value">101</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M4 12l5 5L20 6"/></svg></div>
+            <div class="stat-label">成功 (1年) / Success</div>
+            <div class="stat-value">110</div>
+          </div>
+          <div class="stat-card red">
+            <div class="stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 6l12 12M18 6L6 18"/></svg></div>
+            <div class="stat-label">失敗 (1年) / Failed</div>
+            <div class="stat-value">16</div>
+          </div>
+          <div class="stat-card red">
+            <div class="stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3a5 5 0 00-5 5v3l-2 5h14l-2-5V8a5 5 0 00-5-5z"/><path d="M9 20a3 3 0 006 0"/></svg></div>
+            <div class="stat-label">不正ログイン検知 (1年) /</div>
+            <div class="stat-value">3</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="3.2"/><path d="M12 3v2.4M12 18.6V21M4.2 12H6.6M17.4 12h2.4M6.3 6.3l1.7 1.7M16 16l1.7 1.7M6.3 17.7L8 16M16 8l1.7-1.7"/></svg></div>
+            <div class="stat-label">ランサム脅威検知 (1年) /</div>
+            <div class="stat-value">224</div>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3 class="panel-title">期間別ログイン状況 / Login Summary</h3>
+          <svg viewBox="0 0 640 220" style="width:100%;height:220px;">
+            <line x1="40" y1="10" x2="40" y2="190" stroke="#e3e6ea"/>
+            <line x1="40" y1="190" x2="620" y2="190" stroke="#e3e6ea"/>
+            <text x="4" y="14" font-size="10" fill="#9aa2ad">87</text>
+            <text x="4" y="64" font-size="10" fill="#9aa2ad">65</text>
+            <text x="4" y="114" font-size="10" fill="#9aa2ad">43</text>
+            <text x="4" y="154" font-size="10" fill="#9aa2ad">21</text>
+            <text x="8" y="194" font-size="10" fill="#9aa2ad">0</text>
+            <text x="40" y="208" font-size="10" fill="#9aa2ad">2025/8</text>
+            <text x="180" y="208" font-size="10" fill="#9aa2ad">2025/10</text>
+            <text x="300" y="208" font-size="10" fill="#9aa2ad">2025/12</text>
+            <text x="410" y="208" font-size="10" fill="#9aa2ad">2026/2</text>
+            <text x="480" y="208" font-size="10" fill="#9aa2ad">2026/4</text>
+            <text x="560" y="208" font-size="10" fill="#9aa2ad">2026/6</text>
+            <polyline points="40,186 140,187 220,188 300,186 380,188 460,183 520,150 560,95 600,45" fill="none" stroke="#1e9e5c" stroke-width="2"/>
+            <polyline points="40,188 140,188 220,187 300,188 380,187 460,186 520,178 560,140 600,60" fill="none" stroke="#cf3742" stroke-width="2"/>
+            <circle cx="560" cy="95" r="3.5" fill="#1e9e5c"/>
+            <circle cx="600" cy="45" r="3.5" fill="#1e9e5c"/>
+            <circle cx="560" cy="140" r="3.5" fill="#cf3742"/>
+            <circle cx="600" cy="60" r="3.5" fill="#cf3742"/>
+            <rect x="500" y="8" width="12" height="2" fill="#1e9e5c"/>
+            <text x="516" y="13" font-size="10" fill="#4d5560">成功</text>
+            <rect x="548" y="8" width="12" height="2" fill="#cf3742"/>
+            <text x="564" y="13" font-size="10" fill="#4d5560">失敗</text>
+          </svg>
+        </div>
+
+        <div class="card" style="padding:0;">
+          <h3 class="panel-title" style="padding:18px 20px 0;">最近の認証イベント / Recent Authentication Events</h3>
+          <div class="table-scroll" style="border:none;margin-top:10px;">
+            <table>
+              <thead><tr><th>日時</th><th>イベント</th><th>結果</th><th>ユーザー</th><th>PC名</th><th>IPアドレス</th><th>方式</th></tr></thead>
+              <tbody id="dashEventsBody"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ PAGE 2: セキュリティダッシュボード ============ -->
+      <section class="page" id="page-security">
+        <h1 class="page-title">Security Dashboard / セキュリティダッシュボード</h1>
+
+        <div class="tabs">
+          <button class="tab">本日</button>
+          <button class="tab">昨日</button>
+          <button class="tab">1週間</button>
+          <button class="tab">1カ月</button>
+          <button class="tab active">3カ月</button>
+          <button class="tab">6カ月</button>
+          <button class="tab">1年</button>
+        </div>
+
+        <h3 class="block-title" style="margin-top:4px;">セキュリティステータス</h3>
+        <div class="sec-status-grid">
+          <div class="sec-status-card">
+            <div class="label">脅威レベル</div>
+            <div class="value green">LOW</div>
+            <div class="sub">過去24時間に脅威なし</div>
+          </div>
+          <div class="sec-status-card">
+            <div class="label">脅威潜行為中</div>
+            <div class="value amber">224</div>
+            <div class="sub">最終脅威潜行為: 15日前</div>
+          </div>
+          <div class="sec-status-card">
+            <div class="label">監視エンジン稼働状況</div>
+            <div class="value green">正常稼働</div>
+            <div class="sub">全監視エンジン稼働中（Sysmon）</div>
+          </div>
+        </div>
+
+        <h3 class="block-title">攻撃フェーズ別 検知件数（3カ月）</h3>
+        <div class="panel-grid">
+          <div class="card">
+            <h3 class="panel-title">フェーズ別検知（3カ月）</h3>
+            <div class="phase-row"><span><span class="dot" style="background:#cf3742"></span>バックアップ破壊</span><div class="phase-bar-track"><div class="phase-bar-fill" style="width:0%;background:#cf3742"></div></div><span class="count">0件</span></div>
+            <div class="phase-row"><span><span class="dot" style="background:#cf3742"></span>権限昇格・パスワード窃取</span><div class="phase-bar-track"><div class="phase-bar-fill" style="width:0%;background:#cf3742"></div></div><span class="count">0件</span></div>
+            <div class="phase-row"><span><span class="dot" style="background:#d98a2b"></span>防御無効化</span><div class="phase-bar-track"><div class="phase-bar-fill" style="width:92%;background:#d98a2b"></div></div><span class="count">224件</span></div>
+            <div class="phase-row"><span><span class="dot" style="background:#d98a2b"></span>偵察</span><div class="phase-bar-track"><div class="phase-bar-fill" style="width:20%;background:#d98a2b"></div></div><span class="count">32件</span></div>
+            <div class="phase-row"><span><span class="dot" style="background:#1f6feb"></span>不正ログイン（MFA）</span><div class="phase-bar-track"><div class="phase-bar-fill" style="width:32%;background:#1f6feb"></div></div><span class="count">63件</span></div>
+          </div>
+          <div class="card">
+            <h3 class="panel-title">時間帯別攻撃分布（3カ月）</h3>
+            <div class="heatmap-row" id="heatmapRow"></div>
+            <div class="heatmap-axis"><span>0時</span><span>6時</span><span>12時</span><span>18時</span></div>
+            <div class="heat-legend">
+              <span><span class="sw" style="background:#f4f5f6"></span>なし</span>
+              <span><span class="sw" style="background:#f5c9cc"></span>少</span>
+              <span><span class="sw" style="background:#e28089"></span>中</span>
+              <span><span class="sw" style="background:#b02a33"></span>集中</span>
+            </div>
+            <p class="panel-caption">攻撃のピーク: 8時台（3カ月で最多）</p>
+          </div>
+        </div>
+
+        <h3 class="block-title">PC別リスク 上位攻撃IPアドレス（3カ月）</h3>
+        <div class="panel-grid">
+          <div class="card">
+            <h3 class="panel-title">PC別リスクスコア（3カ月）</h3>
+            <div class="risk-row"><span>WIN-TR1N8SHFJFI</span><div class="risk-bar-track"><div class="risk-bar-fill" style="width:95%;background:#cf3742"></div></div><span class="lvl" style="color:#cf3742">高</span></div>
+            <div class="risk-row"><span>&mdash;</span><div class="risk-bar-track"><div class="risk-bar-fill" style="width:78%;background:#cf3742"></div></div><span class="lvl" style="color:#cf3742">高</span></div>
+            <div class="risk-row"><span>DEV-SV4</span><div class="risk-bar-track"><div class="risk-bar-fill" style="width:8%;background:#1f6feb"></div></div><span class="lvl">低</span></div>
+            <div class="risk-row"><span>B_307</span><div class="risk-bar-track"><div class="risk-bar-fill" style="width:6%;background:#1f6feb"></div></div><span class="lvl">低</span></div>
+            <div class="risk-row"><span>B_204</span><div class="risk-bar-track"><div class="risk-bar-fill" style="width:6%;background:#1f6feb"></div></div><span class="lvl">低</span></div>
+            <p class="panel-caption" style="margin-top:8px;">スコア = THREAT×10 + 不正ログイン×2 + 連続失敗×1</p>
+          </div>
+          <div class="card" style="padding:0;">
+            <h3 class="panel-title" style="padding:18px 20px 0;">上位攻撃IPアドレス</h3>
+            <div class="table-scroll" style="border:none;margin-top:10px;">
+              <table>
+                <thead><tr><th>IPアドレス</th><th>種別</th><th>件数</th></tr></thead>
+                <tbody>
+                  <tr class="row-selected"><td><a href="#">91.202.233.79</a></td><td>外部</td><td>110回</td></tr>
+                  <tr><td><a href="#">193.29.13.125</a></td><td>外部</td><td>87回</td></tr>
+                  <tr><td><a href="#">fe80::f795:91df:846b:...</a></td><td>社内</td><td>4回</td></tr>
+                  <tr><td><a href="#">91.238.181.92</a></td><td>外部</td><td>1回</td></tr>
+                  <tr><td><a href="#">91.238.181.0/24</a></td><td>外部</td><td>1回</td></tr>
+                  <tr><td><a href="#">88.214.25.0/24</a></td><td>外部</td><td>1回</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <h3 class="block-title">セキュリティイベントタイムライン（temp拡張子の命名規則で脅威と検出します。）</h3>
+        <div class="card">
+          <h3 class="panel-title">直近の脅威イベント</h3>
+          <div id="timelineList"></div>
+        </div>
+      </section>
+
+      <!-- ============ PAGE 3: Logs ============ -->
+      <section class="page" id="page-logs">
+        <h1 class="page-title">Logs / アクセスログ</h1>
+
+        <div class="logs-toolbar">
+          <span>期間：</span>
+          <input type="date" value="2026-06-16">
+          <span>&#12316;</span>
+          <input type="date" value="2026-07-16">
+          <button class="btn">集計</button>
+          <button class="btn" id="logClear">クリア</button>
+          <button class="btn">CSV出</button>
+          <label class="chk-label"><input type="checkbox" id="logErrorsOnly"> エラーのみ (FAIL / BAD-OTP / THREAT)</label>
+          <label class="chk-label"><input type="checkbox" id="logThreatOnly"> 脅威検知のみ</label>
+        </div>
+
+        <div class="logs-filters">
+          <label>ユーザー：<input type="text" id="logUser" placeholder=""></label>
+          <label>IPアドレス：<input type="text" id="logIp" placeholder=""></label>
+          <label>PC名：<input type="text" id="logPc" placeholder=""></label>
+        </div>
+
+        <div class="table-scroll">
+          <table>
+            <thead>
+              <tr><th>日付</th><th>時間</th><th>イベント</th><th>結果</th><th>ユーザー</th><th>PC名</th><th>IPアドレス</th><th>方式</th><th>備考</th><th>バージョン</th></tr>
+            </thead>
+            <tbody id="logsBody"></tbody>
+          </table>
+        </div>
+
+        <div class="logs-footer">
+          <span id="logsCount">465 件 / 全 507 件</span> (2026/06/16 &#12316; 2026/07/16)　<span class="warn">&#9888; 連続失敗 IP: 3 件 / OTP 連続攻撃: 1 件</span>
+        </div>
+      </section>
+
+      <!-- ============ PAGE 4: 自動防御設定 ============ -->
+      <section class="page" id="page-autodefense">
+        <h2 class="settings-title">自動防御設定</h2>
+        <p class="form-note">
+          <span class="warn-icon">&#9888;</span> 有効にすると、ネットワーク不正アクセスを検知した送信元IPをファイアウォールで自動的に一時ブロックします。<br>
+          社内共有IP等を誤ってブロックするリスクがあるため、除外レンジの設定を確認の上ご利用ください。
+        </p>
+
+        <label class="chk-label" style="margin-bottom:16px;display:inline-flex;">
+          <input type="checkbox" id="autoBlockEnable" checked> 自動IPブロックを有効にする
+        </label>
+
+        <div id="autoBlockFields">
+          <div class="form-row">
+            <span>ブロック期間（時間）</span>
+            <input type="number" id="blockHours" value="24" disabled>
+            <label class="chk-label"><input type="checkbox" id="blockUnlimited" checked> 無期限にする（自動解除しない）</label>
+          </div>
+
+          <div class="form-block-label">除外IPレンジ（1行に1つ、CIDR形式）</div>
+          <textarea class="cidr-box">10.0.0.0/8
+172.16.0.0/12
+192.168.0.0/16
+127.0.0.0/8</textarea>
+
+          <div class="save-row">
+            <button class="btn primary" id="autoDefenseSave">保存</button>
+            <span class="save-toast" id="autoDefenseToast">&#10003; 保存しました</span>
+          </div>
+        </div>
+
+        <h3 class="block-title">現在自動ブロック中のIP</h3>
+        <div class="table-scroll" style="max-width:900px;">
+          <table>
+            <thead><tr><th>IPアドレス</th><th>ブロック日時</th><th>解除予定</th><th></th></tr></thead>
+            <tbody><tr><td colspan="4" style="text-align:center;color:var(--mute);padding:40px 0;">現在ブロック中のIPはありません</td></tr></tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- ============ PAGE 5: LINE通知設定 ============ -->
+      <section class="page" id="page-line">
+        <h2 class="settings-title">LINE通知設定</h2>
+
+        <div class="line-steps">
+          &#9312;LINEで下記QRコードを読み取って友達追加してください。
+          <div class="qr-box">
+            <canvas id="qrDummy" width="96" height="96"></canvas>
+            <span class="qr-caption">ダミー画像のため読み取り不可</span>
+          </div>
+          &#9313;キーワード「通知」という文字をチャットで送ってください。<br>
+          &#9314;送られてきたLINE User IDを下記に貼り付けてください。<br>
+          　メール送信にて自分のPCへ送信するとコピペできます。<br>
+          &#9315;入力完了後に保存ボタンをクリックします。<br>
+          &#9316;テスト送信ボタンをクリックするとLINEへテスト通知が届きます。
+        </div>
+
+        <div class="card line-panel">
+          <label>LINE User ID</label>
+          <div class="line-id-row">
+            <input type="text" id="lineUserId" readonly>
+            <button class="clear-x" title="クリア">&#10005;</button>
+          </div>
+          <div class="line-btn-row">
+            <button class="btn primary" disabled>保存済</button>
+            <button class="btn outline" id="lineTestSend">テスト送信</button>
+          </div>
+          <div class="line-status" id="lineStatus"></div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+</div>
+
+<script>
+(function () {
+  /* ---------- sidebar navigation ---------- */
+  var navItems = document.querySelectorAll('.nav-item');
+  var pages = document.querySelectorAll('.page');
+  navItems.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      navItems.forEach(function (b) { b.classList.remove('active'); });
+      pages.forEach(function (p) { p.classList.remove('active'); });
+      btn.classList.add('active');
+      document.getElementById(btn.dataset.target).classList.add('active');
+    });
+  });
+
+  /* ---------- period tabs (per group, visual only) ---------- */
+  document.querySelectorAll('.tabs').forEach(function (group) {
+    group.querySelectorAll('.tab').forEach(function (tab) {
+      tab.addEventListener('click', function () {
+        group.querySelectorAll('.tab').forEach(function (t) { t.classList.remove('active'); });
+        tab.classList.add('active');
+      });
+    });
+  });
+
+  /* ---------- dashboard recent events table ---------- */
+  var dashEvents = [
+    ['2026/07/17 07:56:53', '2段階認証ログオン', 'success', 'owner', '', '', 'ワンタッチ', true],
+    ['2026/07/16 16:14:49', '2段階認証ログオン', 'success', 'owner', '', '', 'ワンタッチ', false],
+    ['2026/07/16 07:58:11', '2段階認証ログオン', 'success', 'owner', '', '', 'ワンタッチ', false],
+    ['2026/07/15 14:55:57', '2段階認証ログオン', 'success', 'owner', '', '', 'ワンタッチ', false],
+    ['2026/07/15 07:56:18', '2段階認証ログオン', 'success', 'owner', '', '', 'ワンタッチ', false],
+    ['2026/07/15 07:54:01', '2段階認証ログオン', 'success', 'owner', '', '', '手入力', false],
+    ['2026/07/15 07:49:12', '2段階認証ログオン', 'success', 'owner', '', '', '手入力', false],
+    ['2026/07/14 19:43:53', '2段階認証ログオン', 'success', 'owner', '', '', '手入力', false],
+    ['2026/07/14 18:08:20', 'ネットワーク不正アクセス', 'threat', 'machiwala accountant', 'B_307', '91.238.181.92', '', false],
+    ['2026/07/14 18:08:20', '自動IPブロック', 'threat', '', '', '91.238.181.0/24', '', false]
+  ];
+  var dashBody = document.getElementById('dashEventsBody');
+  dashEvents.forEach(function (row) {
+    var tr = document.createElement('tr');
+    if (row[7]) tr.classList.add('row-selected');
+    else if (row[2] === 'threat') tr.classList.add('row-threat');
+    var resultHtml = row[2] === 'threat'
+      ? '<span class="pill threat">THREAT</span>'
+      : '<span class="pill success">成功</span>';
+    var ipHtml = row[5] ? '<a href="#">' + row[5] + '</a>' : '';
+    tr.innerHTML = '<td>' + row[0] + '</td><td>' + row[1] + '</td><td>' + resultHtml + '</td>' +
+      '<td>' + row[3] + '</td><td>' + row[4] + '</td><td>' + ipHtml + '</td><td>' + row[6] + '</td>';
+    dashBody.appendChild(tr);
+  });
+
+  /* ---------- security heatmap ---------- */
+  var heat = document.getElementById('heatmapRow');
+  var levels = [0,0,0,0,0,0,0,1,3,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
+  var colors = ['#f4f5f6', '#f5c9cc', '#e28089', '#b02a33'];
+  levels.forEach(function (lv) {
+    var cell = document.createElement('div');
+    cell.className = 'heat-cell';
+    cell.style.background = colors[lv];
+    heat.appendChild(cell);
+  });
+
+  /* ---------- security timeline ---------- */
+  var timeline = [
+    ['18:08', 'ネットワーク不正アクセス / user: machiwala accountant / B_307 / IP: <a href="#">91.238.181.92</a>'],
+    ['18:08', '自動IPブロック / IP: <a href="#">91.238.181.0/24</a>'],
+    ['16:41', '自動IPブロック / IP: <a href="#">88.214.25.0/24</a>'],
+    ['16:41', 'ネットワーク不正アクセス / user: demo / B_204 / IP: <a href="#">88.214.25.124</a>'],
+    ['17:15', '自動IPブロック / IP: <a href="#">45.227.254.0/24</a>'],
+    ['17:15', 'ネットワーク不正アクセス / user: atendimento / B_106 / IP: <a href="#">45.227.254.156</a>'],
+    ['13:13', '自動IPブロック / IP: <a href="#">194.165.16.0/24</a>'],
+    ['13:13', 'ネットワーク不正アクセス / user: administrador / B_101 / IP: <a href="#">194.165.16.167</a>']
+  ];
+  var timelineList = document.getElementById('timelineList');
+  timeline.forEach(function (item) {
+    var div = document.createElement('div');
+    div.className = 'timeline-item';
+    div.innerHTML = '<span class="time">' + item[0] + '</span><span><span class="tag">&#9888; 脅威</span> &mdash; <span class="desc">' + item[1] + '</span></span>';
+    timelineList.appendChild(div);
+  });
+
+  /* ---------- logs table ---------- */
+  var logRows = [
+    ['2026/07/09','13:20:12','脅威検知 applippli_key_2.1.1.tmp','threat','owner','','','','ファイルタイプ偽装を検知：非実行系の拡張子「.tmp」だが実行ファイルとして動作',''],
+    ['2026/07/09','07:39:24','2段階認証ログオン','success','owner','','','ワンタッチ','',''],
+    ['2026/07/08','20:21:59','2段階認証ロック解除','success','owner','','124.159.159.86','手入力','',''],
+    ['2026/07/08','20:21:40','BYPASS','remote','owner','FMV-OWNER','124.159.159.86','RDP接続','',''],
+    ['2026/07/08','20:21:38','脅威検知 winlogon.exe','threat','SYSTEM','','','','正規Windowsプロセスへの偽装を検知（デジタル署名異常）',''],
+    ['2026/07/08','18:23:18','バージョン通知','success','','','','','有効期限: 08/10/2026','2.1.0'],
+    ['2026/07/08','18:22:27','2段階認証ログオン','success','owner','','','ワンタッチ','',''],
+    ['2026/07/08','17:18:26','脅威検知 ERPSystemSetup_1.0.2.tmp','threat','owner','','','','ファイルタイプ偽装を検知：非実行系の拡張子「.tmp」だが実行ファイルとして動作',''],
+    ['2026/07/08','07:42:26','2段階認証ログオン','success','owner','','','ワンタッチ','',''],
+    ['2026/07/08','06:49:30','脅威検知 Microsoft WdAiNisDrv Driver','threat','','','','','正規サービスを騙った疑いのある新規サービスを検知（サービス名偽装）',''],
+    ['2026/07/07','14:38:24','バージョン通知','success','','','','','有効期限: 08/10/2026','2.1.0'],
+    ['2026/07/07','14:37:36','2段階認証ログオン','success','owner','','','ワンタッチ','',''],
+    ['2026/07/07','07:38:08','2段階認証ログオン','success','owner','','','ワンタッチ','',''],
+    ['2026/07/06','09:32:01','ネットワーク不正アクセス','threat','admin','WIN-TR1N8S...','91.202.233.79','','ネットワーク連続失敗 10回/5分 / 接続元IP: 91.202.233.79 / PC名: WIN-TR1N8S...',''],
+    ['2026/07/06','09:31:00','ネットワーク不正アクセス','threat','admin','WIN-TR1N8S...','91.202.233.79','','ネットワーク連続失敗 10回/5分 / 接続元IP: 91.202.233.79 / PC名: WIN-TR1N8S...',''],
+    ['2026/07/06','09:30:02','ネットワーク不正アクセス','threat','admin','WIN-TR1N8S...','91.202.233.79','','ネットワーク連続失敗 10回/5分 / 接続元IP: 91.202.233.79 / PC名: WIN-TR1N8S...',''],
+    ['2026/07/06','09:24:00','ネットワーク不正アクセス','threat','admin','WIN-TR1N8S...','91.202.233.79','','ネットワーク連続失敗 10回/5分 / 接続元IP: 91.202.233.79 / PC名: WIN-TR1N8S...',''],
+    ['2026/07/06','09:20:05','ネットワーク不正アクセス','threat','administrator','WIN-TR1N8S...','91.202.233.79','','ネットワーク連続失敗 10回/5分 / 接続元IP: 91.202.233.79 / PC名: WIN-TR1N8S...',''],
+    ['2026/07/06','08:59:16','ネットワーク不正アクセス','threat','administrator','WIN-TR1N8S...','91.202.233.79','','ネットワーク連続失敗 10回/5分 / 接続元IP: 91.202.233.79 / PC名: WIN-TR1N8S...','']
+  ];
+  var logsBody = document.getElementById('logsBody');
+  logRows.forEach(function (row) {
+    var tr = document.createElement('tr');
+    tr.dataset.user = row[4].toLowerCase();
+    tr.dataset.ip = row[6].toLowerCase();
+    tr.dataset.pc = row[5].toLowerCase();
+    tr.dataset.result = row[3];
+    if (row[3] === 'threat') tr.classList.add('row-threat');
+    var resultHtml = row[3] === 'threat' ? '<span class="pill threat">脅威</span>'
+      : row[3] === 'remote' ? '<span class="pill remote">Remote</span>'
+      : '<span class="pill success">成功</span>';
+    var ipHtml = row[6] ? '<a href="#">' + row[6] + '</a>' : '';
+    tr.innerHTML = '<td>' + row[0] + '</td><td>' + row[1] + '</td><td>' + row[2] + '</td><td>' + resultHtml + '</td>' +
+      '<td>' + row[4] + '</td><td>' + row[5] + '</td><td>' + ipHtml + '</td><td>' + row[7] + '</td>' +
+      '<td class="remark">' + row[8] + '</td><td>' + row[9] + '</td>';
+    logsBody.appendChild(tr);
+  });
+
+  var logUser = document.getElementById('logUser');
+  var logIp = document.getElementById('logIp');
+  var logPc = document.getElementById('logPc');
+  var logErrorsOnly = document.getElementById('logErrorsOnly');
+  var logThreatOnly = document.getElementById('logThreatOnly');
+  var logsCount = document.getElementById('logsCount');
+
+  function applyLogFilter() {
+    var u = logUser.value.trim().toLowerCase();
+    var ip = logIp.value.trim().toLowerCase();
+    var pc = logPc.value.trim().toLowerCase();
+    var errOnly = logErrorsOnly.checked;
+    var threatOnly = logThreatOnly.checked;
+    var visible = 0;
+    logsBody.querySelectorAll('tr').forEach(function (tr) {
+      var ok = true;
+      if (u && tr.dataset.user.indexOf(u) === -1) ok = false;
+      if (ip && tr.dataset.ip.indexOf(ip) === -1) ok = false;
+      if (pc && tr.dataset.pc.indexOf(pc) === -1) ok = false;
+      if (errOnly && tr.dataset.result === 'success') ok = false;
+      if (threatOnly && tr.dataset.result !== 'threat') ok = false;
+      tr.style.display = ok ? '' : 'none';
+      if (ok) visible++;
+    });
+    logsCount.textContent = visible + ' 件 / 全 507 件';
+  }
+  [logUser, logIp, logPc].forEach(function (el) { el.addEventListener('input', applyLogFilter); });
+  [logErrorsOnly, logThreatOnly].forEach(function (el) { el.addEventListener('change', applyLogFilter); });
+  document.getElementById('logClear').addEventListener('click', function () {
+    logUser.value = ''; logIp.value = ''; logPc.value = '';
+    logErrorsOnly.checked = false; logThreatOnly.checked = false;
+    applyLogFilter();
+  });
+  applyLogFilter();
+
+  /* ---------- auto-defense form ---------- */
+  var autoBlockEnable = document.getElementById('autoBlockEnable');
+  var autoBlockFields = document.getElementById('autoBlockFields');
+  var blockUnlimited = document.getElementById('blockUnlimited');
+  var blockHours = document.getElementById('blockHours');
+
+  autoBlockEnable.addEventListener('change', function () {
+    autoBlockFields.classList.toggle('form-disabled', !autoBlockEnable.checked);
+  });
+  blockUnlimited.addEventListener('change', function () {
+    blockHours.disabled = blockUnlimited.checked;
+  });
+  document.getElementById('autoDefenseSave').addEventListener('click', function () {
+    var toast = document.getElementById('autoDefenseToast');
+    toast.classList.add('show');
+    setTimeout(function () { toast.classList.remove('show'); }, 2200);
+  });
+
+  /* ---------- LINE page ---------- */
+  function randomHex(len) {
+    var chars = '0123456789abcdef';
+    var out = '';
+    for (var i = 0; i < len; i++) out += chars[Math.floor(Math.random() * chars.length)];
+    return out;
+  }
+  document.getElementById('lineUserId').value = 'U' + randomHex(32);
+
+  document.getElementById('lineTestSend').addEventListener('click', function () {
+    var now = new Date();
+    var hh = String(now.getHours()).padStart(2, '0');
+    var mm = String(now.getMinutes()).padStart(2, '0');
+    var ss = String(now.getSeconds()).padStart(2, '0');
+    document.getElementById('lineStatus').textContent = '✓ LINE送信成功 ' + hh + ':' + mm + ':' + ss;
+  });
+
+  document.querySelector('.clear-x').addEventListener('click', function () {
+    document.getElementById('lineUserId').value = '';
+  });
+
+  /* dummy unreadable QR pattern - random noise, no finder markers, cannot be scanned */
+  var qrCanvas = document.getElementById('qrDummy');
+  var ctx = qrCanvas.getContext('2d');
+  var cells = 16;
+  var cellSize = qrCanvas.width / cells;
+  ctx.fillStyle = '#ffffff';
+  ctx.fillRect(0, 0, qrCanvas.width, qrCanvas.height);
+  ctx.fillStyle = '#1f2328';
+  for (var y = 0; y < cells; y++) {
+    for (var x = 0; x < cells; x++) {
+      if (Math.random() > 0.52) {
+        ctx.fillRect(x * cellSize, y * cellSize, cellSize, cellSize);
+      }
+    }
+  }
+})();
+</script>
+</body>
+</html>
