@@ -568,13 +568,16 @@
       }
       @media (max-width: 768px) {
         #top-banner { padding: 2rem 1.25rem 0.5rem; margin-bottom: 0; }
-        #top-banner .tb-inner { flex-direction: column; gap: 1.9rem; text-align: center; }
-        #top-banner .tb-text { text-align: center; order: 1; }
-        #top-banner .tb-chips { justify-content: center; }
-        #top-banner .tb-sols { justify-content: center; }
+        #top-banner .tb-inner { flex-direction: column; gap: 0; text-align: center; }
+        #top-banner .tb-text { display: contents; }
+        #top-banner .tb-headline { order: 1; }
+        #top-banner .tb-sub { order: 2; }
+        #top-banner .tb-phone { order: 3; margin: 1.6rem auto 0.4rem; }
+        #top-banner .tb-sols { order: 4; justify-content: center; }
+        #top-banner .tb-lead { order: 5; }
+        #top-banner .tb-chips { order: 6; justify-content: center; }
         #top-banner .tb-benefits { align-items: center; }
         #top-banner .tb-desc { margin-left: auto; margin-right: auto; border-left: none; padding-left: 0; }
-        #top-banner .tb-phone { order: 2; }
         #top-banner .tb-anim { width: 250px; height: 400px; margin: 0 auto; }
         #top-banner .tb-anim iframe { transform: scale(1.388); transform-origin: top left; }
       }
