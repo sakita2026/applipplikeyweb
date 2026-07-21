@@ -9,7 +9,7 @@
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body {
     font-family: 'Yu Gothic UI', 'BIZ UDPGothic', Meiryo, sans-serif;
-    font-size: 14px;
+    font-size:19px;
     color: #1a2340;
     background: #f5f7fa;
     line-height: 1.7;
@@ -36,7 +36,7 @@
     flex-shrink: 0;
   }
   .header h1 { font-size: 20px; font-weight: bold; }
-  .header p  { font-size: 12px; color: #8fa3c8; margin-top: 2px; }
+  .header p  { font-size:19px; color: #8fa3c8; margin-top: 2px; }
 
   /* 言語ボタン */
   #langBtn {
@@ -46,7 +46,7 @@
     color: #8fa3c8;
     border-radius: 6px;
     padding: 5px 14px;
-    font-size: 12px;
+    font-size:19px;
     cursor: pointer;
     flex-shrink: 0;
     letter-spacing: .04em;
@@ -69,7 +69,7 @@
     overflow-y: auto;
   }
   nav h2 {
-    font-size: 11px;
+    font-size:19px;
     color: #8fa3c8;
     text-transform: uppercase;
     letter-spacing: .08em;
@@ -78,7 +78,7 @@
   nav a {
     display: block;
     padding: 7px 20px;
-    font-size: 13px;
+    font-size:19px;
     color: #3a4a6b;
     text-decoration: none;
     border-left: 3px solid transparent;
@@ -92,7 +92,7 @@
   /* セクション */
   section { margin-bottom: 48px; }
   section h2 {
-    font-size: 18px;
+    font-size: 19px;
     font-weight: bold;
     color: #1a2340;
     border-left: 4px solid #2d6fe8;
@@ -100,7 +100,7 @@
     margin-bottom: 16px;
   }
   section h3 {
-    font-size: 15px;
+    font-size:19px;
     font-weight: bold;
     color: #2d6fe8;
     margin: 20px 0 10px;
@@ -120,7 +120,7 @@
     background: #2d6fe8;
     color: #fff;
     border-radius: 50%;
-    font-size: 12px;
+    font-size:19px;
     font-weight: bold;
     display: flex; align-items: center; justify-content: center;
   }
@@ -133,7 +133,7 @@
     border-radius: 8px;
     padding: 14px 18px;
     margin: 16px 0;
-    font-size: 13px;
+    font-size:19px;
     color: #92400e;
   }
   .note strong { display: block; margin-bottom: 4px; }
@@ -145,7 +145,7 @@
     border-radius: 8px;
     padding: 14px 18px;
     margin: 16px 0;
-    font-size: 13px;
+    font-size:19px;
     color: #1e40af;
   }
 
@@ -158,7 +158,7 @@
     border: 1px solid #c7d4f8;
     border-radius: 8px;
     padding: 10px 16px;
-    font-size: 13px;
+    font-size:19px;
     color: #2d6fe8;
     text-decoration: none;
     margin: 8px 4px;
@@ -172,7 +172,7 @@
   footer {
     text-align: center;
     padding: 24px;
-    font-size: 12px;
+    font-size:19px;
     color: #8fa3c8;
     border-top: 1px solid #e2e8f0;
     background: #fff;
@@ -180,6 +180,20 @@
 
   ul.bullet { padding-left: 20px; margin: 8px 0; }
   ul.bullet li { margin-bottom: 6px; }
+
+  .badge-new {
+    display: inline-block;
+    background: #ef4444;
+    color: #fff;
+    font-size:19px;
+    font-weight: bold;
+    letter-spacing: .03em;
+    padding: 2px 8px;
+    border-radius: 10px;
+    margin-left: 8px;
+    vertical-align: middle;
+  }
+  nav a .badge-new { margin-left: 6px; font-size:19px; padding: 1px 6px; }
 
   @media print {
     nav { display: none; }
@@ -210,8 +224,8 @@
 
   @media (max-width: 700px) {
     .header { padding: 14px 16px; gap: 10px; }
-    .header h1 { font-size: 15px; }
-    .header p  { font-size: 11px; }
+    .header h1 { font-size:19px; }
+    .header p  { font-size:19px; }
     #hamburger { display: block; }
 
     nav {
@@ -228,13 +242,13 @@
     .container { display: block; }
     main { padding: 20px 16px; max-width: 100%; }
 
-    section h2 { font-size: 16px; }
-    section h3 { font-size: 14px; }
+    section h2 { font-size:19px; }
+    section h3 { font-size:19px; }
 
     table { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; }
     img   { max-width: 100%; height: auto; }
 
-    pre, code { font-size: 11px; overflow-x: auto; display: block; }
+    pre, code { font-size:19px; overflow-x: auto; display: block; }
   }
 
   /* 検索ハイライト */
@@ -244,7 +258,7 @@
   #searchInput {
     width: 100%; padding: 7px 28px 7px 10px;
     border: 1px solid #dde4ee; border-radius: 6px;
-    font-size: 12px; color: #1a2340; outline: none;
+    font-size:19px; color: #1a2340; outline: none;
     font-family: inherit;
   }
   #searchInput:focus { border-color: #2d6fe8; }
@@ -430,6 +444,7 @@ window.addEventListener('load', function() {
 
 <!-- ===== ヘッダー ===== -->
 <div class="header">
+  <button id="hamburger" onclick="toggleNav()" aria-label="メニュー">☰</button>
   <div class="header-icon">
     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
          fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -444,10 +459,9 @@ window.addEventListener('load', function() {
       <span class="en">applippli-key Setup Manual</span>
     </h1>
     <p>
-      <span class="ja">更新日：</span><span class="en">Updated: </span>2026/6/30
+      <span class="ja">更新日：</span><span class="en">Updated: </span>2026/7/13
     </p>
   </div>
-  <button id="hamburger" onclick="toggleNav()" aria-label="メニュー">☰</button>
   <button id="langBtn" onclick="toggleLang()">EN</button>
 </div>
 
@@ -463,36 +477,39 @@ window.addEventListener('load', function() {
              placeholder="検索 / Search"
              oninput="doSearch(this.value)"
              style="width:100%;padding:7px 26px 7px 10px;border:1px solid #dde4ee;
-                    border-radius:6px;font-size:12px;color:#1a2340;outline:none;
+                    border-radius:6px;font-size:19px;color:#1a2340;outline:none;
                     font-family:inherit;box-sizing:border-box;">
       <span id="searchClear" onclick="clearSearch()"
             style="position:absolute;right:8px;top:50%;margin-top:-8px;
-                   cursor:pointer;color:#9aa3b8;font-size:14px;display:none;
+                   cursor:pointer;color:#9aa3b8;font-size:19px;display:none;
                    line-height:1;user-select:none;">&#10005;</span>
     </div>
-    <div id="searchCount" style="font-size:11px;margin-top:4px;padding-left:2px;min-height:15px;"></div>
+    <div id="searchCount" style="font-size:19px;margin-top:4px;padding-left:2px;min-height:15px;"></div>
   </div>
   <h2><span class="ja">目次</span><span class="en">Contents</span></h2>
   <a href="#intro"><span class="ja">はじめに</span><span class="en">Introduction</span></a>
-  <a href="#changelog"><span class="ja">変更履歴</span><span class="en">Changelog</span></a>
-  <a href="#caution"><span class="ja">使用上の注意事項</span><span class="en">Important Notes</span></a>
-  <a href="#app-download"><span class="ja">OTPアプリのダウンロード</span><span class="en">Download OTP App</span></a>
+<a href="#app-download"><span class="ja">applippli Authenticatorのインストール</span><span class="en">Install applippli Authenticator</span></a>
   <a href="#installer-download"><span class="ja">インストーラーダウンロード</span><span class="en">Download Installer</span></a>
   <a href="#install"><span class="ja">インストール手順</span><span class="en">Installation</span></a>
   <a href="#emergency"><span class="ja">緊急ログオンの設定</span><span class="en">Emergency Logon Setup</span></a>
   <a href="#activate"><span class="ja">アクティベーションキーの登録</span><span class="en">Activation Key</span></a>
   <a href="#otp-setup"><span class="ja">ワンタイムパスワードの設定</span><span class="en">OTP Setup</span></a>
-  <a href="#otp-login"><span class="ja">OTPによるログイン</span><span class="en">Login with OTP</span></a>
+  <a href="#otp-login"><span class="ja">ワンタイムパスワードによるログイン</span><span class="en">Login with OTP</span></a>
+  <a href="#onetouch"><span class="ja">ワンタッチログインの設定</span><span class="en">One-Touch Login Setup</span><span class="badge-new">NEW</span></a>
   <a href="#emergency-use"><span class="ja">緊急ログオンの使用方法</span><span class="en">Using Emergency Logon</span></a>
   <a href="#user-switch"><span class="ja">他ユーザーへの切り替え</span><span class="en">Switching Users</span></a>
   <a href="#uninstall"><span class="ja">アンインストール手順</span><span class="en">Uninstall</span></a>
   <a href="#forgot-ms"><span class="ja">パスワードを忘れた場合（MSアカウント）</span><span class="en">Forgot Password (MS Account)</span></a>
   <a href="#forgot-local"><span class="ja">パスワードを忘れた場合（ローカル）</span><span class="en">Forgot Password (Local)</span></a>
   <a href="#account-type"><span class="ja">アカウント種別の判別方法</span><span class="en">Identify Account Type</span></a>
-  <a href="#upgrade"><span class="ja">Ver 2 へのアップグレード</span><span class="en">Upgrade to Ver 2</span></a>
-  <a href="#onetouch"><span class="ja">ワンタッチログインの設定</span><span class="en">One-Touch Login Setup</span></a>
-  <a href="#logviewer"><span class="ja">ログビューア</span><span class="en">Log Viewer</span></a>
-  <a href="#line-notify" style="padding-left:24px;font-size:12px;"><span class="ja">└ LINE 通知</span><span class="en">└ LINE Notification</span></a>
+  <a href="#upgrade"><span class="ja">Ver1をご利用中のお客様</span><span class="en">For Customers Using Ver 1</span></a>
+  <a href="#auto-update"><span class="ja">applippli-key自動バージョンアップ機能</span><span class="en">applippli-key Auto Version Update</span><span class="badge-new">NEW</span></a>
+  <a href="#logviewer"><span class="ja">applippli-keyログ</span><span class="en">applippli-key Log</span><span class="badge-new">NEW</span></a>
+  <a href="#log-dashboard" style="padding-left:24px;font-size:19px;"><span class="ja">└ ログダッシュボード</span><span class="en">└ Log Dashboard</span></a>
+  <a href="#security-dashboard" style="padding-left:24px;font-size:19px;"><span class="ja">└ セキュリティダッシュボード</span><span class="en">└ Security Dashboard</span></a>
+  <a href="#logs" style="padding-left:24px;font-size:19px;"><span class="ja">└ Logs</span><span class="en">└ Logs</span></a>
+  <a href="#auto-block" style="padding-left:24px;font-size:19px;"><span class="ja">└ 自動防御設定</span><span class="en">└ Auto Block Settings</span></a>
+  <a href="#line-notify" style="padding-left:24px;font-size:19px;"><span class="ja">└ LINE通知設定</span><span class="en">└ LINE Notification</span></a>
   <a href="#faq">FAQ</a>
 </nav>
 
@@ -502,97 +519,55 @@ window.addEventListener('load', function() {
   <!-- はじめに / Introduction -->
   <section id="intro">
     <h2><span class="ja">はじめに</span><span class="en">Introduction</span></h2>
-    <p>
-      <span class="ja">この度は弊社「applippli-key」のご利用、誠にありがとうございます。<br>
-      ご利用の前に本製品についての利用規約をご一読の上、お進みください。</span>
-      <span class="en">Thank you for choosing applippli-key.<br>
-      Please read the terms of use for this product before proceeding.</span>
-    </p>
-    <div class="info">
-      <span class="ja">applippli-key のご利用には、EULA（ソフトウェア使用許諾契約書）への同意が必要となります。
-      （EULA はプログラムインストール時に表示されます。）</span>
-      <span class="en">Use of applippli-key requires agreement to the EULA (End User License Agreement),
-      which is displayed during installation.</span>
-    </div>
-    <h3><span class="ja">本マニュアルについて</span><span class="en">About This Manual</span></h3>
     <ul class="bullet">
-      <li><span class="ja">掲載されているイメージ画像は予告なく変更される場合があります。</span><span class="en">Screenshots shown in this manual are subject to change without notice.</span></li>
-      <li><span class="ja">画面表示や操作手順は、ソフトウェアのバージョンによって異なる場合があります。</span><span class="en">Screen displays and procedures may vary depending on the software version.</span></li>
-      <li><span class="ja">当製品の仕様は予告なく変更されることがあります。</span><span class="en">Product specifications are subject to change without notice.</span></li>
-      <li><span class="ja">本マニュアルの内容は改善のために変更される場合があります。</span><span class="en">The contents of this manual may be updated for improvements.</span></li>
       <li><span class="ja">本マニュアルの記載内容に基づいて発生した損害について、当社は一切の責任を負いません。操作は自己責任で行ってください。</span><span class="en">We accept no liability for any damages arising from the use of this manual. Operate at your own risk.</span></li>
       <li><span class="ja">本マニュアルの無断転載・複製を禁じます。</span><span class="en">Unauthorized reproduction or copying of this manual is prohibited.</span></li>
+      <li><span class="ja">インストールは、対象PCの<strong>管理者権限(インストール権限)を持つ方</strong>が行ってください。管理者権限(インストール権限)がない方ではインストールができません。</span><span class="en">Installation must be performed by a user with <strong>administrator privileges</strong> on the PC (installation is not possible without administrator privileges).</span></li>
+      <li><span class="ja">インストールを始める前に、すべてのプログラムを終了してください。また、常駐プログラムが動作していると、正しくインストールできない場合があります。</span><span class="en">Close all running programs before starting the installation. Also, background (resident) programs may interfere with the installation.</span></li>
     </ul>
+    <div class="note">
+      <strong>
+        <span class="ja">⚠ PINコードおよび顔認証を使用してログインしている方</span>
+        <span class="en">⚠ For users logging in with a PIN code or facial recognition</span>
+      </strong>
+      <span class="ja">PCへログインするパスワードを把握している方はそのままお進みください。</span>
+      <span class="en">If you know your PC login password, please proceed as is.</span>
+      <p class="ja" style="margin-top:.9em;"><b>⚠ PCへログインするパスワードを忘れてしまった方</b><br>
+      ご入手の上、次の手順にお進みください。<br>
+      <a href="#forgot-ms">Windows パスワードを忘れた場合（マイクロソフトアカウント）</a><br>
+      <a href="#forgot-local">Windows パスワードを忘れた場合（ローカルアカウント）</a></p>
+      <p class="en" style="margin-top:.9em;"><b>⚠ If you have forgotten your PC login password</b><br>
+      Once obtained, proceed to the next step.<br>
+      <a href="#forgot-ms">If you forgot your Windows password (Microsoft account)</a><br>
+      <a href="#forgot-local">If you forgot your Windows password (Local account)</a></p>
+    </div>
   </section>
 
   <!-- 変更履歴 / Changelog -->
-  <section id="changelog">
-    <h2><span class="ja">変更履歴</span><span class="en">Changelog</span></h2>
-
-    <h3>applippli-key V1</h3>
-
-    <h3>applippli-key V2</h3>
-    <ul class="bullet">
-      <li><span class="ja">UI を変更しました。</span><span class="en">The UI has been updated.</span></li>
-      <li><span class="ja">ワンタッチログイン機能を追加しました。（新機能）</span><span class="en">One-Touch Login has been added. (New)</span></li>
-      <li><span class="ja">applippli-key ログ機能を追加しました。（新機能）</span><span class="en">applippli-key log feature has been added. (New)</span></li>
-    </ul>
-  </section>
+  
 
   <!-- 使用上の注意事項 / Important Notes -->
-  <section id="caution">
-    <h2><span class="ja">使用上の注意事項（必ずお読みください）</span><span class="en">Important Notes (Please Read)</span></h2>
-    <div class="note">
-      <strong>
-        <span class="ja">⚠ PINコードを使用してログインしている方は必ずお読みください</span>
-        <span class="en">⚠ Important: For users logging in with a PIN code</span>
-      </strong>
-      <span class="ja">PINコードを使用しており、Windows パスワードを把握している場合は、本書 P10 の手順に従って操作してください。<br>
-      Windows パスワードを忘れてしまった方は、Windows パスワードをリセットした後、本書 P10 記載の通りでお進みください。</span>
-      <span class="en">If you use a PIN code and know your Windows password, follow the instructions on page 10 of this manual.<br>
-      If you have forgotten your Windows password, reset it first and then proceed as described on page 10.</span>
-    </div>
-    <h3><span class="ja">インストール・初期設定の注意事項</span><span class="en">Installation &amp; Setup Notes</span></h3>
-    <ul class="bullet">
-      <li><span class="ja">applippli-key の OS 対応状況については公式サイトを参照してください。</span><span class="en">Refer to the official website for supported operating systems.</span></li>
-      <li><span class="ja">必要なソフトウェアとハードウェアについては、製品仕様を参照してください。</span><span class="en">Refer to the product specifications for required software and hardware.</span></li>
-      <li><span class="ja">applippli-key をセットアップする PC の <strong>管理者権限を持っている方</strong>が、インストール作業を行ってください。</span><span class="en">Installation must be performed by a user with <strong>administrator privileges</strong> on the PC.</span></li>
-      <li><span class="ja">管理者権限がない場合はインストールできません。</span><span class="en">Installation is not possible without administrator privileges.</span></li>
-      <li><span class="ja">インストールを始める前に、すべてのプログラムを終了してください。</span><span class="en">Close all running programs before starting the installation.</span></li>
-      <li><span class="ja">常駐プログラムが動作していると、正しくインストールできない場合があります。</span><span class="en">Background (resident) programs may interfere with the installation.</span></li>
-      <li><span class="ja">インストールや設定で問題が解決しない場合は、本マニュアルの最後に記載しているトラブルシューティングページのリンクをご活用ください。</span><span class="en">If issues persist after installation or setup, refer to the troubleshooting page link at the end of this manual.</span></li>
-    </ul>
-  </section>
+  
 
   <!-- OTPアプリ / Download OTP App -->
   <section id="app-download">
-    <h2><span class="ja">ワンタイムパスワードアプリをダウンロード</span><span class="en">Download the OTP Authenticator App</span></h2>
+    <h2><span class="ja">applippli Authenticatorをダウンロード</span><span class="en">Download applippli Authenticator</span></h2>
     <h3><span class="ja">【iPhone 端末の場合】</span><span class="en">For iPhone</span></h3>
     <p>
-      <span class="ja">下記いずれかのアプリをインストールしてください。App Store で QR コードを読み取るか、アプリ名で検索してください。</span>
-      <span class="en">Install one of the apps below. Search by name on the App Store or scan the QR code.</span>
+      <span class="ja">iPhoneでApp Storeアプリを開いて検索欄に「applippli Authenticator」もしくは「アプリップリ　オーセンティケーター」と入力して検索してください。下記アイコンが検索で表示されます。タップしてインストールしてくさだい。</span>
+      <span class="en">Open the App Store app on your iPhone and search for "applippli Authenticator" in the search field. The icon shown below will appear in the search results. Tap it to install.</span>
     </p>
     <div style="margin: 12px 0;">
-      <a class="app-link" href="https://apps.apple.com/jp/app/google-authenticator/id388497605">
-        📱 Google Authenticator（iOS）
-      </a>
-      <a class="app-link" href="https://apps.apple.com/jp/app/microsoft-authenticator/id983156458">
-        📱 Microsoft Authenticator（iOS）
-      </a>
+      <img src="img/160.png" alt="applippli AuthenticatorアプリのApp Store検索結果" style="max-width:100%;border:1px solid #dde4ee;border-radius:6px;box-shadow:0 2px 6px rgba(0,0,0,0.08);">
     </div>
 
     <h3><span class="ja">【Android 端末の場合】</span><span class="en">For Android</span></h3>
     <p>
-      <span class="ja">下記いずれかのアプリをインストールしてください。Google Play で QR コードを読み取るか、アプリ名で検索してください。</span>
-      <span class="en">Install one of the apps below. Search by name on Google Play or scan the QR code.</span>
+      <span class="ja">アンドロイド端末でGoogle Play Storeアプリを開いて検索欄に「applippli Authenticator」もしくは「アプリップリ　オーセンティケーター」と入力して検索してください。下記アイコンが検索で表示されます。タップしてインストールしてくさだい。</span>
+      <span class="en">Open the Google Play Store app on your Android device and search for "applippli Authenticator" in the search field. The icon shown below will appear in the search results. Tap it to install.</span>
     </p>
     <div style="margin: 12px 0;">
-      <a class="app-link" href="https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2">
-        📱 Google Authenticator（Android）
-      </a>
-      <a class="app-link" href="https://play.google.com/store/apps/details?id=com.azure.authenticator">
-        📱 Microsoft Authenticator（Android）
-      </a>
+      <img src="img/160.png" alt="applippli AuthenticatorアプリのGoogle Play検索結果" style="max-width:100%;border:1px solid #dde4ee;border-radius:6px;box-shadow:0 2px 6px rgba(0,0,0,0.08);">
     </div>
   </section>
 
@@ -615,11 +590,29 @@ window.addEventListener('load', function() {
       <li><span class="step-num">2</span><span class="step-txt"><span class="ja">自己解凍画面が出ますので指示にしたがってお進みください。自己解凍が終了すると、applippli-key インストール画面が表示されます。</span><span class="en">Follow the self-extraction prompts. The applippli-key installation screen will appear once extraction is complete.</span></span></li>
       <li><span class="step-num">3</span><span class="step-txt"><span class="ja">言語の選択画面が表示されたら、一覧からご希望の言語を選択して <strong>［OK］</strong> をクリックします。</span><span class="en">When the language selection screen appears, choose your preferred language and click <strong>[OK]</strong>.</span></span></li>
       <li><span class="step-num">4</span><span class="step-txt"><span class="ja">セットアップ開始画面になったら、画面右下の <strong>［次へ］</strong> ボタンをクリックします。</span><span class="en">On the setup start screen, click <strong>[Next]</strong> at the bottom right.</span></span></li>
+      <li style="list-style:none;display:block;margin:12px 0 16px;">
+        <img src="img/102.png" alt="セットアップ開始画面" style="max-width:100%;border:1px solid #dde4ee;border-radius:6px;box-shadow:0 2px 6px rgba(0,0,0,0.08);">
+      </li>
       <li><span class="step-num">5</span><span class="step-txt"><span class="ja">当製品の使用許諾書をご確認の上、「同意する」にチェックを入れ、<strong>［次へ］</strong> をクリックします。</span><span class="en">Read the license agreement, check "I agree," and click <strong>[Next]</strong>.</span></span></li>
+      <li style="list-style:none;display:block;margin:12px 0 16px;">
+        <img src="img/103.png" alt="使用許諾書画面" style="max-width:100%;border:1px solid #dde4ee;border-radius:6px;box-shadow:0 2px 6px rgba(0,0,0,0.08);">
+      </li>
       <li><span class="step-num">6</span><span class="step-txt"><span class="ja">スタートメニューフォルダーの指定画面は、そのまま <strong>［次へ］</strong> をクリックします。</span><span class="en">On the Start Menu folder screen, click <strong>[Next]</strong> to proceed with the default.</span></span></li>
+      <li style="list-style:none;display:block;margin:12px 0 16px;">
+        <img src="img/104.png" alt="スタートメニューフォルダー指定画面" style="max-width:100%;border:1px solid #dde4ee;border-radius:6px;box-shadow:0 2px 6px rgba(0,0,0,0.08);">
+      </li>
       <li><span class="step-num">7</span><span class="step-txt"><span class="ja">デスクトップ上にアイコンを置く場合は、「デスクトップ上にアイコンを作成する」にチェックを入れ、<strong>［次へ］</strong> をクリックします。</span><span class="en">To add a desktop icon, check "Create a desktop icon" and click <strong>[Next]</strong>.</span></span></li>
+      <li style="list-style:none;display:block;margin:12px 0 16px;">
+        <img src="img/105.png" alt="デスクトップアイコン作成画面" style="max-width:100%;border:1px solid #dde4ee;border-radius:6px;box-shadow:0 2px 6px rgba(0,0,0,0.08);">
+      </li>
       <li><span class="step-num">8</span><span class="step-txt"><span class="ja">指定項目を確認し、<strong>［インストール］</strong> をクリックすると、applippli-key のインストールが開始されます。</span><span class="en">Review the settings and click <strong>[Install]</strong> to begin installation.</span></span></li>
+      <li style="list-style:none;display:block;margin:12px 0 16px;">
+        <img src="img/106.png" alt="インストール確認画面" style="max-width:100%;border:1px solid #dde4ee;border-radius:6px;box-shadow:0 2px 6px rgba(0,0,0,0.08);">
+      </li>
       <li><span class="step-num">9</span><span class="step-txt"><span class="ja"><strong>［完了］</strong> をクリックします。applippli-key 設定画面が開くので、次ページを参照し、設定をします。</span><span class="en">Click <strong>[Finish]</strong>. The applippli-key settings screen will open — refer to the next section to complete setup.</span></span></li>
+      <li style="list-style:none;display:block;margin:12px 0 16px;">
+        <img src="img/108.png" alt="インストール完了画面" style="max-width:100%;border:1px solid #dde4ee;border-radius:6px;box-shadow:0 2px 6px rgba(0,0,0,0.08);">
+      </li>
     </ul>
   </section>
 
@@ -636,7 +629,7 @@ window.addEventListener('load', function() {
         <span class="en">Select a security question from the drop-down and enter your answer in the field on the right.<br><em>※ Use half-width alphanumeric characters only.</em></span>
       </span></li>
       <li style="list-style:none;display:block;margin:12px 0 16px;">
-        <img src="helpimg/601.png" alt="緊急ログオンの設定画面"
+        <img src="img/601.png" alt="緊急ログオンの設定画面"
              style="max-width:100%;border:1px solid #dde4ee;border-radius:6px;box-shadow:0 2px 6px rgba(0,0,0,0.08);">
       </li>
       <li><span class="step-num">2</span><span class="step-txt">
@@ -663,10 +656,18 @@ window.addEventListener('load', function() {
     </div>
     <ul class="steps">
       <li><span class="step-num">1</span><span class="step-txt">
-        <span class="ja">applippli-key を開き、画面左下の <strong>「アクティベート」</strong> をクリックします。</span>
-        <span class="en">Open applippli-key and click <strong>"Activate"</strong> at the bottom left of the screen.</span>
+        <span class="ja">applippli-key を起動すると「アクティベート」してくださいの画面が表示されます。</span>
+        <span class="en">When you launch applippli-key, an "Activate" screen will be displayed.</span>
       </span></li>
+      <li style="list-style:none;display:block;margin:12px 0 16px;">
+        <img src="img/136.png" alt="アクティベーションしてください画面"
+             style="max-width:100%;border:1px solid #dde4ee;border-radius:6px;box-shadow:0 2px 6px rgba(0,0,0,0.08);">
+      </li>
       <li><span class="step-num">2</span><span class="step-txt">
+        <span class="ja">アクティベートボタンをクリックします。</span>
+        <span class="en">Click the Activate button.</span>
+      </span></li>
+      <li><span class="step-num">3</span><span class="step-txt">
         <span class="ja">「applippli-key アクティベート」の画面が表示されたら、アクティベーションキーを枠内に入力します。入力が完了したら <strong>［OK］</strong> をクリックします。<br>
         <em>※ アクティベーションキーは、マイページよりご確認いただけます。</em><br>
         <em>（マイページ → ［契約状況一覧］ → 契約中の applippli-key ［詳細］ → ユーザー数 ［詳細］）</em><br>
@@ -676,7 +677,11 @@ window.addEventListener('load', function() {
         <em>(My Page → [Contract List] → applippli-key [Details] → Users [Details])</em><br>
         <em>※ You can copy and paste the activation key.</em></span>
       </span></li>
-      <li><span class="step-num">3</span><span class="step-txt">
+      <li style="list-style:none;display:block;margin:12px 0 16px;">
+        <img src="img/137.png" alt="アクティベート画面"
+             style="max-width:100%;border:1px solid #dde4ee;border-radius:6px;box-shadow:0 2px 6px rgba(0,0,0,0.08);">
+      </li>
+      <li><span class="step-num">4</span><span class="step-txt">
         <span class="ja">アクティベーション完了のメッセージが表示されたら <strong>［OK］</strong> をクリックして閉じます。</span>
         <span class="en">When the activation success message appears, click <strong>[OK]</strong> to close.</span>
       </span></li>
@@ -691,18 +696,28 @@ window.addEventListener('load', function() {
         <span class="ja"><strong>［ワンタイムパスワードの設定］</strong> をクリックします。</span>
         <span class="en">Click <strong>[OTP Setup]</strong>.</span>
       </span></li>
+      <li style="list-style:none;display:block;margin:12px 0 16px;">
+        <img src="img/138.png" alt="ワンタイムパスワードの設定画面"
+             style="max-width:100%;border:1px solid #dde4ee;border-radius:6px;box-shadow:0 2px 6px rgba(0,0,0,0.08);">
+      </li>
       <li><span class="step-num">2</span><span class="step-txt">
-        <span class="ja"><strong>［QRコード表示］</strong> をクリックします。ブラウザが起動して QR コードが表示されます。表示された QR コードをワンタイムパスワードアプリの QR コード読取機能を使用してスキャンしてください。<br><em>※ スマートフォン標準のカメラでは読み取りできません。</em></span>
-        <span class="en">Click <strong>[Show QR Code]</strong>. A browser window will open displaying a QR code. Scan it with your OTP authenticator app.<br><em>※ The device's default camera cannot be used to scan.</em></span>
+        <span class="ja"><strong>［QRコード表示］</strong> をクリックします。ブラウザが起動して QR コードが表示されます。表示された QR コードをapplippli-Authenticatorを起動して＋をタップしてQRコードをスキャンしてください。<br><em>※ スマートフォン標準のカメラでは読み取りできません。</em></span>
+        <span class="en">Click <strong>[Show QR Code]</strong>. A browser window will open displaying a QR code. Open applippli-Authenticator and tap + to scan the displayed QR code.<br><em>※ The device's default camera cannot be used to scan.</em></span>
       </span></li>
+      <li style="list-style:none;display:block;margin:12px 0 16px;">
+        <img src="img/113.png" alt="QRコード表示画面" style="max-width:100%;border:1px solid #dde4ee;border-radius:6px;box-shadow:0 2px 6px rgba(0,0,0,0.08);">
+      </li>
       <li><span class="step-num">3</span><span class="step-txt">
-        <span class="ja">通常 PC にログインするときの Windows パスワードを入力します。入力後、<strong>［ワンタイムパスワードの設定］</strong> をクリックして設定を完了します。</span>
-        <span class="en">Enter your Windows login password, then click <strong>[Set OTP]</strong> to complete setup.</span>
+        <span class="ja">通常 PC にログインするときの Windows パスワードを入力します。入力後、<strong>［設定］ボタン</strong> をクリックして設定を完了します。</span>
+        <span class="en">Enter your Windows login password, then click the <strong>[Set]</strong> button to complete setup.</span>
       </span></li>
       <li><span class="step-num">4</span><span class="step-txt">
         <span class="ja">ワンタイムパスワード設定が完了すると、OTP 認証有効のバッジが表示されます。</span>
         <span class="en">Once OTP setup is complete, the OTP authentication enabled badge will appear.</span>
       </span></li>
+      <li style="list-style:none;display:block;margin:12px 0 16px;">
+        <img src="img/145.png" alt="OTP認証有効バッジ表示画面" style="max-width:100%;border:1px solid #dde4ee;border-radius:6px;box-shadow:0 2px 6px rgba(0,0,0,0.08);">
+      </li>
     </ul>
     <div class="note">
       <strong>
@@ -735,6 +750,69 @@ window.addEventListener('load', function() {
     </div>
   </section>
 
+  <!-- ワンタッチログイン / One-Touch Login -->
+  <section id="onetouch">
+    <h2><span class="ja">ワンタッチログインの設定</span><span class="en">One-Touch Login Setup</span><span class="badge-new"><span class="ja">新機能</span><span class="en">NEW</span></span></h2>
+    <div class="info">
+      <span class="ja">ワンタッチログインは applippli-key Ver 2 から追加された機能です。スマートフォンアプリと連携することで、スマートフォンのワンタッチ操作だけで Windows にログオンできます。</span>
+      <span class="en">One-Touch Login is a new feature in applippli-key Ver 2. By pairing with the smartphone app, you can log on to Windows with a single tap on your phone.</span>
+    </div>
+
+    <h3><span class="ja">事前準備</span><span class="en">Prerequisites</span></h3>
+    <ul class="steps">
+      <li><span class="step-num">1</span><span class="step-txt">
+        <span class="ja">スマートフォンに <strong>applippli-key アプリ</strong>（iOS / Android）をインストールします。</span>
+        <span class="en">Install the <strong>applippli-key app</strong> (iOS / Android) on your smartphone.</span>
+      </span></li>
+      <li><span class="step-num">2</span><span class="step-txt">
+        <span class="ja">applippli-key Ver 2 がインストール済みであることを確認します。</span>
+        <span class="en">Confirm that applippli-key Ver 2 is installed on your PC.</span>
+      </span></li>
+    </ul>
+
+    <h3><span class="ja">ペアリング手順</span><span class="en">Pairing Steps</span></h3>
+    <ul class="steps">
+      <li><span class="step-num">1</span><span class="step-txt">
+        <span class="ja">applippli-key の設定画面を開き、<strong>「ワンタッチログイン設定」</strong> をクリックします。</span>
+        <span class="en">Open the applippli-key settings screen and click <strong>"One-Touch Login Setup."</strong></span>
+      </span></li>
+      <li style="list-style:none;display:block;margin:12px 0 16px;">
+        <img src="img/150.png" alt="ワンタッチログイン設定画面" style="max-width:100%;border:1px solid #dde4ee;border-radius:6px;box-shadow:0 2px 6px rgba(0,0,0,0.08);">
+      </li>
+      <li><span class="step-num">2</span><span class="step-txt">
+        <span class="ja">Windows パスワードを入力します。</span>
+        <span class="en">Enter your Windows password.</span>
+      </span></li>
+      <li style="list-style:none;display:block;margin:12px 0 16px;">
+        <img src="img/151.png" alt="Windowsパスワード入力画面" style="max-width:100%;border:1px solid #dde4ee;border-radius:6px;box-shadow:0 2px 6px rgba(0,0,0,0.08);">
+      </li>
+      <li><span class="step-num">3</span><span class="step-txt">
+        <span class="ja">ペアリング用の QR コードが表示されます。applippli authenticator アプリを起動して QR コードを読み取ります。</span>
+        <span class="en">A pairing QR code will appear. Open the applippli authenticator app and scan the QR code.</span>
+      </span></li>
+      <li><span class="step-num">4</span><span class="step-txt">
+        <span class="ja">スマートフォンアプリ側でペアリングが完了すると、設定画面に <strong>「スマートフォンが接続されました」</strong> と表示されます。</span>
+        <span class="en">Once pairing is complete in the smartphone app, the settings screen will show <strong>"Smartphone connected."</strong></span>
+      </span></li>
+    </ul>
+
+    <h3><span class="ja">ワンタッチログインの使い方</span><span class="en">How to Use One-Touch Login</span></h3>
+    <ul class="steps">
+      <li><span class="step-num">1</span><span class="step-txt">
+        <span class="ja">Windows のログオン画面が表示されたら、スマートフォンにて <strong>applippli authenticator</strong> を起動します。</span>
+        <span class="en">When the Windows logon screen appears, open the <strong>applippli authenticator</strong> app on your smartphone.</span>
+      </span></li>
+      <li><span class="step-num">2</span><span class="step-txt">
+        <span class="ja">リストよりログインする PC 名を 1 回だけタップします。</span>
+        <span class="en">Tap the PC name you want to log in to once from the list.</span>
+      </span></li>
+      <li><span class="step-num">3</span><span class="step-txt">
+        <span class="ja">Windows に自動的にログオンします。</span>
+        <span class="en">Windows will log on automatically.</span>
+      </span></li>
+    </ul>
+  </section>
+
   <!-- 緊急ログオン使用 / Using Emergency Logon -->
   <section id="emergency-use">
     <h2><span class="ja">緊急ログオンの使用方法</span><span class="en">Using Emergency Logon</span></h2>
@@ -742,27 +820,83 @@ window.addEventListener('load', function() {
       <span class="ja">ワンタイムパスワードアプリを設定したスマートフォンを忘れた・故障した場合など、ワンタイムパスワードの確認ができない場合に操作します。</span>
       <span class="en">Use this procedure when you cannot access your OTP — for example, if you have forgotten or lost your smartphone.</span>
     </p>
+
+    <h3><span class="ja">以前にWindowsパスワードを使用していた方</span><span class="en">For users who previously used a Windows password</span></h3>
     <ul class="steps" style="margin-top:14px;">
       <li><span class="step-num">1</span><span class="step-txt">
         <span class="ja">PC のログイン画面上に表示されている <strong>［緊急ログオン］</strong> をクリックします。</span>
         <span class="en">Click <strong>[Emergency Logon]</strong> on the Windows login screen.</span>
       </span></li>
+      <li style="list-style:none;display:block;margin:12px 0 16px;">
+        <img src="img/153.png" alt="緊急ログオンクリック画面" style="max-width:100%;border:1px solid #dde4ee;border-radius:6px;box-shadow:0 2px 6px rgba(0,0,0,0.08);">
+      </li>
       <li><span class="step-num">2</span><span class="step-txt">
         <span class="ja">PC のユーザー名を入力し、<strong>［次へ］</strong> をクリックします。</span>
         <span class="en">Enter your PC username and click <strong>[Next]</strong>.</span>
       </span></li>
+      <li style="list-style:none;display:block;margin:12px 0 16px;">
+        <img src="img/152.png" alt="ユーザー名入力画面" style="max-width:100%;border:1px solid #dde4ee;border-radius:6px;box-shadow:0 2px 6px rgba(0,0,0,0.08);">
+      </li>
       <li><span class="step-num">3</span><span class="step-txt">
         <span class="ja">セットアップ時に入力した緊急ログオン設定での回答内容を入力し、<strong>［次へ］</strong> をクリックします。<br><em>※ 半角英数字のみで入力してください。</em></span>
         <span class="en">Enter the answer you provided during Emergency Logon setup, then click <strong>[Next]</strong>.<br><em>※ Use half-width alphanumeric characters only.</em></span>
       </span></li>
+      <li style="list-style:none;display:block;margin:12px 0 16px;">
+        <img src="img/154.png" alt="緊急ログオン設定回答入力画面" style="max-width:100%;border:1px solid #dde4ee;border-radius:6px;box-shadow:0 2px 6px rgba(0,0,0,0.08);">
+      </li>
       <li><span class="step-num">4</span><span class="step-txt">
         <span class="ja">処理完了のメッセージが表示されたら <strong>［OK］</strong> で閉じます。</span>
         <span class="en">When the completion message appears, click <strong>[OK]</strong> to close it.</span>
       </span></li>
+      <li style="list-style:none;display:block;margin:12px 0 16px;">
+        <img src="img/155.png" alt="処理完了メッセージ画面" style="max-width:100%;border:1px solid #dde4ee;border-radius:6px;box-shadow:0 2px 6px rgba(0,0,0,0.08);">
+      </li>
       <li><span class="step-num">5</span><span class="step-txt">
         <span class="ja">Windows パスワード入力画面に切り替わったら、設定している Windows パスワードを入力し、ログインします。</span>
         <span class="en">When the Windows password screen appears, enter your Windows password to log in.</span>
       </span></li>
+      <li style="list-style:none;display:block;margin:12px 0 16px;">
+        <img src="img/156.png" alt="Windowsパスワード入力画面" style="max-width:100%;border:1px solid #dde4ee;border-radius:6px;box-shadow:0 2px 6px rgba(0,0,0,0.08);">
+      </li>
+    </ul>
+
+    <h3><span class="ja">以前にPINコードを入力していた方</span><span class="en">For users who previously used a PIN code</span></h3>
+    <ul class="steps" style="margin-top:14px;">
+      <li><span class="step-num">1</span><span class="step-txt">
+        <span class="ja">PC のログイン画面上に表示されている <strong>［緊急ログオン］</strong> をクリックします。</span>
+        <span class="en">Click <strong>[Emergency Logon]</strong> on the Windows login screen.</span>
+      </span></li>
+      <li style="list-style:none;display:block;margin:12px 0 16px;">
+        <img src="img/153.png" alt="緊急ログオンクリック画面" style="max-width:100%;border:1px solid #dde4ee;border-radius:6px;box-shadow:0 2px 6px rgba(0,0,0,0.08);">
+      </li>
+      <li><span class="step-num">2</span><span class="step-txt">
+        <span class="ja">PC のユーザー名を入力し、<strong>［次へ］</strong> をクリックします。</span>
+        <span class="en">Enter your PC username and click <strong>[Next]</strong>.</span>
+      </span></li>
+      <li style="list-style:none;display:block;margin:12px 0 16px;">
+        <img src="img/152.png" alt="ユーザー名入力画面" style="max-width:100%;border:1px solid #dde4ee;border-radius:6px;box-shadow:0 2px 6px rgba(0,0,0,0.08);">
+      </li>
+      <li><span class="step-num">3</span><span class="step-txt">
+        <span class="ja">セットアップ時に入力した緊急ログオン設定での回答内容を入力し、<strong>［次へ］</strong> をクリックします。<br><em>※ 半角英数字のみで入力してください。</em></span>
+        <span class="en">Enter the answer you provided during Emergency Logon setup, then click <strong>[Next]</strong>.<br><em>※ Use half-width alphanumeric characters only.</em></span>
+      </span></li>
+      <li style="list-style:none;display:block;margin:12px 0 16px;">
+        <img src="img/154.png" alt="緊急ログオン設定回答入力画面" style="max-width:100%;border:1px solid #dde4ee;border-radius:6px;box-shadow:0 2px 6px rgba(0,0,0,0.08);">
+      </li>
+      <li><span class="step-num">4</span><span class="step-txt">
+        <span class="ja">処理完了のメッセージが表示されたら <strong>［OK］</strong> で閉じます。</span>
+        <span class="en">When the completion message appears, click <strong>[OK]</strong> to close it.</span>
+      </span></li>
+      <li style="list-style:none;display:block;margin:12px 0 16px;">
+        <img src="img/155.png" alt="処理完了メッセージ画面" style="max-width:100%;border:1px solid #dde4ee;border-radius:6px;box-shadow:0 2px 6px rgba(0,0,0,0.08);">
+      </li>
+      <li><span class="step-num">5</span><span class="step-txt">
+        <span class="ja"><strong style="color:#dc2626;">パソコンを再起動してください。</strong>再起動後にWindowsログイン画面上でPIN入力画面に切り替わってますので、PINコードを入力してログインしてください。</span>
+        <span class="en"><strong style="color:#dc2626;">Restart your computer.</strong> After restarting, the Windows login screen will switch to the PIN entry screen — enter your PIN code to log in.</span>
+      </span></li>
+      <li style="list-style:none;display:block;margin:12px 0 16px;">
+        <img src="img/157.png" alt="PIN入力画面" style="max-width:100%;border:1px solid #dde4ee;border-radius:6px;box-shadow:0 2px 6px rgba(0,0,0,0.08);">
+      </li>
     </ul>
   </section>
 
@@ -778,10 +912,16 @@ window.addEventListener('load', function() {
         <span class="ja">ログイン画面左下にある <strong>［その他のユーザー］</strong> をクリックします。</span>
         <span class="en">Click <strong>[Other users]</strong> at the bottom left of the login screen.</span>
       </span></li>
+      <li style="list-style:none;display:block;margin:12px 0 16px;">
+        <img src="img/158.png" alt="その他のユーザー選択画面" style="max-width:100%;border:1px solid #dde4ee;border-radius:6px;box-shadow:0 2px 6px rgba(0,0,0,0.08);">
+      </li>
       <li><span class="step-num">2</span><span class="step-txt">
         <span class="ja">ログイン画面が ［User name］・［Password］ に変わるので、ログインしたいユーザー名及びパスワードを入力します。</span>
         <span class="en">The login screen changes to show [User name] and [Password] fields. Enter the username and password of the desired account.</span>
       </span></li>
+      <li style="list-style:none;display:block;margin:12px 0 16px;">
+        <img src="img/159.png" alt="ユーザー名・パスワード入力画面" style="max-width:100%;border:1px solid #dde4ee;border-radius:6px;box-shadow:0 2px 6px rgba(0,0,0,0.08);">
+      </li>
     </ul>
   </section>
 
@@ -803,11 +943,9 @@ window.addEventListener('load', function() {
         <span class="en">⚠ Note on reinstallation</span>
       </strong>
       <span class="ja">同一 PC 端末への再インストールおよびアクティベーション化は可能です。<br>
-      別の PC 端末へインストールする場合は、新たにアクティベーションキーの購入が必要です。<br>
-      再インストールした場合、設定は初期化されるため、アクティベーションを含む初期設定が必要です。</span>
+      別の PC 端末へインストールする場合は、新たにアクティベーションキーの購入が必要です。</span>
       <span class="en">Reinstalling on the same PC and re-activating is permitted.<br>
-      Installing on a different PC requires a new activation key purchase.<br>
-      Reinstallation resets all settings, so initial setup including activation must be performed again.</span>
+      Installing on a different PC requires a new activation key purchase.</span>
     </div>
 
     <h3><span class="ja">（2）プログラムの一覧からアンインストールする場合（Windows 11）</span><span class="en">(2) Uninstall via Installed Apps (Windows 11)</span></h3>
@@ -866,14 +1004,23 @@ window.addEventListener('load', function() {
         <span class="ja">スタートメニューを右クリックして <strong>［コンピューターの管理］</strong> を選択します。</span>
         <span class="en">Right-click the Start menu and select <strong>[Computer Management]</strong>.</span>
       </span></li>
+      <li style="list-style:none;display:block;margin:12px 0 16px;">
+        <img src="img/140.png" alt="コンピューターの管理画面" style="max-width:100%;border:1px solid #dde4ee;border-radius:6px;box-shadow:0 2px 6px rgba(0,0,0,0.08);">
+      </li>
       <li><span class="step-num">2</span><span class="step-txt">
         <span class="ja">左より <strong>［ローカルユーザーとグループ］</strong> を展開し、<strong>［ユーザー］</strong> を選択します。右の画面からパスワード変更したいユーザーを右クリックして「パスワードの設定」を選択します。警告メッセージは続行します。</span>
         <span class="en">Expand <strong>[Local Users and Groups]</strong> on the left, then select <strong>[Users]</strong>. Right-click the user whose password you want to change and select "Set Password." Acknowledge the warning to continue.</span>
       </span></li>
+      <li style="list-style:none;display:block;margin:12px 0 16px;">
+        <img src="img/141.png" alt="パスワードの設定選択画面" style="max-width:100%;border:1px solid #dde4ee;border-radius:6px;box-shadow:0 2px 6px rgba(0,0,0,0.08);">
+      </li>
       <li><span class="step-num">3</span><span class="step-txt">
-        <span class="ja">パスワード入力画面が出ますので、上下ともに同じパスワードを入力します。</span>
+        <span class="ja">パスワード入力画面が出ますので、上下ともに同じパスワードを入力し最後にOKをクリックします。</span>
         <span class="en">Enter the new password in both fields and click OK.</span>
       </span></li>
+      <li style="list-style:none;display:block;margin:12px 0 16px;">
+        <img src="img/142.png" alt="パスワード入力画面" style="max-width:100%;border:1px solid #dde4ee;border-radius:6px;box-shadow:0 2px 6px rgba(0,0,0,0.08);">
+      </li>
     </ul>
   </section>
 
@@ -889,6 +1036,9 @@ window.addEventListener('load', function() {
         <span class="ja"><strong>設定画面</strong>を開き <strong>［アカウント］</strong> を選択します。</span>
         <span class="en">Open <strong>Settings</strong> and select <strong>[Accounts]</strong>.</span>
       </span></li>
+      <li style="list-style:none;display:block;margin:12px 0 16px;">
+        <img src="img/143.png" alt="設定画面のアカウント選択" style="max-width:100%;border:1px solid #dde4ee;border-radius:6px;box-shadow:0 2px 6px rgba(0,0,0,0.08);">
+      </li>
       <li><span class="step-num">2</span><span class="step-txt">
         <span class="ja">右側の <strong>［アカウント］</strong> をクリックします。</span>
         <span class="en">Click <strong>[Account]</strong> on the right.</span>
@@ -907,12 +1057,15 @@ window.addEventListener('load', function() {
           </li>
         </ul>
       </span></li>
+      <li style="list-style:none;display:block;margin:12px 0 16px;">
+        <img src="img/144.png" alt="アカウント種別の表示画面" style="max-width:100%;border:1px solid #dde4ee;border-radius:6px;box-shadow:0 2px 6px rgba(0,0,0,0.08);">
+      </li>
     </ul>
   </section>
 
   <!-- Ver 2 アップグレード / Upgrade to Ver 2 -->
   <section id="upgrade">
-    <h2><span class="ja">Ver 2 へのアップグレード</span><span class="en">Upgrade to Ver 2</span></h2>
+    <h2><span class="ja">Ver１からVer 2 へのアップグレード対象者</span><span class="en">Who Should Upgrade from Ver 1 to Ver 2</span></h2>
 
     <div class="note">
       <strong>
@@ -955,7 +1108,7 @@ window.addEventListener('load', function() {
     <h3><span class="ja">アップグレード後の設定確認</span><span class="en">Settings After Upgrade</span></h3>
     <p><span class="ja">以下の設定はアップグレード後も引き継がれます。再設定は不要です。</span><span class="en">The following settings are preserved after upgrading. No reconfiguration is required.</span></p>
     <div style="margin:12px 0;">
-      <table style="width:100%;border-collapse:collapse;font-size:13px;">
+      <table style="width:100%;border-collapse:collapse;font-size:19px;">
         <tr style="background:#f0f4ff;">
           <th style="padding:10px 14px;text-align:left;border:1px solid #dde4ee;width:40%;">
             <span class="ja">設定項目</span><span class="en">Setting</span>
@@ -980,69 +1133,35 @@ window.addEventListener('load', function() {
     </div>
   </section>
 
-  <!-- ワンタッチログイン / One-Touch Login -->
-  <section id="onetouch">
-    <h2><span class="ja">ワンタッチログインの設定</span><span class="en">One-Touch Login Setup</span></h2>
-    <div class="info">
-      <span class="ja">ワンタッチログインは applippli-key Ver 2 から追加された機能です。スマートフォンアプリと連携することで、スマートフォンのワンタッチ操作だけで Windows にログオンできます。</span>
-      <span class="en">One-Touch Login is a new feature in applippli-key Ver 2. By pairing with the smartphone app, you can log on to Windows with a single tap on your phone.</span>
+  <!-- 自動バージョンアップ機能 / Auto Version Update -->
+  <section id="auto-update">
+    <h2><span class="ja">applippli-key自動バージョンアップ機能</span><span class="en">applippli-key Auto Version Update</span><span class="badge-new"><span class="ja">新機能</span><span class="en">NEW</span></span></h2>
+    <p>
+      <span class="ja">applippli-key V2より自動バージョンアップ機能が搭載されてます。</span>
+      <span class="en">Starting with applippli-key V2, an automatic version update feature is included.</span>
+    </p>
+    <p>
+      <span class="ja">自動バージョンアップの通知をPC起動時や6時間ごとにWindows通知にてお知らせします。お知らせでキャンセルしてもapplippli-keyログを起動すると画面右上にバージョンアップのお知らせを表示してますのでこちらからもバージョンアップできます。</span>
+      <span class="en">A Windows notification for the automatic version update is shown at PC startup and every 6 hours. Even if you cancel the notification, opening applippli-key Log will show an update notice in the top right of the screen, from which you can also perform the version update.</span>
+    </p>
+    <div style="margin: 12px 0;">
+      <img src="img/119.png" alt="自動バージョンアップ通知" style="max-width:100%;border:1px solid #dde4ee;border-radius:6px;box-shadow:0 2px 6px rgba(0,0,0,0.08);">
     </div>
-
-    <h3><span class="ja">事前準備</span><span class="en">Prerequisites</span></h3>
-    <ul class="steps">
-      <li><span class="step-num">1</span><span class="step-txt">
-        <span class="ja">スマートフォンに <strong>applippli-key アプリ</strong>（iOS / Android）をインストールします。</span>
-        <span class="en">Install the <strong>applippli-key app</strong> (iOS / Android) on your smartphone.</span>
-      </span></li>
-      <li><span class="step-num">2</span><span class="step-txt">
-        <span class="ja">applippli-key Ver 2 がインストール済みであることを確認します。</span>
-        <span class="en">Confirm that applippli-key Ver 2 is installed on your PC.</span>
-      </span></li>
-    </ul>
-
-    <h3><span class="ja">ペアリング手順</span><span class="en">Pairing Steps</span></h3>
-    <ul class="steps">
-      <li><span class="step-num">1</span><span class="step-txt">
-        <span class="ja">applippli-key の設定画面を開き、<strong>「ワンタッチログイン設定」</strong> をクリックします。</span>
-        <span class="en">Open the applippli-key settings screen and click <strong>"One-Touch Login Setup."</strong></span>
-      </span></li>
-      <li><span class="step-num">2</span><span class="step-txt">
-        <span class="ja">Windows パスワードを入力します。</span>
-        <span class="en">Enter your Windows password.</span>
-      </span></li>
-      <li><span class="step-num">3</span><span class="step-txt">
-        <span class="ja">ペアリング用の QR コードが表示されます。applippli authenticator アプリを起動して QR コードを読み取ります。</span>
-        <span class="en">A pairing QR code will appear. Open the applippli authenticator app and scan the QR code.</span>
-      </span></li>
-      <li><span class="step-num">4</span><span class="step-txt">
-        <span class="ja">スマートフォンアプリ側でペアリングが完了すると、設定画面に <strong>「スマートフォンが接続されました」</strong> と表示されます。</span>
-        <span class="en">Once pairing is complete in the smartphone app, the settings screen will show <strong>"Smartphone connected."</strong></span>
-      </span></li>
-    </ul>
-
-    <h3><span class="ja">ワンタッチログインの使い方</span><span class="en">How to Use One-Touch Login</span></h3>
-    <ul class="steps">
-      <li><span class="step-num">1</span><span class="step-txt">
-        <span class="ja">Windows のログオン画面が表示されたら、スマートフォンにて <strong>applippli authenticator</strong> を起動します。</span>
-        <span class="en">When the Windows logon screen appears, open the <strong>applippli authenticator</strong> app on your smartphone.</span>
-      </span></li>
-      <li><span class="step-num">2</span><span class="step-txt">
-        <span class="ja">リストよりログインする PC 名を 1 回だけタップします。</span>
-        <span class="en">Tap the PC name you want to log in to once from the list.</span>
-      </span></li>
-      <li><span class="step-num">3</span><span class="step-txt">
-        <span class="ja">Windows に自動的にログオンします。</span>
-        <span class="en">Windows will log on automatically.</span>
-      </span></li>
-    </ul>
+    <div style="margin: 12px 0;">
+      <img src="img/120.png" alt="applippli-keyログのバージョンアップお知らせ" style="max-width:100%;border:1px solid #dde4ee;border-radius:6px;box-shadow:0 2px 6px rgba(0,0,0,0.08);">
+    </div>
   </section>
 
   <!-- ログビューア / Log Viewer -->
   <section id="logviewer">
-    <h2><span class="ja">ログビューア</span><span class="en">Log Viewer</span></h2>
+    <h2><span class="ja">applippli-keyログ</span><span class="en">applippli-key Log</span><span class="badge-new"><span class="ja">新機能</span><span class="en">NEW</span></span></h2>
     <div class="info">
-      <span class="ja">ログビューアは applippli-key Ver 2 から追加された管理ツールです。MFA 認証ログの確認・分析に加え、脅威の自動検知・自動 IP ブロック・LINE 通知などのセキュリティ機能を提供します。</span>
-      <span class="en">The Log Viewer is a management tool added in applippli-key Ver 2. In addition to viewing and analyzing MFA authentication logs, it provides security features such as automatic threat detection, automatic IP blocking, and LINE notifications.</span>
+      <span class="ja">applippli-keyログは applippli-key Ver 2 から追加された管理ツールです。MFA 認証ログの確認・分析に加え、脅威の自動検知・自動 IP ブロック・LINE 通知などのセキュリティ機能を提供します。</span>
+      <span class="en">applippli-key Log is a management tool added in applippli-key Ver 2. In addition to viewing and analyzing MFA authentication logs, it provides security features such as automatic threat detection, automatic IP blocking, and LINE notifications.</span>
+    </div>
+    <div class="note">
+      <span class="ja">⚠ applippli-keyに有効なライセンスが登録されてないと本機能はご利用できません。</span>
+      <span class="en">⚠ This feature is unavailable unless a valid license is registered for applippli-key.</span>
     </div>
 
     <h3><span class="ja">起動方法</span><span class="en">How to Launch</span></h3>
@@ -1053,13 +1172,13 @@ window.addEventListener('load', function() {
       </span></li>
     </ul>
 
-    <h3><span class="ja">ダッシュボード</span><span class="en">Dashboard</span></h3>
+    <h3 id="log-dashboard"><span class="ja">ログダッシュボード</span><span class="en">Log Dashboard</span></h3>
     <p>
       <span class="ja">起動すると最初にダッシュボード画面が表示されます。画面上部の期間ボタン（本日 / 昨日 / 1週間 / 1カ月 / 3カ月 / 6カ月 / 1年）で集計期間を切り替えられます。</span>
       <span class="en">The dashboard screen appears on launch. Use the period buttons at the top (Today / Yesterday / 1 Week / 1 Month / 3 Months / 6 Months / 1 Year) to switch the aggregation period.</span>
     </p>
     <div style="margin:12px 0;">
-      <table style="width:100%;border-collapse:collapse;font-size:13px;">
+      <table style="width:100%;border-collapse:collapse;font-size:19px;">
         <tr style="background:#f0f4ff;">
           <th style="padding:10px 14px;text-align:left;border:1px solid #dde4ee;width:40%;">
             <span class="ja">項目</span><span class="en">Item</span>
@@ -1099,13 +1218,13 @@ window.addEventListener('load', function() {
       </table>
     </div>
 
-    <h3><span class="ja">セキュリティダッシュボード</span><span class="en">Security Dashboard</span></h3>
+    <h3 id="security-dashboard"><span class="ja">セキュリティダッシュボード</span><span class="en">Security Dashboard</span></h3>
     <p>
       <span class="ja">左メニューの「セキュリティダッシュボード」では、脅威の状況を多角的に分析できます。</span>
       <span class="en">The "Security Dashboard" in the left menu provides a multi-dimensional view of the threat landscape.</span>
     </p>
     <div style="margin:12px 0;">
-      <table style="width:100%;border-collapse:collapse;font-size:13px;">
+      <table style="width:100%;border-collapse:collapse;font-size:19px;">
         <tr style="background:#f0f4ff;">
           <th style="padding:10px 14px;text-align:left;border:1px solid #dde4ee;width:40%;">
             <span class="ja">項目</span><span class="en">Item</span>
@@ -1145,13 +1264,13 @@ window.addEventListener('load', function() {
       </table>
     </div>
 
-    <h3><span class="ja">ログ閲覧</span><span class="en">Log Browser</span></h3>
+    <h3 id="logs"><span class="ja">ログ閲覧</span><span class="en">Log Browser</span></h3>
     <p>
       <span class="ja">「Logs」タブでは詳細な認証ログを確認・絞り込みできます。</span>
       <span class="en">The "Logs" tab lets you view and filter detailed authentication logs.</span>
     </p>
     <div style="margin:12px 0;">
-      <table style="width:100%;border-collapse:collapse;font-size:13px;">
+      <table style="width:100%;border-collapse:collapse;font-size:19px;">
         <tr style="background:#f0f4ff;">
           <th style="padding:10px 14px;text-align:left;border:1px solid #dde4ee;width:40%;">
             <span class="ja">機能</span><span class="en">Feature</span>
@@ -1185,11 +1304,11 @@ window.addEventListener('load', function() {
 
     <h3><span class="ja">脅威自動検知</span><span class="en">Automatic Threat Detection</span></h3>
     <p>
-      <span class="ja">ログビューアはバックグラウンドで以下を常時監視します。検知した場合に LINE 通知（設定済みの場合）を送信します。</span>
-      <span class="en">The Log Viewer continuously monitors the following in the background. A LINE notification is sent when a threat is detected (if configured).</span>
+      <span class="ja">applippli-keyログはバックグラウンドで以下を常時監視します。検知した場合に LINE 通知（設定済みの場合）を送信します。</span>
+      <span class="en">applippli-key Log continuously monitors the following in the background. A LINE notification is sent when a threat is detected (if configured).</span>
     </p>
     <div style="margin:12px 0;">
-      <table style="width:100%;border-collapse:collapse;font-size:13px;">
+      <table style="width:100%;border-collapse:collapse;font-size:19px;">
         <tr style="background:#f0f4ff;">
           <th style="padding:10px 14px;text-align:left;border:1px solid #dde4ee;width:35%;">
             <span class="ja">監視対象</span><span class="en">Monitor Target</span>
@@ -1276,27 +1395,27 @@ window.addEventListener('load', function() {
 
       <!-- Lock screen -->
       <div style="flex-shrink:0;">
-        <div style="font-size:11px;color:#6b7280;text-align:center;margin-bottom:6px;"><span class="ja">ロック画面通知イメージ</span><span class="en">Lock Screen Notification</span></div>
+        <div style="font-size:19px;color:#6b7280;text-align:center;margin-bottom:6px;"><span class="ja">ロック画面通知イメージ</span><span class="en">Lock Screen Notification</span></div>
         <div style="width:220px;background:#1c1c1e;border-radius:36px;padding:10px;box-shadow:0 8px 32px rgba(0,0,0,0.35);border:3px solid #3a3a3c;">
-          <div style="display:flex;justify-content:space-between;padding:4px 14px 8px;color:white;font-size:9px;">
+          <div style="display:flex;justify-content:space-between;padding:4px 14px 8px;color:white;font-size:19px;">
             <span style="font-weight:600;">9:41</span>
             <span>WiFi ▌▌🔋</span>
           </div>
           <div style="text-align:center;padding:10px 0 12px;color:white;">
             <div style="font-size:34px;font-weight:200;letter-spacing:-1px;">9:41</div>
-            <div style="font-size:11px;opacity:0.6;">2026年7月9日 水曜日</div>
+            <div style="font-size:19px;opacity:0.6;">2026年7月9日 水曜日</div>
           </div>
           <!-- LINE notification banner -->
           <div style="background:rgba(255,255,255,0.18);backdrop-filter:blur(12px);border-radius:14px;padding:10px 12px;margin:0 2px;">
             <div style="display:flex;align-items:center;gap:7px;margin-bottom:5px;">
               <div style="width:18px;height:18px;background:#06C755;border-radius:4px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
-                <span style="color:white;font-size:10px;font-weight:900;line-height:1;">L</span>
+                <span style="color:white;font-size:19px;font-weight:900;line-height:1;">L</span>
               </div>
-              <span style="color:white;font-size:10px;font-weight:700;">LINE</span>
-              <span style="color:rgba(255,255,255,0.45);font-size:9px;margin-left:auto;">今</span>
+              <span style="color:white;font-size:19px;font-weight:700;">LINE</span>
+              <span style="color:rgba(255,255,255,0.45);font-size:19px;margin-left:auto;">今</span>
             </div>
-            <div style="color:white;font-size:10px;font-weight:700;margin-bottom:3px;">applippli-key公式アカウント</div>
-            <div style="color:rgba(255,255,255,0.88);font-size:10px;line-height:1.5;">🚨 [脅威検知] ネットワーク不正アクセスを検知しました。<br>PC: DESKTOP-OWNER<br>IP: 91.202.233.79</div>
+            <div style="color:white;font-size:19px;font-weight:700;margin-bottom:3px;">applippli-key公式アカウント</div>
+            <div style="color:rgba(255,255,255,0.88);font-size:19px;line-height:1.5;">🚨 [脅威検知] ネットワーク不正アクセスを検知しました。<br>PC: DESKTOP-OWNER<br>IP: 91.202.233.79</div>
           </div>
           <div style="text-align:center;margin-top:10px;">
             <div style="width:80px;height:3px;background:rgba(255,255,255,0.3);border-radius:2px;margin:0 auto;"></div>
@@ -1306,14 +1425,14 @@ window.addEventListener('load', function() {
 
       <!-- LINE chat mockup -->
       <div style="flex:1;min-width:250px;max-width:320px;">
-        <div style="font-size:11px;color:#6b7280;text-align:center;margin-bottom:6px;"><span class="ja">LINE チャット画面イメージ</span><span class="en">LINE Chat Screen</span></div>
+        <div style="font-size:19px;color:#6b7280;text-align:center;margin-bottom:6px;"><span class="ja">LINE チャット画面イメージ</span><span class="en">LINE Chat Screen</span></div>
         <div style="border-radius:16px;overflow:hidden;box-shadow:0 4px 20px rgba(0,0,0,0.12);border:1px solid #e5e7eb;">
           <!-- Header -->
           <div style="background:#06C755;padding:10px 14px;display:flex;align-items:center;gap:9px;">
-            <div style="width:34px;height:34px;background:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:17px;flex-shrink:0;">🛡️</div>
+            <div style="width:34px;height:34px;background:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:19px;flex-shrink:0;">🛡️</div>
             <div>
-              <div style="color:white;font-weight:bold;font-size:12px;">applippli-key 公式アカウント</div>
-              <div style="color:rgba(255,255,255,0.75);font-size:10px;"><span class="ja">セキュリティ通知サービス</span><span class="en">Security Notification Service</span></div>
+              <div style="color:white;font-weight:bold;font-size:19px;">applippli-key 公式アカウント</div>
+              <div style="color:rgba(255,255,255,0.75);font-size:19px;"><span class="ja">セキュリティ通知サービス</span><span class="en">Security Notification Service</span></div>
             </div>
           </div>
           <!-- Chat area -->
@@ -1321,55 +1440,55 @@ window.addEventListener('load', function() {
             <!-- Bot icon -->
             <div style="display:flex;gap:6px;align-items:flex-end;">
               <div style="width:28px;height:28px;background:#06C755;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;align-self:flex-start;">
-                <span style="color:white;font-size:12px;">🛡</span>
+                <span style="color:white;font-size:19px;">🛡</span>
               </div>
               <div>
-                <div style="font-size:9px;color:#374151;margin-bottom:3px;">applippli-key</div>
+                <div style="font-size:19px;color:#374151;margin-bottom:3px;">applippli-key</div>
                 <!-- Bubble 1 -->
-                <div style="background:white;border-radius:0 12px 12px 12px;padding:8px 10px;max-width:210px;font-size:11px;line-height:1.5;color:#1f2937;box-shadow:0 1px 2px rgba(0,0,0,0.1);">
+                <div style="background:white;border-radius:0 12px 12px 12px;padding:8px 10px;max-width:210px;font-size:19px;line-height:1.5;color:#1f2937;box-shadow:0 1px 2px rgba(0,0,0,0.1);">
                   🚨 <strong style="color:#dc2626;">[脅威検知]</strong><br>
                   <span class="ja">ネットワーク不正アクセスを検知しました。</span><span class="en">Network intrusion attempt detected.</span><br>
-                  <span style="color:#6b7280;font-size:10px;">PC: DESKTOP-OWNER</span><br>
-                  <span style="color:#ef4444;font-size:10px;">IP: 91.202.233.79</span><br>
-                  <span style="color:#6b7280;font-size:10px;">2026/07/09 09:32:01</span>
+                  <span style="color:#6b7280;font-size:19px;">PC: DESKTOP-OWNER</span><br>
+                  <span style="color:#ef4444;font-size:19px;">IP: 91.202.233.79</span><br>
+                  <span style="color:#6b7280;font-size:19px;">2026/07/09 09:32:01</span>
                 </div>
               </div>
-              <div style="font-size:9px;color:#6b7280;align-self:flex-end;white-space:nowrap;">9:32</div>
+              <div style="font-size:19px;color:#6b7280;align-self:flex-end;white-space:nowrap;">9:32</div>
             </div>
 
             <div style="display:flex;gap:6px;align-items:flex-end;">
               <div style="width:28px;flex-shrink:0;"></div>
               <div>
                 <!-- Bubble 2 -->
-                <div style="background:white;border-radius:0 12px 12px 12px;padding:8px 10px;max-width:210px;font-size:11px;line-height:1.5;color:#1f2937;box-shadow:0 1px 2px rgba(0,0,0,0.1);">
+                <div style="background:white;border-radius:0 12px 12px 12px;padding:8px 10px;max-width:210px;font-size:19px;line-height:1.5;color:#1f2937;box-shadow:0 1px 2px rgba(0,0,0,0.1);">
                   🔐 <strong style="color:#f97316;">[ログイン失敗多発]</strong><br>
                   <span class="ja">5分間に10回以上の認証失敗を検知しました。</span><span class="en">10+ failed logins in 5 minutes.</span><br>
-                  <span style="color:#6b7280;font-size:10px;">USER: owner / DESKTOP-OWNER</span><br>
-                  <span style="color:#6b7280;font-size:10px;">2026/07/09 09:30:00</span>
+                  <span style="color:#6b7280;font-size:19px;">USER: owner / DESKTOP-OWNER</span><br>
+                  <span style="color:#6b7280;font-size:19px;">2026/07/09 09:30:00</span>
                 </div>
               </div>
-              <div style="font-size:9px;color:#6b7280;align-self:flex-end;white-space:nowrap;">9:30</div>
+              <div style="font-size:19px;color:#6b7280;align-self:flex-end;white-space:nowrap;">9:30</div>
             </div>
 
             <div style="display:flex;gap:6px;align-items:flex-end;">
               <div style="width:28px;flex-shrink:0;"></div>
               <div>
                 <!-- Bubble 3 -->
-                <div style="background:white;border-radius:0 12px 12px 12px;padding:8px 10px;max-width:210px;font-size:11px;line-height:1.5;color:#1f2937;box-shadow:0 1px 2px rgba(0,0,0,0.1);">
+                <div style="background:white;border-radius:0 12px 12px 12px;padding:8px 10px;max-width:210px;font-size:19px;line-height:1.5;color:#1f2937;box-shadow:0 1px 2px rgba(0,0,0,0.1);">
                   ✅ <strong style="color:#16a34a;">[ログイン成功]</strong><br>
                   <span class="ja">ワンタッチログインに成功しました。</span><span class="en">One-touch login successful.</span><br>
-                  <span style="color:#6b7280;font-size:10px;">USER: owner / DESKTOP-OWNER</span><br>
-                  <span style="color:#6b7280;font-size:10px;">2026/07/08 07:42:26</span>
+                  <span style="color:#6b7280;font-size:19px;">USER: owner / DESKTOP-OWNER</span><br>
+                  <span style="color:#6b7280;font-size:19px;">2026/07/08 07:42:26</span>
                 </div>
               </div>
-              <div style="font-size:9px;color:#6b7280;align-self:flex-end;white-space:nowrap;">7:42</div>
+              <div style="font-size:19px;color:#6b7280;align-self:flex-end;white-space:nowrap;">7:42</div>
             </div>
           </div>
           <!-- Input bar -->
           <div style="background:white;padding:8px 10px;display:flex;align-items:center;gap:6px;border-top:1px solid #e5e7eb;">
-            <div style="flex:1;background:#f3f4f6;border-radius:20px;padding:6px 12px;font-size:10px;color:#9ca3af;">メッセージを入力</div>
+            <div style="flex:1;background:#f3f4f6;border-radius:20px;padding:6px 12px;font-size:19px;color:#9ca3af;">メッセージを入力</div>
             <div style="width:28px;height:28px;background:#06C755;border-radius:50%;display:flex;align-items:center;justify-content:center;">
-              <span style="color:white;font-size:12px;">↑</span>
+              <span style="color:white;font-size:19px;">↑</span>
             </div>
           </div>
         </div>
@@ -1377,9 +1496,9 @@ window.addEventListener('load', function() {
     </div>
 
     <!-- Notification patterns -->
-    <h4 style="margin-top:20px;margin-bottom:8px;font-size:14px;color:#1a2340;"><span class="ja">通知パターン一覧</span><span class="en">Notification Patterns</span></h4>
+    <h4 style="margin-top:20px;margin-bottom:8px;font-size:19px;color:#1a2340;"><span class="ja">通知パターン一覧</span><span class="en">Notification Patterns</span></h4>
     <div style="margin:0 0 16px;">
-      <table style="width:100%;border-collapse:collapse;font-size:13px;">
+      <table style="width:100%;border-collapse:collapse;font-size:19px;">
         <tr style="background:#f0f4ff;">
           <th style="padding:10px 14px;text-align:left;border:1px solid #dde4ee;width:30%;"><span class="ja">通知種別</span><span class="en">Type</span></th>
           <th style="padding:10px 14px;text-align:left;border:1px solid #dde4ee;"><span class="ja">通知内容</span><span class="en">Message Content</span></th>
@@ -1387,53 +1506,79 @@ window.addEventListener('load', function() {
         </tr>
         <tr>
           <td style="padding:10px 14px;border:1px solid #dde4ee;font-weight:600;">🚨 <span class="ja">ネットワーク不正アクセス</span><span class="en">Network Intrusion</span></td>
-          <td style="padding:10px 14px;border:1px solid #dde4ee;font-size:12px;color:#374151;"><span class="ja">送信元IP・PC名・検知時刻を通知</span><span class="en">Notifies source IP, PC name, and detection time</span></td>
-          <td style="padding:10px 14px;border:1px solid #dde4ee;"><span style="background:#fee2e2;color:#dc2626;border-radius:4px;padding:2px 8px;font-size:11px;font-weight:600;"><span class="ja">高</span><span class="en">High</span></span></td>
+          <td style="padding:10px 14px;border:1px solid #dde4ee;font-size:19px;color:#374151;"><span class="ja">送信元IP・PC名・検知時刻を通知</span><span class="en">Notifies source IP, PC name, and detection time</span></td>
+          <td style="padding:10px 14px;border:1px solid #dde4ee;"><span style="background:#fee2e2;color:#dc2626;border-radius:4px;padding:2px 8px;font-size:19px;font-weight:600;"><span class="ja">高</span><span class="en">High</span></span></td>
         </tr>
         <tr style="background:#fafbfc;">
           <td style="padding:10px 14px;border:1px solid #dde4ee;font-weight:600;">🔐 <span class="ja">ログイン失敗多発</span><span class="en">Brute Force</span></td>
-          <td style="padding:10px 14px;border:1px solid #dde4ee;font-size:12px;color:#374151;"><span class="ja">5分間に10回以上の失敗を検知した際に通知</span><span class="en">Triggered when 10+ failures occur in 5 minutes</span></td>
-          <td style="padding:10px 14px;border:1px solid #dde4ee;"><span style="background:#fee2e2;color:#dc2626;border-radius:4px;padding:2px 8px;font-size:11px;font-weight:600;"><span class="ja">高</span><span class="en">High</span></span></td>
+          <td style="padding:10px 14px;border:1px solid #dde4ee;font-size:19px;color:#374151;"><span class="ja">5分間に10回以上の失敗を検知した際に通知</span><span class="en">Triggered when 10+ failures occur in 5 minutes</span></td>
+          <td style="padding:10px 14px;border:1px solid #dde4ee;"><span style="background:#fee2e2;color:#dc2626;border-radius:4px;padding:2px 8px;font-size:19px;font-weight:600;"><span class="ja">高</span><span class="en">High</span></span></td>
         </tr>
         <tr>
           <td style="padding:10px 14px;border:1px solid #dde4ee;font-weight:600;">🦠 <span class="ja">ランサムウェア検知</span><span class="en">Ransomware</span></td>
-          <td style="padding:10px 14px;border:1px solid #dde4ee;font-size:12px;color:#374151;"><span class="ja">ランサムウェア特有の挙動（ファイル大量変更・シャドウコピー削除等）を検知</span><span class="en">Detects ransomware behaviors (mass file changes, shadow copy deletion, etc.)</span></td>
-          <td style="padding:10px 14px;border:1px solid #dde4ee;"><span style="background:#fee2e2;color:#dc2626;border-radius:4px;padding:2px 8px;font-size:11px;font-weight:600;"><span class="ja">緊急</span><span class="en">Critical</span></span></td>
+          <td style="padding:10px 14px;border:1px solid #dde4ee;font-size:19px;color:#374151;"><span class="ja">ランサムウェア特有の挙動（ファイル大量変更・シャドウコピー削除等）を検知</span><span class="en">Detects ransomware behaviors (mass file changes, shadow copy deletion, etc.)</span></td>
+          <td style="padding:10px 14px;border:1px solid #dde4ee;"><span style="background:#fee2e2;color:#dc2626;border-radius:4px;padding:2px 8px;font-size:19px;font-weight:600;"><span class="ja">緊急</span><span class="en">Critical</span></span></td>
         </tr>
         <tr style="background:#fafbfc;">
           <td style="padding:10px 14px;border:1px solid #dde4ee;font-weight:600;">⚠️ <span class="ja">管理者権限の不正取得</span><span class="en">Privilege Escalation</span></td>
-          <td style="padding:10px 14px;border:1px solid #dde4ee;font-size:12px;color:#374151;"><span class="ja">通常アカウントからの管理者権限昇格を検知</span><span class="en">Detects privilege escalation from standard accounts</span></td>
-          <td style="padding:10px 14px;border:1px solid #dde4ee;"><span style="background:#fee2e2;color:#dc2626;border-radius:4px;padding:2px 8px;font-size:11px;font-weight:600;"><span class="ja">緊急</span><span class="en">Critical</span></span></td>
+          <td style="padding:10px 14px;border:1px solid #dde4ee;font-size:19px;color:#374151;"><span class="ja">通常アカウントからの管理者権限昇格を検知</span><span class="en">Detects privilege escalation from standard accounts</span></td>
+          <td style="padding:10px 14px;border:1px solid #dde4ee;"><span style="background:#fee2e2;color:#dc2626;border-radius:4px;padding:2px 8px;font-size:19px;font-weight:600;"><span class="ja">緊急</span><span class="en">Critical</span></span></td>
         </tr>
         <tr>
           <td style="padding:10px 14px;border:1px solid #dde4ee;font-weight:600;">✅ <span class="ja">ログイン成功</span><span class="en">Login Success</span></td>
-          <td style="padding:10px 14px;border:1px solid #dde4ee;font-size:12px;color:#374151;"><span class="ja">ワンタッチ・OTP によるログイン成功を通知（任意設定）</span><span class="en">Notifies on successful one-touch/OTP login (optional)</span></td>
-          <td style="padding:10px 14px;border:1px solid #dde4ee;"><span style="background:#dcfce7;color:#16a34a;border-radius:4px;padding:2px 8px;font-size:11px;font-weight:600;"><span class="ja">情報</span><span class="en">Info</span></span></td>
+          <td style="padding:10px 14px;border:1px solid #dde4ee;font-size:19px;color:#374151;"><span class="ja">ワンタッチ・OTP によるログイン成功を通知（任意設定）</span><span class="en">Notifies on successful one-touch/OTP login (optional)</span></td>
+          <td style="padding:10px 14px;border:1px solid #dde4ee;"><span style="background:#dcfce7;color:#16a34a;border-radius:4px;padding:2px 8px;font-size:19px;font-weight:600;"><span class="ja">情報</span><span class="en">Info</span></span></td>
         </tr>
         <tr style="background:#fafbfc;">
           <td style="padding:10px 14px;border:1px solid #dde4ee;font-weight:600;">🛡️ <span class="ja">IP 自動ブロック</span><span class="en">Auto IP Block</span></td>
-          <td style="padding:10px 14px;border:1px solid #dde4ee;font-size:12px;color:#374151;"><span class="ja">攻撃元 IP をファイアウォールで自動ブロックした際に通知</span><span class="en">Notifies when the attack source IP is automatically blocked by firewall</span></td>
-          <td style="padding:10px 14px;border:1px solid #dde4ee;"><span style="background:#fef3c7;color:#d97706;border-radius:4px;padding:2px 8px;font-size:11px;font-weight:600;"><span class="ja">中</span><span class="en">Medium</span></span></td>
+          <td style="padding:10px 14px;border:1px solid #dde4ee;font-size:19px;color:#374151;"><span class="ja">攻撃元 IP をファイアウォールで自動ブロックした際に通知</span><span class="en">Notifies when the attack source IP is automatically blocked by firewall</span></td>
+          <td style="padding:10px 14px;border:1px solid #dde4ee;"><span style="background:#fef3c7;color:#d97706;border-radius:4px;padding:2px 8px;font-size:19px;font-weight:600;"><span class="ja">中</span><span class="en">Medium</span></span></td>
         </tr>
       </table>
     </div>
 
     <!-- Setup steps -->
-    <h4 style="margin-top:20px;margin-bottom:8px;font-size:14px;color:#1a2340;"><span class="ja">LINE 通知の設定方法</span><span class="en">How to Set Up LINE Notifications</span></h4>
-    <ol style="padding-left:20px;line-height:2;font-size:13px;color:#374151;">
-      <li><span class="ja">ログビューアを起動し、「LINE通知設定」タブを開く</span><span class="en">Launch Log Viewer and open the "LINE Notification Settings" tab</span></li>
-      <li><span class="ja">LINE Notify または LINE 公式アカウントの連携トークンを入力</span><span class="en">Enter the LINE Notify or official account integration token</span></li>
-      <li><span class="ja">「テスト送信」ボタンで通知が届くことを確認</span><span class="en">Click "Send Test" to confirm the notification is received</span></li>
-      <li><span class="ja">通知したいイベント種別にチェックを入れて保存</span><span class="en">Check the event types you want to be notified about and save</span></li>
-    </ol>
+    <h4 style="margin-top:20px;margin-bottom:8px;font-size:19px;color:#1a2340;"><span class="ja">LINE 通知の設定方法</span><span class="en">How to Set Up LINE Notifications</span></h4>
+    <ul class="steps">
+      <li><span class="step-num">1</span><span class="step-txt">
+        <span class="ja">applippli-keyログを起動し、「LINE通知設定」タブを開く</span><span class="en">Launch applippli-key Log and open the "LINE Notification Settings" tab</span>
+      </span></li>
+      <li style="list-style:none;display:block;margin:12px 0 16px;">
+        <img src="img/123.png" alt="LINE通知設定タブ画面" style="max-width:100%;border:1px solid #dde4ee;border-radius:6px;box-shadow:0 2px 6px rgba(0,0,0,0.08);">
+      </li>
+      <li><span class="step-num">2</span><span class="step-txt">
+        <span class="ja">画面に表示されているQRをLINE友達追加より読み取ってください。アプリップリ公式ライン（↓）</span><span class="en">Scan the QR code shown on the screen from LINE's "Add Friend" feature. applippli official LINE account (below)</span>
+      </span></li>
+      <li style="list-style:none;display:block;margin:12px 0 16px;">
+        <img src="img/148.png" alt="applippli公式LINEアカウント" style="max-width:100%;border:1px solid #dde4ee;border-radius:6px;box-shadow:0 2px 6px rgba(0,0,0,0.08);">
+      </li>
+      <li><span class="step-num">3</span><span class="step-txt">
+        <span class="ja">追加されたLINEより「通知」と文字をチャットで送ってください。LINE User IDが返ってきます。</span><span class="en">From the added LINE account, send the message "通知" (notify) in the chat. A LINE User ID will be sent back to you.</span>
+      </span></li>
+      <li style="list-style:none;display:block;margin:12px 0 16px;">
+        <img src="img/149.png" alt="LINE User ID返信画面" style="max-width:100%;border:1px solid #dde4ee;border-radius:6px;box-shadow:0 2px 6px rgba(0,0,0,0.08);">
+      </li>
+      <li><span class="step-num">4</span><span class="step-txt">
+        <span class="ja">送られてきたLINE User IDを画面LINE User ID欄に入力します。<br>メール送信機能を使ってコピペできます。</span><span class="en">Enter the LINE User ID you received into the LINE User ID field on the screen.<br>You can copy and paste it using the email feature.</span>
+      </span></li>
+      <li style="list-style:none;display:block;margin:12px 0 16px;">
+        <img src="img/124.png" alt="LINE User ID入力画面" style="max-width:100%;border:1px solid #dde4ee;border-radius:6px;box-shadow:0 2px 6px rgba(0,0,0,0.08);">
+      </li>
+      <li><span class="step-num">5</span><span class="step-txt">
+        <span class="ja">最後に保存ボタンをクリックします。保存後テスト送信をクリックしてテスト通知がLINEに送られてきます。</span><span class="en">Finally, click the Save button. After saving, click Send Test and a test notification will be sent to LINE.</span>
+      </span></li>
+      <li style="list-style:none;display:block;margin:12px 0 16px;">
+        <img src="img/147.png" alt="保存・テスト送信画面" style="max-width:100%;border:1px solid #dde4ee;border-radius:6px;box-shadow:0 2px 6px rgba(0,0,0,0.08);">
+      </li>
+    </ul>
 
-    <h3><span class="ja">自動 IP ブロック</span><span class="en">Automatic IP Blocking</span></h3>
+    <h3 id="auto-block"><span class="ja">自動 IP ブロック</span><span class="en">Automatic IP Blocking</span></h3>
     <p>
       <span class="ja">「自動防御設定」タブで有効にすると、ネットワーク不正アクセスを検知した送信元 IP を Windows ファイアウォールで自動ブロックします。</span>
       <span class="en">When enabled in the "Auto Block Settings" tab, the source IP of detected network intrusion attempts is automatically blocked by Windows Firewall.</span>
     </p>
     <div style="margin:12px 0;">
-      <table style="width:100%;border-collapse:collapse;font-size:13px;">
+      <table style="width:100%;border-collapse:collapse;font-size:19px;">
         <tr style="background:#f0f4ff;">
           <th style="padding:10px 14px;text-align:left;border:1px solid #dde4ee;width:40%;">
             <span class="ja">設定項目</span><span class="en">Setting</span>
@@ -1463,10 +1608,10 @@ window.addEventListener('load', function() {
 
     <h3><span class="ja">ログの色分け</span><span class="en">Log Color Coding</span></h3>
     <div style="margin:12px 0;display:flex;gap:12px;flex-wrap:wrap;">
-      <span style="background:#f0fdf4;border:1px solid #6ee7b7;border-radius:8px;padding:6px 14px;font-size:12px;color:#15803d;">&#9632; <span class="ja">成功（SUCCESS / OK）</span><span class="en">Success (SUCCESS / OK)</span></span>
-      <span style="background:#fff0f0;border:1px solid #fca5a5;border-radius:8px;padding:6px 14px;font-size:12px;color:#dc2626;">&#9632; <span class="ja">失敗（FAIL / BAD-OTP）</span><span class="en">Failure (FAIL / BAD-OTP)</span></span>
-      <span style="background:#ffebeb;border:1px solid #c00;border-radius:8px;padding:6px 14px;font-size:12px;color:#8b0000;">&#9632; <span class="ja">脅威（THREAT）— 行全体が赤背景</span><span class="en">Threat (THREAT) — entire row highlighted red</span></span>
-      <span style="background:#eef2ff;border:1px solid #a5b4fc;border-radius:8px;padding:6px 14px;font-size:12px;color:#4338ca;">&#9632; <span class="ja">IP アドレス（繰り返し失敗 IP は赤表示）</span><span class="en">IP Address (repeat failure IPs shown in red)</span></span>
+      <span style="background:#f0fdf4;border:1px solid #6ee7b7;border-radius:8px;padding:6px 14px;font-size:19px;color:#15803d;">&#9632; <span class="ja">成功（SUCCESS / OK）</span><span class="en">Success (SUCCESS / OK)</span></span>
+      <span style="background:#fff0f0;border:1px solid #fca5a5;border-radius:8px;padding:6px 14px;font-size:19px;color:#dc2626;">&#9632; <span class="ja">失敗（FAIL / BAD-OTP）</span><span class="en">Failure (FAIL / BAD-OTP)</span></span>
+      <span style="background:#ffebeb;border:1px solid #c00;border-radius:8px;padding:6px 14px;font-size:19px;color:#8b0000;">&#9632; <span class="ja">脅威（THREAT）— 行全体が赤背景</span><span class="en">Threat (THREAT) — entire row highlighted red</span></span>
+      <span style="background:#eef2ff;border:1px solid #a5b4fc;border-radius:8px;padding:6px 14px;font-size:19px;color:#4338ca;">&#9632; <span class="ja">IP アドレス（繰り返し失敗 IP は赤表示）</span><span class="en">IP Address (repeat failure IPs shown in red)</span></span>
     </div>
 
     <h3><span class="ja">ログ イベント早見表</span><span class="en">Log Event Quick Reference</span></h3>
@@ -1476,11 +1621,11 @@ window.addEventListener('load', function() {
     </p>
 
     <!-- イベント種別 -->
-    <p style="margin:16px 0 6px;font-weight:bold;font-size:13px;color:#3456f6;">
+    <p style="margin:16px 0 6px;font-weight:bold;font-size:19px;color:#3456f6;">
       <span class="ja">■ イベント（Event）</span><span class="en">■ Event</span>
     </p>
     <div style="overflow-x:auto;">
-    <table style="width:100%;border-collapse:collapse;font-size:13px;min-width:360px;">
+    <table style="width:100%;border-collapse:collapse;font-size:19px;min-width:360px;">
       <tr style="background:#f0f4ff;">
         <th style="padding:8px 12px;text-align:left;border:1px solid #dde4ee;width:38%;">
           <span class="ja">表示名</span><span class="en">Display Name</span>
@@ -1521,11 +1666,11 @@ window.addEventListener('load', function() {
     </div>
 
     <!-- 結果コード -->
-    <p style="margin:20px 0 6px;font-weight:bold;font-size:13px;color:#3456f6;">
+    <p style="margin:20px 0 6px;font-weight:bold;font-size:19px;color:#3456f6;">
       <span class="ja">■ 結果（Result）</span><span class="en">■ Result</span>
     </p>
     <div style="overflow-x:auto;">
-    <table style="width:100%;border-collapse:collapse;font-size:13px;min-width:440px;">
+    <table style="width:100%;border-collapse:collapse;font-size:19px;min-width:440px;">
       <tr style="background:#f0f4ff;">
         <th style="padding:8px 12px;text-align:left;border:1px solid #dde4ee;width:22%;">
           <span class="ja">表示</span><span class="en">Display</span>
@@ -1558,7 +1703,7 @@ window.addEventListener('load', function() {
         <td style="padding:8px 12px;border:1px solid #dde4ee;"><span class="ja">MFA をバイパスしてログオン。意図しない場合は原因を調査してください。</span><span class="en">Logon bypassed MFA. Investigate if unintentional.</span></td>
       </tr>
       <tr>
-        <td style="padding:8px 12px;border:1px solid #dde4ee;font-weight:bold;background:#fff0f0;"><span style="background:#8b0000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;"><span class="ja">脅威</span><span class="en">Threat</span></span></td>
+        <td style="padding:8px 12px;border:1px solid #dde4ee;font-weight:bold;background:#fff0f0;"><span style="background:#8b0000;color:#fff;padding:2px 8px;border-radius:4px;font-size:19px;"><span class="ja">脅威</span><span class="en">Threat</span></span></td>
         <td style="padding:8px 12px;border:1px solid #dde4ee;background:#fff0f0;color:#8b0000;font-weight:bold;"><span class="ja">即対応</span><span class="en">Immediate</span></td>
         <td style="padding:8px 12px;border:1px solid #dde4ee;background:#fff0f0;"><span class="ja">プロセス偽装・不審コマンド・ネットワーク攻撃などの脅威を検知。備考欄に詳細と推奨対応を記録。</span><span class="en">Threat detected (process masquerade, suspicious command, network attack, etc.). Details and recommended action recorded in the notes column.</span></td>
       </tr>
@@ -1576,11 +1721,11 @@ window.addEventListener('load', function() {
     </div>
 
     <!-- 方式 -->
-    <p style="margin:20px 0 6px;font-weight:bold;font-size:13px;color:#3456f6;">
+    <p style="margin:20px 0 6px;font-weight:bold;font-size:19px;color:#3456f6;">
       <span class="ja">■ 方式（Method）</span><span class="en">■ Method</span>
     </p>
     <div style="overflow-x:auto;">
-    <table style="width:100%;border-collapse:collapse;font-size:13px;min-width:360px;">
+    <table style="width:100%;border-collapse:collapse;font-size:19px;min-width:360px;">
       <tr style="background:#f0f4ff;">
         <th style="padding:8px 12px;text-align:left;border:1px solid #dde4ee;width:30%;">
           <span class="ja">表示</span><span class="en">Display</span>
@@ -1628,7 +1773,7 @@ window.addEventListener('load', function() {
 
 <footer>
   &copy; applippli-key &nbsp;|&nbsp; 2026/6/26
-  <div id="internalLinks" style="margin-top:8px;font-size:11px;color:#b0b8c8;">
+  <div id="internalLinks" style="margin-top:8px;font-size:19px;color:#b0b8c8;">
     <a href="build_log.html" style="color:#b0b8c8;">社内用: ビルドログ</a>
   </div>
 </footer>
